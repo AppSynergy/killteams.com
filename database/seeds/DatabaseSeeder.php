@@ -17,8 +17,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('daboss'),
         ]);
 
+        foreach (['None', 'Leader', 'Combat', 'Comms', 'Demolitions', 'Heavy', 'Medic', 'Scout', 'Sniper', 'Veteran', 'Zealot'] as $name) {
+            DB::table('specialisms')->insert([
+                'name' => $name,
+            ]);
+        }
+
         factory(App\Models\Faction::class, 10)->create();
-        factory(App\Models\Specialism::class, 10)->create();
+
         factory(App\Models\Fighter::class, 10)->create();
         factory(App\Models\Killteam::class, 10)->create();
         factory(App\Models\Miniature::class, 10)->create();
