@@ -34,6 +34,10 @@ class Faction extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function miniatures()
+    {
+        return $this->hasMany('App\Miniature');
+    }
 
     /*
     |--------------------------------------------------------------------------

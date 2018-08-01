@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Fighter extends Model
+class Specialism extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Fighter extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'fighters';
+    protected $table = 'specialisms';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
@@ -34,11 +34,6 @@ class Fighter extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function specialism()
-    {
-        return $this->hasOne('App\Specialism');
-    }
-
 
     /*
     |--------------------------------------------------------------------------
