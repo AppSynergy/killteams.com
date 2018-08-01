@@ -19,7 +19,7 @@ class Specialism extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['name'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,6 +34,10 @@ class Specialism extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function fighters()
+    {
+        return $this->hasMany('App\Models\Fighter');
+    }
 
     /*
     |--------------------------------------------------------------------------

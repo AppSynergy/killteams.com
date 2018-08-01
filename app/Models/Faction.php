@@ -19,7 +19,7 @@ class Faction extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['name'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -36,7 +36,12 @@ class Faction extends Model
     */
     public function miniatures()
     {
-        return $this->hasMany('App\Miniature');
+        return $this->hasMany('App\Models\Miniature');
+    }
+
+    public function killteams()
+    {
+        return $this->hasMany('App\Models\Killteam');
     }
 
     /*

@@ -19,7 +19,7 @@ class Miniature extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['name', 'faction_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,6 +34,15 @@ class Miniature extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function fighters()
+    {
+        return $this->hasMany('App\Models\Fighter');
+    }
+
+    public function faction()
+    {
+        return $this->belongsTo('App\Models\Faction');
+    }
 
     /*
     |--------------------------------------------------------------------------

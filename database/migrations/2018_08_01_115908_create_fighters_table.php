@@ -15,6 +15,11 @@ class CreateFightersTable extends Migration
     {
         Schema::create('fighters', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('miniature_id');
+            $table->unsignedInteger('specialism_id');
+            $table->foreign('miniature_id')->references('id')->on('miniatures');
+            $table->foreign('specialism_id')->references('id')->on('specialisms');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +31,7 @@ class CreateFightersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('fighters');
     }
 }

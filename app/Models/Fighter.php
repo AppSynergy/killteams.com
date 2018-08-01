@@ -19,7 +19,7 @@ class Fighter extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = [];
+    protected $fillable = ['name', 'specialism_id', 'miniature_id', 'killteam_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -36,7 +36,17 @@ class Fighter extends Model
     */
     public function specialism()
     {
-        return $this->hasOne('App\Specialism');
+        return $this->belongsTo('App\Models\Specialism');
+    }
+
+    public function miniature()
+    {
+        return $this->belongsTo('App\Models\Miniature');
+    }
+
+    public function killteam()
+    {
+        return $this->belongsTo('App\Models\Killteam');
     }
 
 

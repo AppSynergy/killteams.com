@@ -31,7 +31,26 @@ class FighterCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-
+        $this->crud->addField([
+            'name' => 'name',
+            'type' => 'text',
+        ]);
+        $this->crud->addField([
+            'label' => 'Specialism',
+            'name' => 'specialism_id',
+            'type' => 'select',
+            'entity' => 'specialism',
+            'attribute' => 'name',
+            'model' => 'App\Models\Specialism',
+        ]);
+        $this->crud->addField([
+            'label' => 'Miniature',
+            'name' => 'miniature_id',
+            'type' => 'select',
+            'entity' => 'miniature',
+            'attribute' => 'name',
+            'model' => 'App\Models\Miniature',
+        ]);
         $this->crud->setFromDb();
 
         // ------ CRUD COLUMNS

@@ -15,6 +15,9 @@ class CreateKillteamsTable extends Migration
     {
         Schema::create('killteams', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('faction_id');
+            $table->foreign('faction_id')->references('id')->on('factions');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +29,7 @@ class CreateKillteamsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('killteams');
     }
 }

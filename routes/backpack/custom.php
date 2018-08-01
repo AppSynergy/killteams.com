@@ -15,4 +15,5 @@ Route::group([
     CRUD::resource('faction', 'FactionCrudController');
     CRUD::resource('killteam', 'KillteamCrudController');
     CRUD::resource('fighter', 'FighterCrudController');
+    CRUD::resource('specialism', 'SpecialismCrudController');
 }); // this should be the absolute last line of this file
