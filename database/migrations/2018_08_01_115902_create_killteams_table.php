@@ -16,7 +16,9 @@ class CreateKillteamsTable extends Migration
         Schema::create('killteams', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('faction_id');
+            $table->unsignedInteger('user_id');
             $table->foreign('faction_id')->references('id')->on('factions');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->timestamps();
         });

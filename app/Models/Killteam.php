@@ -19,7 +19,7 @@ class Killteam extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'faction_id', 'user_id'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -41,7 +41,12 @@ class Killteam extends Model
 
     public function faction()
     {
-        return $this->hasOne('App\Faction');
+        return $this->belongsTo('App\Models\Faction');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 
     /*

@@ -64,6 +64,15 @@ class User extends Authenticatable
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function killteams()
+    {
+        return $this->hasMany('App\Models\Killteam');
+    }
+
+    public function fighters()
+    {
+        return $this->hasManyThrough('App\Models\Fighter', 'App\Models\Killteam');
+    }
 
     /*
     |--------------------------------------------------------------------------

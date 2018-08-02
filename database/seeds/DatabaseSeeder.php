@@ -17,6 +17,18 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('daboss'),
         ]);
 
+        DB::table('users')->insert([
+            'name' => 'gorka',
+            'email' => 'gorka@killteams.com',
+            'password' => bcrypt('daboss'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'morka',
+            'email' => 'morka@killteams.com',
+            'password' => bcrypt('daboss'),
+        ]);
+
         foreach (['None', 'Leader', 'Combat', 'Comms', 'Demolitions', 'Heavy', 'Medic', 'Scout', 'Sniper', 'Veteran', 'Zealot'] as $name) {
             DB::table('specialisms')->insert([
                 'name' => $name,

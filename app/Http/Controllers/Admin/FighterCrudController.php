@@ -36,6 +36,14 @@ class FighterCrudController extends CrudController
             'type' => 'text',
         ]);
         $this->crud->addField([
+            'label' => 'Killteam',
+            'name' => 'killteam_id',
+            'type' => 'select',
+            'entity' => 'killteam',
+            'attribute' => 'name',
+            'model' => 'App\Models\Killteam',
+        ]);
+        $this->crud->addField([
             'label' => 'Specialism',
             'name' => 'specialism_id',
             'type' => 'select',
