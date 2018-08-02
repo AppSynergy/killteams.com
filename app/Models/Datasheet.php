@@ -39,6 +39,8 @@ class Datasheet extends Model
         return $this->belongsTo('App\Models\Faction');
     }
 
+
+
     public function miniatures()
     {
         return $this->hasMany('App\Models\Miniature');
@@ -55,6 +57,10 @@ class Datasheet extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+    public function factionName()
+    {
+        return $this->faction->name;
+    }
 
     /*
     |--------------------------------------------------------------------------

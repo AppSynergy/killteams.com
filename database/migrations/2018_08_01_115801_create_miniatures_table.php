@@ -28,7 +28,6 @@ class CreateMiniaturesTable extends Migration
             // Wargear Options
             // Abilities
             // Specialists
-            // Keywords
             $table->timestamps();
         });
     }

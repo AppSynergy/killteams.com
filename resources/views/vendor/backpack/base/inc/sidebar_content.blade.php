@@ -17,15 +17,15 @@
     </a>
 </li>
 <li>
-    <a href='{{ backpack_url('miniature') }}'>
-        <i class='fa fa-tag'></i>
-        <span>Miniatures</span>
-    </a>
-</li>
-<li>
     <a href='{{ backpack_url('datasheet') }}'>
         <i class='fa fa-tag'></i>
         <span>Datasheets</span>
+    </a>
+</li>
+<li>
+    <a href='{{ backpack_url('miniature') }}'>
+        <i class='fa fa-tag'></i>
+        <span>Miniatures</span>
     </a>
 </li>
 <li>

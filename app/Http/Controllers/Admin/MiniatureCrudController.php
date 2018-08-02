@@ -31,17 +31,20 @@ class MiniatureCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->addField([
-            'label' => 'Datasheet',
-            'name' => 'datasheet_id',
-            'type' => 'select',
-            'entity' => 'datasheet',
-            'attribute' => 'name',
-            'model' => 'App\Models\Datasheet',
-        ]);
         $this->crud->setFromDb();
 
         // ------ CRUD COLUMNS
+        $this->crud->addColumn([
+            'label' => 'Faction',
+            'type' => 'model_function',
+            'function_name' => 'factionName',
+        ])->beforeColumn('datasheet_id');
+        $this->crud->addColumn([
+            'label' => 'Datasheet',
+            'name' => 'datasheet_id',
+            'type' => 'model_function',
+            'function_name' => 'datasheetName',
+        ]);
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
@@ -50,6 +53,25 @@ class MiniatureCrudController extends CrudController
         // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
 
         // ------ CRUD FIELDS
+        $this->crud->addField([
+            'label' => 'Datasheet',
+            'name' => 'datasheet_id',
+            'type' => 'select',
+            'entity' => 'datasheet',
+            'attribute' => 'name',
+            'model' => 'App\Models\Datasheet',
+        ]);
+        foreach (\Config::get('warhammer.profiles') as $profile) {
+            $this->crud->addField([
+                'label' => $profile,
+                'name' => $profile,
+                'type' => 'number',
+                'wrapperAttributes' => [
+                    'class' => 'form-group col-md-1',
+                ],
+            ]);
+        }
+
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');

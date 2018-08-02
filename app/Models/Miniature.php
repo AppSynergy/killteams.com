@@ -39,9 +39,9 @@ class Miniature extends Model
         return $this->hasMany('App\Models\Fighter');
     }
 
-    public function faction()
+    public function datasheet()
     {
-        return $this->belongsTo('App\Models\Faction');
+        return $this->belongsTo('App\Models\Datasheet');
     }
 
     /*
@@ -55,6 +55,20 @@ class Miniature extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+    public function faction()
+    {
+        return $this->datasheet->faction;
+    }
+
+    public function factionName()
+    {
+        return $this->faction()->name;
+    }
+
+    public function datasheetName()
+    {
+        return $this->datasheet->name;
+    }
 
     /*
     |--------------------------------------------------------------------------
