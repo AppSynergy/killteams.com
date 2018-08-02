@@ -32,12 +32,12 @@ class MiniatureCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->addField([
-            'label' => 'Faction',
-            'name' => 'faction_id',
+            'label' => 'Datasheet',
+            'name' => 'datasheet_id',
             'type' => 'select',
-            'entity' => 'faction',
+            'entity' => 'datasheet',
             'attribute' => 'name',
-            'model' => 'App\Models\Faction',
+            'model' => 'App\Models\Datasheet',
         ]);
         $this->crud->setFromDb();
 

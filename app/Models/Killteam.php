@@ -18,8 +18,8 @@ class Killteam extends Model
     protected $table = 'killteams';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    // protected $guarded = ['id'];
-    protected $fillable = ['name', 'faction_id', 'user_id'];
+    protected $guarded = ['id'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 

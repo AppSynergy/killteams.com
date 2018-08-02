@@ -15,8 +15,8 @@ class CreateMiniaturesTable extends Migration
     {
         Schema::create('miniatures', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('faction_id');
-            $table->foreign('faction_id')->references('id')->on('factions');
+            $table->unsignedInteger('datasheet_id');
+            $table->foreign('datasheet_id')->references('id')->on('datasheets');
             // Model Name
             $table->string('name');
             // Profiles

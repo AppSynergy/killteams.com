@@ -18,8 +18,8 @@ class Fighter extends Model
     protected $table = 'fighters';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    // protected $guarded = ['id'];
-    protected $fillable = ['name', 'specialism_id', 'miniature_id', 'killteam_id'];
+    protected $guarded = ['id'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 

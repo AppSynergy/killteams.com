@@ -18,8 +18,8 @@ class Miniature extends Model
     protected $table = 'miniatures';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    // protected $guarded = ['id'];
-    protected $fillable = ['name', 'faction_id', 'description'];
+    protected $guarded = ['id'];
+    // protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 
