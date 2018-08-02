@@ -5,6 +5,12 @@
     </a>
 </li>
 <li>
+    <a href='{{ backpack_url('user') }}'>
+        <i class='fa fa-tag'></i>
+        <span>Users</span>
+    </a>
+</li>
+<li>
     <a href='{{ backpack_url('miniature') }}'>
         <i class='fa fa-tag'></i>
         <span>Miniatures</span>
