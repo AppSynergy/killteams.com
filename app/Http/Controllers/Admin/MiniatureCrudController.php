@@ -32,6 +32,8 @@ class MiniatureCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setFromDb();
+        $suffixes = \Config::get('warhammer.suffixes');
+        $profiles = \Config::get('warhammer.profiles');
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
@@ -45,12 +47,17 @@ class MiniatureCrudController extends CrudController
             'type' => 'model_function',
             'function_name' => 'datasheetName',
         ]);
-        // $this->crud->addColumn(); // add a single column, at the end of the stack
-        // $this->crud->addColumns(); // add multiple columns, at the end of the stack
-        // $this->crud->removeColumn('column_name'); // remove a column from the stack
-        // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
-        // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
-        // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+        foreach ($profiles as $i => $profile) {
+            $conf = [
+                'label' => $profile,
+                'name' => $profile,
+                'type' => 'number',
+            ];
+            if ($suffixes[$i] != '') {
+                $conf['suffix'] = $suffixes[$i];
+            }
+            $this->crud->addColumn($conf);
+        }
 
         // ------ CRUD FIELDS
         $this->crud->addField([
@@ -61,17 +68,25 @@ class MiniatureCrudController extends CrudController
             'attribute' => 'name',
             'model' => 'App\Models\Datasheet',
         ]);
-        foreach (\Config::get('warhammer.profiles') as $profile) {
+        foreach ($profiles as $profile) {
             $this->crud->addField([
                 'label' => $profile,
                 'name' => $profile,
                 'type' => 'number',
                 'wrapperAttributes' => [
-                    'class' => 'form-group col-md-1',
+                    'class' => 'form-group col-sm-2 col-md-1',
                 ],
             ]);
         }
 
+        // $this->crud->addColumn(); // add a single column, at the end of the stack
+        // $this->crud->addColumns(); // add multiple columns, at the end of the stack
+        // $this->crud->removeColumn('column_name'); // remove a column from the stack
+        // $this->crud->removeColumns(['column_name_1', 'column_name_2']); // remove an array of columns from the stack
+        // $this->crud->setColumnDetails('column_name', ['attribute' => 'value']); // adjusts the properties of the passed in column (by name)
+        // $this->crud->setColumnsDetails(['column_1', 'column_2'], ['attribute' => 'value']);
+
+        // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
         // $this->crud->addFields($array_of_arrays, 'update/create/both');
         // $this->crud->removeField('name', 'update/create/both');
