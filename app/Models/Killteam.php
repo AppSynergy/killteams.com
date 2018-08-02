@@ -36,7 +36,7 @@ class Killteam extends Model
     */
     public function fighters()
     {
-        return $this->hasMany('App\Fighter');
+        return $this->hasMany('App\Models\Fighter');
     }
 
     public function faction()
@@ -60,6 +60,24 @@ class Killteam extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+    public function fighterSummary()
+    {
+        $names = $this->fighters()->get()->reduce(function ($xs, $x) {
+            $xs[] = $x->name;
+            return $xs;
+        }, []);
+        return implode(', ', $names);
+    }
+
+    public function factionName()
+    {
+        return $this->faction->name;
+    }
+
+    public function userName()
+    {
+        return $this->user->name;
+    }
 
     /*
     |--------------------------------------------------------------------------
