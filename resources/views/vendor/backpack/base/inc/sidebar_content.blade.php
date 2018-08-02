@@ -29,6 +29,18 @@
     </a>
 </li>
 <li>
+    <a href='{{ backpack_url('keyword') }}'>
+        <i class='fa fa-tag'></i>
+        <span>Keywords</span>
+    </a>
+</li>
+<li>
+    <a href='{{ backpack_url('ability') }}'>
+        <i class='fa fa-tag'></i>
+        <span>Abilities</span>
+    </a>
+</li>
+<li>
     <a href='{{ backpack_url('killteam') }}'>
         <i class='fa fa-tag'></i>
         <span>Killteams</span>

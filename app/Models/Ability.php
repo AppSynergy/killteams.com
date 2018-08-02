@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Miniature extends Model
+class Ability extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Miniature extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'miniatures';
+    protected $table = 'abilities';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    protected $fillable = ['name', 'faction_id', 'description'];
+    protected $fillable = ['name', 'description'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,15 +34,6 @@ class Miniature extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function fighters()
-    {
-        return $this->hasMany('App\Models\Fighter');
-    }
-
-    public function faction()
-    {
-        return $this->belongsTo('App\Models\Faction');
-    }
 
     /*
     |--------------------------------------------------------------------------

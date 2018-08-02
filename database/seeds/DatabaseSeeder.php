@@ -41,9 +41,14 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        factory(App\Models\Fighter::class, 10)->create();
-        factory(App\Models\Killteam::class, 10)->create();
+        factory(App\Models\Ability::class, 5)->create();
+        factory(App\Models\Keyword::class, 10)->create();
         factory(App\Models\Miniature::class, 10)->create();
+
+        factory(App\Models\Killteam::class, 10)->create();
+        factory(App\Models\Fighter::class, 10)->create();
+
+
 
     }
 }
