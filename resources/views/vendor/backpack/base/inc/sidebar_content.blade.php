@@ -11,6 +11,12 @@
     </a>
 </li>
 <li>
+    <a href='{{ backpack_url('faction') }}'>
+        <i class='fa fa-tag'></i>
+        <span>Factions</span>
+    </a>
+</li>
+<li>
     <a href='{{ backpack_url('miniature') }}'>
         <i class='fa fa-tag'></i>
         <span>Miniatures</span>
@@ -20,12 +26,6 @@
     <a href='{{ backpack_url('specialism') }}'>
         <i class='fa fa-tag'></i>
         <span>Specialisms</span>
-    </a>
-</li>
-<li>
-    <a href='{{ backpack_url('faction') }}'>
-        <i class='fa fa-tag'></i>
-        <span>Factions</span>
     </a>
 </li>
 <li>

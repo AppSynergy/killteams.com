@@ -17,7 +17,18 @@ class CreateMiniaturesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('faction_id');
             $table->foreign('faction_id')->references('id')->on('factions');
+            // Model Name
             $table->string('name');
+            // Profiles
+            foreach (\Config::get('warhammer.profiles') as $profile) {
+                $table->tinyInteger($profile)->nullable();
+            }
+            // Description
+            $table->text('description')->nullable();
+            // Wargear Options
+            // Abilities
+            // Specialists
+            // Keywords
             $table->timestamps();
         });
     }

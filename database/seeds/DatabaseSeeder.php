@@ -35,7 +35,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        factory(App\Models\Faction::class, 10)->create();
+        foreach (['Adeptus Astartes', 'Grey Knights', 'Deathwatch', 'Adeptus Mechanicus', 'Astra Militarum', 'Heretic Astartes', 'Death Guard', 'Thousand Sons', 'Asuryani', 'Drukhari', 'Harlequins', 'Necrons', 'Orks', 'T\'au Empire', 'Tyranids', 'Genestealer Cults'] as $name) {
+            DB::table('factions')->insert([
+                'name' => $name,
+            ]);
+        }
 
         factory(App\Models\Fighter::class, 10)->create();
         factory(App\Models\Killteam::class, 10)->create();
