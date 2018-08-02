@@ -31,21 +31,43 @@ class DatasheetCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->addField([
-            'label' => 'Faction',
-            'name' => 'faction_id',
-            'type' => 'select',
-            'entity' => 'faction',
-            'attribute' => 'name',
-            'model' => 'App\Models\Faction',
-        ]);
+        $this->crud->setFromDb();
+
+        // ------ CRUD COLUMNS
         $this->crud->addColumn([
             'label' => 'Faction',
             'name' => 'faction_id',
             'type' => 'model_function',
             'function_name' => 'factionName',
         ]);
-        $this->crud->setFromDb();
+        $this->crud->addColumn([
+            'label' => 'Keywords',
+            'type' => 'select_multiple',
+            'name' => 'keywords',
+            'entity' => 'keywords',
+            'attribute' => 'name',
+            'model' => 'App\Models\Keyword',
+        ]);
+        // ------ CRUD FIELDS
+        $this->crud->addField([
+            'label' => 'Faction',
+            'name' => 'faction_id',
+            'type' => 'select2',
+            'entity' => 'faction',
+            'attribute' => 'name',
+            'model' => 'App\Models\Faction',
+        ]);
+        $this->crud->addField([
+            'label' => 'Keywords',
+            'type' => 'select2_multiple',
+            'name' => 'keywords',
+            'entity' => 'keywords',
+            'attribute' => 'name',
+            'model' => 'App\Models\Keyword',
+            'pivot' => true,
+        ]);
+
+
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack

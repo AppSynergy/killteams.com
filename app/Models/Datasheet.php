@@ -39,11 +39,14 @@ class Datasheet extends Model
         return $this->belongsTo('App\Models\Faction');
     }
 
-
-
     public function miniatures()
     {
         return $this->hasMany('App\Models\Miniature');
+    }
+
+    public function keywords()
+    {
+        return $this->belongsToMany('App\Models\Keyword');
     }
 
     /*

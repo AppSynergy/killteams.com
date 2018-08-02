@@ -34,6 +34,10 @@ class Keyword extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function datasheets()
+    {
+        return $this->belongsToMany('App\Models\Datasheet');
+    }
 
     /*
     |--------------------------------------------------------------------------
