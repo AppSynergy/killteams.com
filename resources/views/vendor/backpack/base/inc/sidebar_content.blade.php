@@ -23,6 +23,12 @@
     </a>
 </li>
 <li>
+    <a href='{{ backpack_url('datasheet') }}'>
+        <i class='fa fa-tag'></i>
+        <span>Datasheets</span>
+    </a>
+</li>
+<li>
     <a href='{{ backpack_url('specialism') }}'>
         <i class='fa fa-tag'></i>
         <span>Specialisms</span>
