@@ -63,6 +63,10 @@
                             </div>
                         </div>
                     </form>
+
+                    <a class="btn btn-info" href="{{ route('login.provider', 'google') }}">
+                        {{ __('Login with Google') }}
+                    </a>
                 </div>
             </div>
         </div>
