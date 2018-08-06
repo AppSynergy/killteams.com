@@ -32,6 +32,26 @@ class AbilityCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
+        // ------ CRUD COLUMNS
+        $this->crud->addColumn([
+            'label' => 'Specialism',
+            'name' => 'specialism_id',
+            'type' => 'select',
+            'entity' => 'specialism',
+            'attribute' => 'name',
+            'model' => 'App\Models\Specialism',
+        ]);
+
+        // ------ CRUD FIELDS
+        $this->crud->addField([
+            'label' => 'Specialism',
+            'name' => 'specialism_id',
+            'type' => 'select2',
+            'entity' => 'specialism',
+            'attribute' => 'name',
+            'model' => 'App\Models\Specialism',
+        ]);
+
         $this->crud->setFromDb();
 
         // ------ CRUD COLUMNS

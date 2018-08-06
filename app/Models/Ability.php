@@ -34,6 +34,10 @@ class Ability extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function specialism()
+    {
+        return $this->belongsTo('App\Models\Specialism');
+    }
 
     /*
     |--------------------------------------------------------------------------

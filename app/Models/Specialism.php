@@ -39,6 +39,11 @@ class Specialism extends Model
         return $this->hasMany('App\Models\Fighter');
     }
 
+    public function abilities()
+    {
+        return $this->hasMany('App\Models\Ability');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

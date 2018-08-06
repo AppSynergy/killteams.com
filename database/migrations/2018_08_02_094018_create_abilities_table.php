@@ -17,6 +17,9 @@ class CreateAbilitiesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->unsignedInteger('level')->default(0);
+            $table->unsignedInteger('specialism_id')->nullable();
+            $table->foreign('specialism_id')->references('id')->on('specialisms');
             $table->timestamps();
         });
     }
