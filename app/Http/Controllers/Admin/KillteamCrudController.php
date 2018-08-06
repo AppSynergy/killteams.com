@@ -31,20 +31,23 @@ class KillteamCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setFromDb();
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
             'label' => 'User',
             'name' => 'user_id',
-            'type' => 'model_function',
-            'function_name' => 'userName',
+            'type' => 'select',
+            'entity' => 'user',
+            'attribute' => 'name',
+            'model' => 'App\Models\User',
         ]);
         $this->crud->addColumn([
             'label' => 'Faction',
             'name' => 'faction_id',
-            'type' => 'model_function',
-            'function_name' => 'factionName',
+            'type' => 'select',
+            'entity' => 'faction',
+            'attribute' => 'name',
+            'model' => 'App\Models\Faction',
         ]);
         $this->crud->addColumn([
             'label' => 'Fighters',
@@ -57,7 +60,7 @@ class KillteamCrudController extends CrudController
         $this->crud->addField([
             'label' => 'User',
             'name' => 'user_id',
-            'type' => 'select',
+            'type' => 'select2',
             'entity' => 'user',
             'attribute' => 'name',
             'model' => 'App\Models\User',
@@ -65,11 +68,12 @@ class KillteamCrudController extends CrudController
         $this->crud->addField([
             'label' => 'Faction',
             'name' => 'faction_id',
-            'type' => 'select',
+            'type' => 'select2',
             'entity' => 'faction',
             'attribute' => 'name',
             'model' => 'App\Models\Faction',
         ]);
+        $this->crud->setFromDb();
 
 
         // ------ CRUD COLUMNS

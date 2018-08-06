@@ -37,8 +37,10 @@ class DatasheetCrudController extends CrudController
         $this->crud->addColumn([
             'label' => 'Faction',
             'name' => 'faction_id',
-            'type' => 'model_function',
-            'function_name' => 'factionName',
+            'type' => 'select',
+            'entity' => 'faction',
+            'attribute' => 'name',
+            'model' => 'App\Models\Faction',
         ]);
         $this->crud->addColumn([
             'label' => 'Keywords',

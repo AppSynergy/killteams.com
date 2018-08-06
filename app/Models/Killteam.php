@@ -69,16 +69,6 @@ class Killteam extends Model
         return implode(', ', $names);
     }
 
-    public function factionName()
-    {
-        return $this->faction->name;
-    }
-
-    public function userName()
-    {
-        return $this->user->name;
-    }
-
     /*
     |--------------------------------------------------------------------------
     | MUTATORS

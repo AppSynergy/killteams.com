@@ -65,6 +65,7 @@
                     </form>
 
                     <a class="btn btn-info" href="{{ route('login.provider', 'google') }}">
+                        <i class="fa fa-google-plus"></i>
                         {{ __('Login with Google') }}
                     </a>
                 </div>

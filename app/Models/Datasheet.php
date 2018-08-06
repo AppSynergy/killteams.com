@@ -60,10 +60,6 @@ class Datasheet extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    public function factionName()
-    {
-        return $this->faction->name;
-    }
 
     /*
     |--------------------------------------------------------------------------
