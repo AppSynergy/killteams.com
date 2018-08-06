@@ -41,6 +41,14 @@ class AbilityCrudController extends CrudController
             'attribute' => 'name',
             'model' => 'App\Models\Specialism',
         ]);
+        $this->crud->addColumn([
+            'label' => 'Parent',
+            'name' => 'parent_id',
+            'type' => 'select',
+            'entity' => 'parent',
+            'attribute' => 'name',
+            'model' => 'App\Models\Ability',
+        ]);
 
         // ------ CRUD FIELDS
         $this->crud->addField([
@@ -50,6 +58,14 @@ class AbilityCrudController extends CrudController
             'entity' => 'specialism',
             'attribute' => 'name',
             'model' => 'App\Models\Specialism',
+        ]);
+        $this->crud->addField([
+            'label' => 'Parent',
+            'name' => 'parent_id',
+            'type' => 'select2',
+            'entity' => 'parent',
+            'attribute' => 'name',
+            'model' => 'App\Models\Ability',
         ]);
 
         $this->crud->setFromDb();

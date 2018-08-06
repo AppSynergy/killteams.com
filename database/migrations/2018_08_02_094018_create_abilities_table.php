@@ -15,11 +15,13 @@ class CreateAbilitiesTable extends Migration
     {
         Schema::create('abilities', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('specialism_id')->nullable();
+            $table->unsignedInteger('parent_id')->nullable();
             $table->string('name');
             $table->text('description')->nullable();
             $table->unsignedInteger('level')->default(0);
-            $table->unsignedInteger('specialism_id')->nullable();
             $table->foreign('specialism_id')->references('id')->on('specialisms');
+            $table->foreign('parent_id')->references('id')->on('abilities');
             $table->timestamps();
         });
     }

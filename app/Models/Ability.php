@@ -39,6 +39,11 @@ class Ability extends Model
         return $this->belongsTo('App\Models\Specialism');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Ability');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

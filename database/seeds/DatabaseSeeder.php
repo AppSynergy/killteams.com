@@ -11,30 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'adam',
-            'email' => 'waaaaagh@killteams.com',
-            'password' => bcrypt('daboss'),
-        ]);
 
-        DB::table('users')->insert([
-            'name' => 'gorka',
-            'email' => 'gorka@killteams.com',
-            'password' => bcrypt('daboss'),
+        $this->call([
+            UserSeeder::class,
+            SpecialistSeeder::class,
         ]);
-
-        DB::table('users')->insert([
-            'name' => 'morka',
-            'email' => 'morka@killteams.com',
-            'password' => bcrypt('daboss'),
-        ]);
-
-        $specialisms = ['None', 'Leader', 'Combat', 'Comms', 'Demolitions', 'Heavy', 'Medic', 'Scout', 'Sniper', 'Veteran', 'Zealot'];
-        foreach ($specialisms as $name) {
-            DB::table('specialisms')->insert([
-                'name' => $name,
-            ]);
-        }
 
         $factions = ['Adeptus Astartes', 'Grey Knights', 'Deathwatch', 'Adeptus Mechanicus', 'Astra Militarum', 'Heretic Astartes', 'Death Guard', 'Thousand Sons', 'Asuryani', 'Drukhari', 'Harlequins', 'Necrons', 'Orks', 'T\'au Empire', 'Tyranids', 'Genestealer Cults'];
         foreach ($factions as $name) {
@@ -102,7 +83,7 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        factory(App\Models\Ability::class, 5)->create();
+        //factory(App\Models\Ability::class, 5)->create();
         //factory(App\Models\Keyword::class, 10)->create();
         //factory(App\Models\Datasheet::class, 10)->create();
         //factory(App\Models\Miniature::class, 10)->create();
