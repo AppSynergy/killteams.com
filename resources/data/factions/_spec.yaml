@@ -1,4 +1,89 @@
-type: "//rec"
-required:
-  title: "//str"
-  body: "//str"
+root:
+    _type: array
+    _children:
+
+        faction_keyword:
+            _type: text
+            _required: true
+
+        points:
+            _type: array
+            _not_empty: true
+            _required: true
+            _children:
+                kill_team:
+                    _type: partial
+                    _partial: list_of_numbers
+                ranged_weapons:
+                    _type: partial
+                    _partial: list_of_numbers
+                melee_weapons:
+                    _type: partial
+                    _partial: list_of_numbers
+                other_wargear:
+                    _type: partial
+                    _partial: list_of_numbers
+
+        abilities:
+            _type: partial
+            _partial: list_of_name_desc_pairs
+
+        datasheets:
+            _type: prototype
+            _required: true
+            _prototype:
+                _type: array
+                _ignore_extra_keys: true
+                _children:
+                    name:
+                        _type: text
+                        _required: true
+                    abilities:
+                        _type: partial
+                        _partial: list_of_texts
+                    keywords:
+                        _type: partial
+                        _partial: list_of_texts
+                    minis:
+                        _type: prototype
+                        _required: true
+                        _prototype:
+                            _type: array
+                            _not_empty: true
+                            _ignore_extra_keys: true
+                            _children:
+                                name:
+                                    _type: text
+                                profile:
+                                    _type: text
+                                armament:
+                                    _type: choice
+                                    _choices:
+                                        1:
+                                            _type: text
+                                        2:
+                                            _type: prototype
+                                            _prototype:
+                                                _type: text
+
+partials:
+    list_of_name_desc_pairs:
+        _type: prototype
+        _required: true
+        _prototype:
+            _type: array
+            _children:
+                name:
+                    _type: text
+                description:
+                    _type: text
+    list_of_texts:
+        _type: prototype
+        _required: true
+        _prototype:
+            _type: text
+    list_of_numbers:
+        _type: prototype
+        _required: true
+        _prototype:
+            _type: number

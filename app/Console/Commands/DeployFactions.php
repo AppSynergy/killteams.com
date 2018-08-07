@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Yaml\Yaml;
 
+use RomaricDrigon\MetaYaml\MetaYaml;
+
 class DeployFactions extends Command
 {
     /**
@@ -40,8 +42,13 @@ class DeployFactions extends Command
     {
         $this->info("Deploying factions...");
         $file = resource_path('data/factions/AdeptusMechanicus.yaml');
+        $spec_file = resource_path('data/factions/_spec.yaml');
         $data = Yaml::parse(file_get_contents($file));
-        dd($data);
-
+        $spec = Yaml::parse(file_get_contents($spec_file));
+        dump($data);
+        $schema = new MetaYaml($spec, true);
+        $schema->validate($data);
+        $doc = $schema->getDocumentationForNode();
+        dump($doc);
     }
 }
