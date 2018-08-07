@@ -4,22 +4,23 @@ namespace App\Console\Commands;
 
 use App\Console\Base\YamlCommand;
 use Symfony\Component\Yaml\Yaml;
+use RomaricDrigon\MetaYaml\MetaYaml;
 
-class DeployFactions extends YamlCommand
+class ValidateFactions extends YamlCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'factions:deploy';
+    protected $signature = 'factions:validate';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Deploy production faction data.';
+    protected $description = 'Validate production faction data.';
 
     /**
      * Create a new command instance.
@@ -29,7 +30,8 @@ class DeployFactions extends YamlCommand
     public function __construct()
     {
         parent::__construct();
-
+        $schema_data = $this->getFromYaml('data/factions/_schema.yaml');
+        $this->schema = new MetaYaml($schema_data, true);
     }
 
     /**
@@ -39,16 +41,18 @@ class DeployFactions extends YamlCommand
      */
     public function handle()
     {
-        $this->call('factions:validate');
-        $this->eachFaction([$this, 'deploy']);
+        $this->eachFaction([$this, 'validate']);
     }
 
     /**
-     * Deploy a single faction file.
+     * Validate a single faction file.
+     *
+     * @return void
      */
-    public function deploy($faction)
+    public function validate($faction)
     {
+        $this->info('Validating ' . $faction);
         $data = $this->getFromYaml('data/' . $faction);
-        dump($data);
+        $this->schema->validate($data);
     }
 }
