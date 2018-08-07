@@ -61,7 +61,7 @@ datasheets:
           - who: 1
             may: TAKE
             method: ONEOF
-            what: [Enhanced data-tether, Omnispex]
+            options: [Enhanced data-tether, Omnispex]
         specialists: [Comms, Scout, Sniper, Zealot]
 
       - name: Ranger Gunner
@@ -72,7 +72,7 @@ datasheets:
             may: REPLACE
             what: Galvanic rifle
             method: ONEOF
-            with: [Arc rifle, Plasma caliver, Transuranic arquebus]
+            options: [Arc rifle, Plasma caliver, Transuranic arquebus]
         specialists: [Heavy, Comms, Scout, Sniper, Zealot]
 
       - name: Ranger Alpha
@@ -83,7 +83,7 @@ datasheets:
             may: REPLACE
             what: Galvanic rifle
             method: ONEOFEACHOF
-            with: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
+            options: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
         specialists: [Leader, Comms, Scout, Sniper, Zealot]
 
   - name: Skitarii Vanguard
@@ -98,7 +98,7 @@ datasheets:
           - who: 1
             may: TAKE
             method: ONEOF
-            what: [Enhanced data-tether, Omnispex]
+            options: [Enhanced data-tether, Omnispex]
         specialists: [Comms, Scout, Sniper, Zealot]
 
       - name: Vanguard Gunner
@@ -109,7 +109,7 @@ datasheets:
             may: REPLACE
             what: Radium carbine
             method: ONEOF
-            with: [Arc rifle, Plasma caliver, Transuranic arquebus]
+            options: [Arc rifle, Plasma caliver, Transuranic arquebus]
         specialists: [Heavy, Comms, Scout, Sniper, Zealot]
 
       - name: Vanguard Alpha
@@ -120,7 +120,7 @@ datasheets:
             may: REPLACE
             what: Radium Carbine
             method: ONEOFEACHOF
-            with: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
+            options: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
         specialists: [Leader, Comms, Scout, Sniper, Zealot]
 
 
@@ -136,7 +136,8 @@ datasheets:
           - who: ANY
             may: REPLACE
             what: [Transonic razor, Chordclaw]
-            with: Transonic blades
+            method: ALLOF
+            options: Transonic blades
         specialists: [Combat, Comms, Scout, Veteran, Zealot]
 
       - name: Ruststalker Princeps
@@ -146,7 +147,8 @@ datasheets:
           - who: ANY
             may: REPLACE
             what: [Transonic razor, Chordclaw]
-            with: Transonic Blades
+            method: ALLOF
+            options: Transonic Blades
         specialists: [Leader, Combat, Comms, Scout, Veteran, Zealot]
 
   - name: Sicarian Infiltrator
@@ -162,7 +164,7 @@ datasheets:
             may: REPLACE
             what: [Stubcarbine, Power sword]
             method: ALLOF
-            with: [Flechette blaster, Taser goad]
+            options: [Flechette blaster, Taser goad]
         specialists: [Combat, Comms, Scout, Veteran, Zealot]
 
       - name: Infiltrator Princeps
@@ -173,5 +175,5 @@ datasheets:
             may: REPLACE
             what: [Stubcarbine, Power sword]
             method: ALLOF
-            with: [Flechette blaster, Taser goad]
+            options: [Flechette blaster, Taser goad]
         specialists: [Leader, Combat, Comms, Scout, Veteran, Zealot]

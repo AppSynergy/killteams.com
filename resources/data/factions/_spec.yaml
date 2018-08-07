@@ -50,7 +50,6 @@ root:
                         _prototype:
                             _type: array
                             _not_empty: true
-                            _ignore_extra_keys: true
                             _children:
                                 name:
                                     _type: text
@@ -65,8 +64,41 @@ root:
                                             _type: prototype
                                             _prototype:
                                                 _type: text
+                                wargear_options:
+                                    _type: prototype
+                                    _required: true
+                                    _prototype:
+                                        _type: array
+                                        _children:
+                                            who:
+                                                _type: text
+                                                _required: true
+                                            may:
+                                                _type: enum
+                                                _required: true
+                                                _values:
+                                                    - TAKE
+                                                    - REPLACE
+                                            what:
+                                                _type: partial
+                                                _partial: flexible_lists
+                                            method:
+                                                _type: enum
+                                                _required: true
+                                                _values:
+                                                    - ONEOF
+                                                    - ONEOFEACHOF
+                                                    - ALLOF
+                                            options:
+                                                _type: partial
+                                                _partial: flexible_lists
+                                specialists:
+                                    _type: partial
+                                    _partial: list_of_texts
+
 
 partials:
+
     list_of_name_desc_pairs:
         _type: prototype
         _required: true
@@ -77,11 +109,35 @@ partials:
                     _type: text
                 description:
                     _type: text
+
+    flexible_lists:
+        _type: choice
+        _required: true
+        _choices:
+            1:
+                _type: text
+            2:
+                _type: partial
+                _partial: list_of_texts
+            3:
+                _type: partial
+                _partial: list_of_list_of_texts
+
+    list_of_list_of_texts:
+        _type: prototype
+        _required: true
+        _prototype:
+            _type: prototype
+            _required: true
+            _prototype:
+                _type: text
+
     list_of_texts:
         _type: prototype
         _required: true
         _prototype:
             _type: text
+
     list_of_numbers:
         _type: prototype
         _required: true

@@ -45,10 +45,16 @@ class DeployFactions extends Command
         $spec_file = resource_path('data/factions/_spec.yaml');
         $data = Yaml::parse(file_get_contents($file));
         $spec = Yaml::parse(file_get_contents($spec_file));
-        dump($data);
+        //dump($data);
         $schema = new MetaYaml($spec, true);
-        $schema->validate($data);
-        $doc = $schema->getDocumentationForNode();
-        dump($doc);
+        try {
+            $schema->validate($data);
+            $this->alert('Factions OK');
+        }
+        catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+        }
+        //$doc = $schema->getDocumentationForNode();
+        //dump($doc);
     }
 }
