@@ -1,0 +1,177 @@
+faction_keyword: ADEPTUS MECHANICUS
+
+abilities:
+  - name: Canticles of the Omnissiah
+    description:
+  - name: Bionics
+    description:
+  - name: Enhanced Data-tether
+    description:
+  - name: Omnispex
+    description:
+  - name: Rad-saturation
+    description:
+  - name: Neurostatic Aura
+    description:
+
+points:
+  kill_team:
+    Sicarian Infiltrator: 14
+    Infiltrator Princeps: 15
+    Sicarian Ruststalker: 14
+    Ruststalker Princeps: 15
+    Skitarii Ranger: 9
+    Ranger Gunner: 10
+    Ranger Alpha: 10
+    Skitarii Vanguard: 9
+    Vanguard Gunner: 10
+    Vanguard Alpha: 10
+  ranged_weapons:
+    Arc pistol: 0
+    Arc rifle: 1
+    Flechette blaster: 0
+    Galvanic rifle: 0
+    Phosphor blast pistol: 0
+    Plasma caliver: 3
+    Radium carbine: 0
+    Radium pistol: 0
+    Stubcarbine: 0
+    Transuranic arquebus: 5
+  melee_weapons:
+    Arc maul: 0
+    Chordclaw: 1
+    Power sword: 0
+    Taser goad: 1
+    Transonic blades: 0
+    Transonic razor: 0
+  other_wargear:
+    Enhanced data-tether: 5
+    Omnispex: 1
+
+datasheets:
+  - name: Skitarii Ranger
+    abilities: [Canticles of the Omnissiah, Bionics]
+    keywords: [IMPERIUM, SKITARII, INFANTRY, SKITARII RANGERS]
+    minis:
+
+      - name: Skitarii Ranger
+        profile: 6 4 3 3 3 1 1 6 4 -
+        armament: Galvanic rifle
+        wargear_options:
+          - who: 1
+            may: TAKE
+            method: ONEOF
+            what: [Enhanced data-tether, Omnispex]
+        specialists: [Comms, Scout, Sniper, Zealot]
+
+      - name: Ranger Gunner
+        profile: 6 4 3 3 3 1 1 6 4 3
+        armament: Galvanic rifle
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: Galvanic rifle
+            method: ONEOF
+            with: [Arc rifle, Plasma caliver, Transuranic arquebus]
+        specialists: [Heavy, Comms, Scout, Sniper, Zealot]
+
+      - name: Ranger Alpha
+        profile: 6 4 3 3 3 1 2 7 4 1
+        armament: Galvanic rifle
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: Galvanic rifle
+            method: ONEOFEACHOF
+            with: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
+        specialists: [Leader, Comms, Scout, Sniper, Zealot]
+
+  - name: Skitarii Vanguard
+    abilities: [Canticles of the Omnissiah, Bionics, Rad-saturation]
+    keywords: [IMPERIUM, SKITARII, INFANTRY, SKITARII VANGUARD]
+    minis:
+
+      - name: Skitarii Vanguard
+        profile: 6 4 3 3 3 1 1 6 4 -
+        armament: Radium carbine
+        wargear_options:
+          - who: 1
+            may: TAKE
+            method: ONEOF
+            what: [Enhanced data-tether, Omnispex]
+        specialists: [Comms, Scout, Sniper, Zealot]
+
+      - name: Vanguard Gunner
+        profile: 6 4 3 3 3 1 1 6 4 3
+        armament: Radium carbine
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: Radium carbine
+            method: ONEOF
+            with: [Arc rifle, Plasma caliver, Transuranic arquebus]
+        specialists: [Heavy, Comms, Scout, Sniper, Zealot]
+
+      - name: Vanguard Alpha
+        profile: 6 4 3 3 3 1 2 7 4 1
+        armament: Radium Carbine
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: Radium Carbine
+            method: ONEOFEACHOF
+            with: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
+        specialists: [Leader, Comms, Scout, Sniper, Zealot]
+
+
+  - name: Sicarian Ruststalker
+    abilities: [Canticles of the Omnissiah, Bionics]
+    keywords: [IMPERIUM, SKITARII, INFANTRY, SICARIAN RUSTSTALKER]
+    minis:
+
+      - name: Sicarian Ruststalker
+        profile: 8 3 3 4 3 2 3 6 4 -
+        armament: [Transonic razor, Chordclaw]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: [Transonic razor, Chordclaw]
+            with: Transonic blades
+        specialists: [Combat, Comms, Scout, Veteran, Zealot]
+
+      - name: Ruststalker Princeps
+        profile: 8 3 3 4 3 2 4 7 4 1
+        armament: [Transonic razor, Chordclaw]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: [Transonic razor, Chordclaw]
+            with: Transonic Blades
+        specialists: [Leader, Combat, Comms, Scout, Veteran, Zealot]
+
+  - name: Sicarian Infiltrator
+    abilities: [Canticles of the Omnissiah, Bionics, Neurostatic Aura]
+    keywords: [IMPERIUM, SKITARII, INFANTRY, SICARIAN INFILTRATOR]
+    minis:
+
+      - name: Sicarian Infiltrator
+        profile: 8 3 3 4 3 2 3 6 4 -
+        armament: Stubcarbine, Power sword
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: [Stubcarbine, Power sword]
+            method: ALLOF
+            with: [Flechette blaster, Taser goad]
+        specialists: [Combat, Comms, Scout, Veteran, Zealot]
+
+      - name: Infiltrator Princeps
+        profile: 8 3 3 4 3 2 4 7 4 1
+        armament: Stubcarbine, Power sword
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            what: [Stubcarbine, Power sword]
+            method: ALLOF
+            with: [Flechette blaster, Taser goad]
+        specialists: [Leader, Combat, Comms, Scout, Veteran, Zealot]

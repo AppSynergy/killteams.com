@@ -1,0 +1,4 @@
+type: "//rec"
+required:
+  title: "//str"
+  body: "//str"
