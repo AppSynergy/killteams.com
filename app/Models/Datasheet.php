@@ -46,7 +46,7 @@ class Datasheet extends Model
 
     public function abilities()
     {
-        return $this->hasMany('App\Models\Ability');
+        return $this->belongsToMany('App\Models\Ability');
     }
 
     public function keywords()
