@@ -79,9 +79,10 @@ root:
                                                 _values:
                                                     - TAKE
                                                     - REPLACE
-                                            what:
+                                            replace:
                                                 _type: partial
                                                 _partial: flexible_lists
+                                                _required: false
                                             method:
                                                 _type: enum
                                                 _required: true
@@ -112,7 +113,6 @@ partials:
 
     flexible_lists:
         _type: choice
-        _required: true
         _choices:
             1:
                 _type: text

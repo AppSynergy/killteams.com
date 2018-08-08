@@ -15,6 +15,7 @@ Route::group([
     CRUD::resource('faction', 'FactionCrudController');
     CRUD::resource('datasheet', 'DatasheetCrudController');
     CRUD::resource('miniature', 'MiniatureCrudController');
+    CRUD::resource('wargearoption', 'WargearoptionCrudController');
     CRUD::resource('specialism', 'SpecialismCrudController');
     CRUD::resource('keyword', 'KeywordCrudController');
     CRUD::resource('ability', 'AbilityCrudController');

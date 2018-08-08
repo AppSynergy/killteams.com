@@ -29,6 +29,12 @@
     </a>
 </li>
 <li>
+    <a href='{{ backpack_url('wargearoption') }}'>
+        <i class='fa fa-tag'></i>
+        <span>Wargear Options</span>
+    </a>
+</li>
+<li>
     <a href='{{ backpack_url('specialism') }}'>
         <i class='fa fa-tag'></i>
         <span>Specialisms</span>

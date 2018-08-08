@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\MiniatureRequest as StoreRequest;
-use App\Http\Requests\MiniatureRequest as UpdateRequest;
+use App\Http\Requests\WargearoptionRequest as StoreRequest;
+use App\Http\Requests\WargearoptionRequest as UpdateRequest;
 
 /**
- * Class MiniatureCrudController
+ * Class WargearoptionCrudController
  * @package App\Http\Controllers\Admin
  * @property-read CrudPanel $crud
  */
-class MiniatureCrudController extends CrudController
+class WargearoptionCrudController extends CrudController
 {
     public function setup()
     {
@@ -22,65 +22,39 @@ class MiniatureCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Miniature');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/miniature');
-        $this->crud->setEntityNameStrings('miniature', 'miniatures');
+        $this->crud->setModel('App\Models\Wargearoption');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/wargearoption');
+        $this->crud->setEntityNameStrings('wargearoption', 'wargearoptions');
 
         /*
         |--------------------------------------------------------------------------
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setFromDb();
-        $suffixes = \Config::get('warhammer.suffixes');
-        $profiles = \Config::get('warhammer.profiles');
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
-            'label' => 'Faction',
-            'type' => 'model_function',
-            'function_name' => 'factionName',
-        ])->beforeColumn('datasheet_id');
-        $this->crud->addColumn([
-            'label' => 'Datasheet',
-            'name' => 'datasheet_id',
+            'label' => 'Miniature',
+            'name' => 'miniature_id',
             'type' => 'select',
-            'entity' => 'datasheet',
+            'entity' => 'miniature',
             'attribute' => 'name',
-            'model' => 'App\Models\Datasheet',
+            'model' => 'App\Models\Miniature',
         ]);
-        foreach ($profiles as $i => $profile) {
-            $conf = [
-                'label' => $profile,
-                'name' => $profile,
-                'type' => 'number',
-            ];
-            if ($suffixes[$i] != '') {
-                $conf['suffix'] = $suffixes[$i];
-            }
-            $this->crud->addColumn($conf);
-        }
 
         // ------ CRUD FIELDS
         $this->crud->addField([
-            'label' => 'Datasheet',
-            'name' => 'datasheet_id',
-            'type' => 'select2',
-            'entity' => 'datasheet',
+            'label' => 'Miniature',
+            'name' => 'miniature_id',
+            'type' => 'select',
+            'entity' => 'miniature',
             'attribute' => 'name',
-            'model' => 'App\Models\Datasheet',
+            'model' => 'App\Models\Miniature',
         ]);
-        foreach ($profiles as $profile) {
-            $this->crud->addField([
-                'label' => $profile,
-                'name' => $profile,
-                'type' => 'number',
-                'wrapperAttributes' => [
-                    'class' => 'form-group col-sm-2 col-md-1',
-                ],
-            ]);
-        }
 
+        $this->crud->setFromDb();
+
+        // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
         // $this->crud->removeColumn('column_name'); // remove a column from the stack
@@ -94,7 +68,7 @@ class MiniatureCrudController extends CrudController
         // $this->crud->removeField('name', 'update/create/both');
         // $this->crud->removeFields($array_of_names, 'update/create/both');
 
-        // add asterisk for fields that are required in MiniatureRequest
+        // add asterisk for fields that are required in WargearoptionRequest
         $this->crud->setRequiredFields(StoreRequest::class, 'create');
         $this->crud->setRequiredFields(UpdateRequest::class, 'edit');
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Miniature extends Model
+class Wargearoption extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Miniature extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'miniatures';
+    protected $table = 'wargearoptions';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -34,19 +34,9 @@ class Miniature extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function fighters()
+    public function miniature()
     {
-        return $this->hasMany('App\Models\Fighter');
-    }
-
-    public function wargearoptions()
-    {
-        return $this->hasMany('App\Models\Wargearoption');
-    }
-
-    public function datasheet()
-    {
-        return $this->belongsTo('App\Models\Datasheet');
+        return $this->belongsTo('App\Models\Miniature');
     }
 
     /*
@@ -60,15 +50,6 @@ class Miniature extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    public function faction()
-    {
-        return $this->datasheet->faction;
-    }
-
-    public function factionName()
-    {
-        return $this->faction()->name;
-    }
 
     /*
     |--------------------------------------------------------------------------

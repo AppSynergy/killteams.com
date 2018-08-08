@@ -70,7 +70,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: Galvanic rifle
+            replace: Galvanic rifle
             method: ONEOF
             options: [Arc rifle, Plasma caliver, Transuranic arquebus]
         specialists: [Heavy, Comms, Scout, Sniper, Zealot]
@@ -81,7 +81,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: Galvanic rifle
+            replace: Galvanic rifle
             method: ONEOFEACHOF
             options: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
         specialists: [Leader, Comms, Scout, Sniper, Zealot]
@@ -107,7 +107,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: Radium carbine
+            replace: Radium carbine
             method: ONEOF
             options: [Arc rifle, Plasma caliver, Transuranic arquebus]
         specialists: [Heavy, Comms, Scout, Sniper, Zealot]
@@ -118,7 +118,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: Radium Carbine
+            replace: Radium Carbine
             method: ONEOFEACHOF
             options: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
         specialists: [Leader, Comms, Scout, Sniper, Zealot]
@@ -135,7 +135,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: [Transonic razor, Chordclaw]
+            replace: [Transonic razor, Chordclaw]
             method: ALLOF
             options: Transonic blades
         specialists: [Combat, Comms, Scout, Veteran, Zealot]
@@ -146,7 +146,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: [Transonic razor, Chordclaw]
+            replace: [Transonic razor, Chordclaw]
             method: ALLOF
             options: Transonic Blades
         specialists: [Leader, Combat, Comms, Scout, Veteran, Zealot]
@@ -162,7 +162,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: [Stubcarbine, Power sword]
+            replace: [Stubcarbine, Power sword]
             method: ALLOF
             options: [Flechette blaster, Taser goad]
         specialists: [Combat, Comms, Scout, Veteran, Zealot]
@@ -173,7 +173,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            what: [Stubcarbine, Power sword]
+            replace: [Stubcarbine, Power sword]
             method: ALLOF
             options: [Flechette blaster, Taser goad]
         specialists: [Leader, Combat, Comms, Scout, Veteran, Zealot]
