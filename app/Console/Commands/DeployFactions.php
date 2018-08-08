@@ -39,16 +39,30 @@ class DeployFactions extends YamlCommand
      */
     public function handle()
     {
-        $this->call('factions:validate');
+        //$this->call('factions:validate');
+        $this->info('Deploying factions...');
         $this->eachFaction([$this, 'deploy']);
     }
 
     /**
      * Deploy a single faction file.
      */
-    public function deploy($faction)
+    public function deploy($file)
     {
-        $data = $this->getFromYaml('data/' . $faction);
-        dump($data);
+        $faction = $this->getFromYaml('data/' . $file, 0, true);
+        $this->initDatasheets($faction);
     }
+
+    /**
+     * Initialize datasheets.
+     */
+     public function initDatasheets($faction)
+     {
+         foreach ($faction->datasheets as $datasheet) {
+             $row = [
+                 'name' => $datasheet->name,
+             ];
+             dump($row);
+         }
+     }
 }

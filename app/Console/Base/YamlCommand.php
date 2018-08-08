@@ -10,13 +10,36 @@ class YamlCommand extends Command
     /**
      * Load data from a yaml file.
      *
+     * @param string $path
+     * @param int $flags
      * @return mixed
      */
-    protected function getFromYaml($path)
+    protected function getFromYaml($path, $flags = 0, $toObject = false)
     {
-        return Yaml::parse(file_get_contents(resource_path($path)));
+        $data = Yaml::parse(file_get_contents(resource_path($path)), $flags);
+        if ($toObject) {
+            $data = $this->toObject($data);
+        }
+        return $data;
     }
 
+    /**
+     * Convert array to a standard object.
+     *
+     * @param array $array
+     * @return object
+     */
+    protected function toObject($array)
+    {
+        return json_decode(json_encode($array));
+    }
+
+    /**
+     * Iterate over each faction.
+     *
+     * @param function $callback
+     * @return void
+     */
     protected function eachFaction($callback)
     {
         try {

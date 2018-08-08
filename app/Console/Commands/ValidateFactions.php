@@ -30,8 +30,6 @@ class ValidateFactions extends YamlCommand
     public function __construct()
     {
         parent::__construct();
-        $schema_data = $this->getFromYaml('data/factions/_schema.yaml');
-        $this->schema = new MetaYaml($schema_data, true);
     }
 
     /**
@@ -41,6 +39,8 @@ class ValidateFactions extends YamlCommand
      */
     public function handle()
     {
+        $schema_data = $this->getFromYaml('data/factions/_schema.yaml');
+        $this->schema = new MetaYaml($schema_data, true);
         $this->eachFaction([$this, 'validate']);
     }
 
