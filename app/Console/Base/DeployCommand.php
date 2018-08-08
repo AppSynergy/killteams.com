@@ -16,4 +16,13 @@ trait DeployCommand
         return false;
     }
 
+    public function dataExists($table, $selector)
+    {
+        $row = \DB::table($table)->where($selector)->first();
+        if ($row) {
+            return true;
+        }
+        return false;
+    }
+
 }

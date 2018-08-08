@@ -70,9 +70,39 @@ class DeployFactions extends Command
                     'faction_id' => $this->getIdByName('factions', $faction->faction_keyword),
                     'name' => $datasheet->name,
                 ];
+                $this->info('Inserting datasheet: ' . $datasheet->name);
                 $id = \DB::table('datasheets')->insertGetId($row);
             }
+            $this->initAbilities($datasheet->abilities, $id, $faction->abilities);
+            $this->initKeywords($datasheet->keywords, $id);
             $this->initMiniatures($datasheet, $id);
+        }
+    }
+
+    public function initAbilities($abilities, $datasheet_id, $all_abilities)
+    {
+        //dump([$abilities, $datasheet_id, $all_abilities]);
+    }
+
+    public function initKeywords($keywords, $datasheet_id)
+    {
+        foreach ($keywords as $keyword) {
+            $id = $this->getIdByName('keywords', $keyword);
+            if (!$id) {
+                $row = [
+                    'name' => $keyword,
+                ];
+                $this->info('Inserting keyword: ' . $keyword);
+                $id = \DB::table('keywords')->insertGetId($row);
+            }
+            $relation = [
+                'datasheet_id' => $datasheet_id,
+                'keyword_id' => $id,
+            ];
+            if (!$this->dataExists('datasheet_keyword', $relation)) {
+                $this->info('Relating keyword: ' . $keyword);
+                \DB::table('datasheet_keyword')->insert($relation);
+            }
         }
     }
 
@@ -85,8 +115,20 @@ class DeployFactions extends Command
                     'datasheet_id' => $datasheet_id,
                     'name' => $mini->name,
                 ];
-                \DB::table('miniatures')->insert($row);
+                $profile = explode(' ', $mini->profile);
+                foreach (\Config::get('warhammer.profiles') as $i => $key) {
+                    $row[$key] = $profile[$i];
+                }
+                $this->info('Inserting miniature: ' . $mini->name);
+                $id = \DB::table('miniatures')->insertGetId($row);
             }
+            $this->initWargearoptions($mini->wargear_options, $id);
         }
     }
+
+    public function initWargearoptions($wargear_options, $miniature_id)
+    {
+        // dump([$wargear_options, $miniature_id]);
+    }
+
 }

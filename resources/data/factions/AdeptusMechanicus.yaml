@@ -55,7 +55,7 @@ datasheets:
     minis:
 
       - name: Skitarii Ranger
-        profile: 6 4 3 3 3 1 1 6 4 -
+        profile: 6 4 3 3 3 1 1 6 4 0
         armament: Galvanic rifle
         wargear_options:
           - who: 1
@@ -92,7 +92,7 @@ datasheets:
     minis:
 
       - name: Skitarii Vanguard
-        profile: 6 4 3 3 3 1 1 6 4 -
+        profile: 6 4 3 3 3 1 1 6 4 0
         armament: Radium carbine
         wargear_options:
           - who: 1
@@ -130,7 +130,7 @@ datasheets:
     minis:
 
       - name: Sicarian Ruststalker
-        profile: 8 3 3 4 3 2 3 6 4 -
+        profile: 8 3 3 4 3 2 3 6 4 0
         armament: [Transonic razor, Chordclaw]
         wargear_options:
           - who: ANY
@@ -157,7 +157,7 @@ datasheets:
     minis:
 
       - name: Sicarian Infiltrator
-        profile: 8 3 3 4 3 2 3 6 4 -
+        profile: 8 3 3 4 3 2 3 6 4 0
         armament: Stubcarbine, Power sword
         wargear_options:
           - who: ANY

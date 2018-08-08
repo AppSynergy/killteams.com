@@ -51,7 +51,7 @@ trait YamlCommand
             }
         }
         catch (\Exception $exception) {
-            $this->error($exception->getMessage());
+            $this->error(sprintf('%s -- %s %s', $exception->getMessage(), $exception->getFile(), $exception->getLine()));
         }
     }
 }
