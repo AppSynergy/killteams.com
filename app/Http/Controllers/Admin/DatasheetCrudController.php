@@ -31,7 +31,6 @@ class DatasheetCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setFromDb();
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
@@ -50,6 +49,15 @@ class DatasheetCrudController extends CrudController
             'attribute' => 'name',
             'model' => 'App\Models\Keyword',
         ]);
+        $this->crud->addColumn([
+            'label' => 'Abilities',
+            'type' => 'select_multiple',
+            'name' => 'abilities',
+            'entity' => 'abilities',
+            'attribute' => 'name',
+            'model' => 'App\Models\Ability',
+        ]);
+
         // ------ CRUD FIELDS
         $this->crud->addField([
             'label' => 'Faction',
@@ -68,8 +76,17 @@ class DatasheetCrudController extends CrudController
             'model' => 'App\Models\Keyword',
             'pivot' => true,
         ]);
+        $this->crud->addField([
+            'label' => 'Abilities',
+            'type' => 'select2_multiple',
+            'name' => 'abilities',
+            'entity' => 'abilities',
+            'attribute' => 'name',
+            'model' => 'App\Models\Ability',
+            'pivot' => true,
+        ]);
 
-
+        $this->crud->setFromDb();
 
         // ------ CRUD COLUMNS
         // $this->crud->addColumn(); // add a single column, at the end of the stack

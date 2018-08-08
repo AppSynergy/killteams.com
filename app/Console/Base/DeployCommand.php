@@ -25,4 +25,13 @@ trait DeployCommand
         return false;
     }
 
+    public function getIdByData($table, $selector)
+    {
+        $row = \DB::table($table)->select('id')->where($selector)->first();
+        if ($row) {
+            return $row->id;
+        }
+        return false;
+    }
+
 }

@@ -81,7 +81,25 @@ class DeployFactions extends Command
 
     public function initAbilities($abilities, $datasheet_id, $all_abilities)
     {
-        //dump([$abilities, $datasheet_id, $all_abilities]);
+        foreach ($abilities as $ability) {
+            $id = $this->getIdByName('abilities', $ability);
+            if (!$id) {
+                $row = [
+                    'name' => $ability,
+                    'level' => 0,
+                ];
+                $this->info('Inserting ability: ' . $ability);
+                $id = \DB::table('abilities')->insertGetId($row);
+            }
+            $relation = [
+                'ability_id' => $id,
+                'datasheet_id' => $datasheet_id,
+            ];
+            if (!$this->dataExists('ability_datasheet', $relation)) {
+                $this->info('Relating ability: ' . $ability);
+                \DB::table('ability_datasheet')->insert($relation);
+            }
+        }
     }
 
     public function initKeywords($keywords, $datasheet_id)
@@ -129,19 +147,18 @@ class DeployFactions extends Command
     public function initWargearoptions($wargear_options, $miniature_id, $mini_name)
     {
         foreach ($wargear_options as $wargear_option) {
-            $id = false;
+            $row = [
+                'miniature_id' => $miniature_id,
+                'who' => $wargear_option->who,
+                'may' => $wargear_option->may,
+                'method' => $wargear_option->method,
+                'options' => json_encode($wargear_option->options),
+            ];
+            if (property_exists($wargear_option, 'replace')) {
+                $row['replace'] = json_encode($wargear_option->replace);
+            }
+            $id = $this->getIdByData('wargearoptions', $row);
             if (!$id) {
-                $row = [
-                    'miniature_id' => $miniature_id,
-                    'who' => $wargear_option->who,
-                    'may' => $wargear_option->may,
-                    'method' => $wargear_option->method,
-                    'options' => json_encode($wargear_option->options),
-                ];
-                //dd($wargear_option->options);
-                if (property_exists($wargear_option, 'replace')) {
-                    $row['replace'] = json_encode($wargear_option->replace);
-                }
                 $this->info('Inserting wargear option for: ' . $mini_name);
                 $id = \DB::table('wargearoptions')->insertGetId($row);
             }

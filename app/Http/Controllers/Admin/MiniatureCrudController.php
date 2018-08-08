@@ -31,7 +31,6 @@ class MiniatureCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setFromDb();
         $suffixes = \Config::get('warhammer.suffixes');
         $profiles = \Config::get('warhammer.profiles');
 
@@ -80,6 +79,9 @@ class MiniatureCrudController extends CrudController
                 ],
             ]);
         }
+
+        $this->crud->setFromDb();
+
 
         // $this->crud->addColumn(); // add a single column, at the end of the stack
         // $this->crud->addColumns(); // add multiple columns, at the end of the stack
