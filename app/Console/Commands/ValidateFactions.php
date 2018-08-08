@@ -2,12 +2,15 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Console\Command;
 use App\Console\Base\YamlCommand;
 use Symfony\Component\Yaml\Yaml;
 use RomaricDrigon\MetaYaml\MetaYaml;
 
-class ValidateFactions extends YamlCommand
+class ValidateFactions extends Command
 {
+    use YamlCommand;
+
     /**
      * The name and signature of the console command.
      *

@@ -2,10 +2,9 @@
 
 namespace App\Console\Base;
 
-use Illuminate\Console\Command;
 use Symfony\Component\Yaml\Yaml;
 
-class YamlCommand extends Command
+trait YamlCommand
 {
     /**
      * Load data from a yaml file.
