@@ -34,6 +34,11 @@ class Ability extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function datasheet()
+    {
+        return $this->belongsTo('App\Models\Datasheet');
+    }
+
     public function specialism()
     {
         return $this->belongsTo('App\Models\Specialism');
