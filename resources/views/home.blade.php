@@ -13,8 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                    @include('reference.datasheets')
                 </div>
             </div>
         </div>
