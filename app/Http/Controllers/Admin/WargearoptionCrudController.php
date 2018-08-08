@@ -46,10 +46,22 @@ class WargearoptionCrudController extends CrudController
         $this->crud->addField([
             'label' => 'Miniature',
             'name' => 'miniature_id',
-            'type' => 'select',
+            'type' => 'select2',
             'entity' => 'miniature',
             'attribute' => 'name',
             'model' => 'App\Models\Miniature',
+        ]);
+        $this->crud->addField([
+            'label' => 'May',
+            'name' => 'may',
+            'type' => 'select2_from_array',
+            'options' => \Config::get('warhammer.gear.may'),
+        ]);
+        $this->crud->addField([
+            'label' => 'Method',
+            'name' => 'method',
+            'type' => 'select2_from_array',
+            'options' => \Config::get('warhammer.gear.method'),
         ]);
 
         $this->crud->setFromDb();

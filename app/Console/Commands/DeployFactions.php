@@ -122,13 +122,30 @@ class DeployFactions extends Command
                 $this->info('Inserting miniature: ' . $mini->name);
                 $id = \DB::table('miniatures')->insertGetId($row);
             }
-            $this->initWargearoptions($mini->wargear_options, $id);
+            $this->initWargearoptions($mini->wargear_options, $id, $mini->name);
         }
     }
 
-    public function initWargearoptions($wargear_options, $miniature_id)
+    public function initWargearoptions($wargear_options, $miniature_id, $mini_name)
     {
-        // dump([$wargear_options, $miniature_id]);
+        foreach ($wargear_options as $wargear_option) {
+            $id = false;
+            if (!$id) {
+                $row = [
+                    'miniature_id' => $miniature_id,
+                    'who' => $wargear_option->who,
+                    'may' => $wargear_option->may,
+                    'method' => $wargear_option->method,
+                    'options' => json_encode($wargear_option->options),
+                ];
+                //dd($wargear_option->options);
+                if (property_exists($wargear_option, 'replace')) {
+                    $row['replace'] = json_encode($wargear_option->replace);
+                }
+                $this->info('Inserting wargear option for: ' . $mini_name);
+                $id = \DB::table('wargearoptions')->insertGetId($row);
+            }
+        }
     }
 
 }

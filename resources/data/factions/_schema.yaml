@@ -93,6 +93,7 @@ root:
                                             options:
                                                 _type: partial
                                                 _partial: flexible_lists
+                                                _required: false
                                 specialists:
                                     _type: partial
                                     _partial: list_of_texts

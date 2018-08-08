@@ -18,7 +18,7 @@ class CreateWargearoptionsTable extends Migration
             $table->unsignedInteger('miniature_id');
             $table->string('who');
             $table->string('may');
-            $table->string('replace');
+            $table->string('replace')->nullable();
             $table->string('method');
             $table->string('options');
             $table->foreign('miniature_id')->references('id')->on('miniatures');
