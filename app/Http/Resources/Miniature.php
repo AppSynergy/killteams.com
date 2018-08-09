@@ -20,9 +20,13 @@ class Miniature extends JsonResource
             'points' => $this->points,
             'specialists' => $this->specialists->pluck('name'),
             'wargear_options' => $this->wargearoptions->map(function ($x) {
-                return $x->only([
-                    'who', 'may', 'replace', 'method', 'options'
-                ]);
+                return [
+                    'who' => $x->who,
+                    'may' => $x->may,
+                    'replace' => json_decode($x->replace),
+                    'method' => $x->method,
+                    'options' => json_decode($x->options),
+                ];
             }),
         ];
     }
