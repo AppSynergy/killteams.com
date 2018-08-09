@@ -16,6 +16,7 @@
     },
     "require-dev": {
         "backpack/generators": "^1.2",
+        "beyondcode/laravel-er-diagram-generator": "^1.1",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "laracasts/generators": "dev-master",
