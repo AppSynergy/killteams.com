@@ -2,17 +2,20 @@ faction_keyword: ADEPTUS MECHANICUS
 
 abilities:
   - name: Canticles of the Omnissiah
-    description:
+    description: >
+        At the start of each battle round, pick which Canticle of the Omnissiah is in effect until the end of the battle round. The same Canticle may not be picked twice during the same battle.
+
+        Alternatively, you can randomly determine which Canticle of the Omnissiah is in effect by rolling a D6 and consulting the table. Note that if you randomly determine a Canticle, it takes effect even if the same Canticle has been in effect earlier in the battle.
   - name: Bionics
-    description:
+    description: This model has a 6+ invulnerable save.
   - name: Enhanced Data-tether
-    description:
+    description: You can re-roll failed Nerve rolls for SKITARII models while a friendly model with an enhanced data-tether is on the battlefield and not shaken.
   - name: Omnispex
-    description:
+    description: At the start of each Shooting phase, you can choose another SKITARII model within 3" of a friendly model equipped with an omnispex that is not shaken. That model does not suffer penalties to their hit or injury tolls due to their target being obscured.
   - name: Rad-saturation
-    description:
+    description: Reduce the Toughness characteristic of enemy models by 1 whilst they are within 1" of one or more models with this ability.
   - name: Neurostatic Aura
-    description:
+    description: Subtract 1 from the Leadership characteristic of enemy models whilst they are within 3" of one or more models with this ability.
 
 points:
   kill_team:

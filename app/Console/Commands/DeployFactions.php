@@ -84,8 +84,10 @@ class DeployFactions extends Command
         foreach ($abilities as $ability) {
             $id = $this->getIdByName('abilities', $ability);
             if (!$id) {
+                $full_ability = collect($all_abilities)->where('name', $ability)->first();
                 $row = [
                     'name' => $ability,
+                    'description' => $full_ability->description,
                     'level' => 0,
                 ];
                 $this->info('Inserting ability: ' . $ability);
