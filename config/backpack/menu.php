@@ -21,6 +21,10 @@ return [
                 'icon' => 'fa-tag',
                 'name' => 'Miniatures',
             ],
+            'wargear' => [
+                'icon' => 'fa-tag',
+                'name' => 'Wargear',
+            ],
             'wargearoption' => [
                 'icon' => 'fa-tag',
                 'name' => 'Wargear Options',

@@ -57,8 +57,10 @@ class DeployFactions extends Command
     public function deploy($file)
     {
         $faction = $this->getFromYaml('data/' . $file, 0, true);
+        $faction_id = $this->getIdByName('factions', $faction->faction_keyword);
         $this->initPoints($faction->points);
-        $this->initDatasheets($faction);
+        $this->initWargear($faction->points, $faction_id);
+        $this->initDatasheets($faction, $faction_id);
     }
 
     public function initPoints($points) {
@@ -67,13 +69,33 @@ class DeployFactions extends Command
         }
     }
 
-    public function initDatasheets($faction)
+    public function initWargear($wargear, $faction_id) {
+        foreach ($wargear as $category => $items) {
+            if ('kill_team' !== $category) {
+                foreach ($items as $name => $points) {
+                    $id = $this->getIdByName('wargears', $name);
+                    if (!$id) {
+                        $row = [
+                            'name' => $name,
+                            'faction_id' => $faction_id,
+                            'points' => $points,
+                            'category' => $category,
+                        ];
+                        $this->info('Inserting wargear: ' . $name);
+                        $id = \DB::table('wargears')->insertGetId($row);
+                    }
+                }
+            }
+        }
+    }
+
+    public function initDatasheets($faction, $faction_id)
     {
         foreach ($faction->datasheets as $datasheet) {
             $id = $this->getIdByName('datasheets', $datasheet->name);
             if (!$id) {
                 $row = [
-                    'faction_id' => $this->getIdByName('factions', $faction->faction_keyword),
+                    'faction_id' => $faction_id,
                     'name' => $datasheet->name,
                 ];
                 $this->info('Inserting datasheet: ' . $datasheet->name);

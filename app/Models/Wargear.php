@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 
-class Faction extends Model
+class Wargear extends Model
 {
     use CrudTrait;
 
@@ -15,11 +15,11 @@ class Faction extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'factions';
+    protected $table = 'wargears';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
-    protected $guarded = ['id'];
-    // protected $fillable = [];
+    // protected $guarded = ['id'];
+    protected $fillable = [];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -34,24 +34,9 @@ class Faction extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function datasheets()
+    public function faction()
     {
-        return $this->hasMany('App\Models\Datasheet');
-    }
-
-    public function miniatures()
-    {
-        return $this->hasManyThrough('App\Models\Miniature', 'App\Models\Datasheet');
-    }
-
-    public function wargear()
-    {
-        return $this->hasMany('App\Models\Wargear');
-    }
-
-    public function killteams()
-    {
-        return $this->hasMany('App\Models\Killteam');
+        return $this->belongsTo('App\Models\Faction');
     }
 
     /*
