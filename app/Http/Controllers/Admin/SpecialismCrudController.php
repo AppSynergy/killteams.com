@@ -31,6 +31,15 @@ class SpecialismCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
+        $this->crud->addField([
+            'label' => 'Miniatures',
+            'type' => 'select2_multiple',
+            'name' => 'miniatures',
+            'entity' => 'miniatures',
+            'attribute' => 'name',
+            'model' => 'App\Models\Miniature',
+            'pivot' => true,
+        ]);
 
         $this->crud->setFromDb();
 

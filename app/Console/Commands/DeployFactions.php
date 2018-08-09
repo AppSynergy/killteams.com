@@ -132,7 +132,6 @@ class DeployFactions extends Command
                 $row = [
                     'datasheet_id' => $datasheet_id,
                     'name' => $mini->name,
-                    'specialists' => json_encode($mini->specialists),
                 ];
                 $profile = explode(' ', $mini->profile);
                 foreach (\Config::get('warhammer.profiles') as $i => $key) {
@@ -141,7 +140,23 @@ class DeployFactions extends Command
                 $this->info('Inserting miniature: ' . $mini->name);
                 $id = \DB::table('miniatures')->insertGetId($row);
             }
+            $this->initSpecialists($mini->specialists, $id, $mini->name);
             $this->initWargearoptions($mini->wargear_options, $id, $mini->name);
+        }
+    }
+
+    public function initSpecialists($specialists, $miniature_id, $mini_name)
+    {
+        foreach ($specialists as $specialist) {
+            $id = $this->getIdByName('specialisms', $specialist);
+            $relation = [
+                'miniature_id' => $miniature_id,
+                'specialism_id' => $id,
+            ];
+            if (!$this->dataExists('miniature_specialism', $relation)) {
+                $this->info('Relating specialists: ' . $mini_name);
+                \DB::table('miniature_specialism')->insert($relation);
+            }
         }
     }
 

@@ -23,11 +23,6 @@ class Miniature extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
-    // @TODO need a field type
-    protected $casts = [
-        'specialists' => 'array',
-    ];
-
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -61,6 +56,11 @@ class Miniature extends Model
     public function datasheet()
     {
         return $this->belongsTo('App\Models\Datasheet');
+    }
+
+    public function specialists()
+    {
+        return $this->belongsToMany('App\Models\Specialism');
     }
 
     /*

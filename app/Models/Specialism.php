@@ -44,6 +44,11 @@ class Specialism extends Model
         return $this->hasMany('App\Models\Ability');
     }
 
+    public function miniatures()
+    {
+        return $this->belongsToMany('App\Models\Miniature');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
