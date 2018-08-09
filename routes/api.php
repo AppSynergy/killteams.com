@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('factions', 'Api\FactionController@index');
 
 Route::get('factions/{id}', 'Api\FactionController@show');
+
+Route::post('killteam', 'Api\KillteamController@store');
