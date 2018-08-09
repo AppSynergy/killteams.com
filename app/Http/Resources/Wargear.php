@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Miniature extends JsonResource
+class Wargear extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,15 +15,8 @@ class Miniature extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'name' => $this->name,
             'points' => $this->points,
-            'specialists' => $this->specialists->pluck('name'),
-            'wargear_options' => $this->wargearoptions->map(function ($x) {
-                return $x->only([
-                    'who', 'may', 'replace', 'method', 'options'
-                ]);
-            }),
         ];
     }
 }

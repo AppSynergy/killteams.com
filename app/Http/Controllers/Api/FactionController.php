@@ -18,7 +18,7 @@ class FactionController extends Controller
 
     public function show($id)
     {
-        $faction = Faction::with(['datasheets', 'miniatures'])->find($id);
+        $faction = Faction::with(['datasheets', 'wargear'])->find($id);
         return new FactionResource($faction);
     }
 }

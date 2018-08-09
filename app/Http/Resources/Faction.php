@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Datasheet as DatasheetResource;
+use App\Http\Resources\Wargear as WargearResource;
 
 class Faction extends JsonResource
 {
@@ -23,6 +24,7 @@ class Faction extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'datasheets' => DatasheetResource::collection($this->whenLoaded('datasheets')),
+            'wargear' => WargearResource::collection($this->whenLoaded('wargear')),
         ];
     }
 }
