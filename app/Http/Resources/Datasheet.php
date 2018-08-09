@@ -3,9 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\Datasheet as DatasheetResource;
+use App\Http\Resources\Miniature as MiniatureResource;
 
-class Faction extends JsonResource
+class Datasheet extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,9 @@ class Faction extends JsonResource
     public function toArray($request)
     {
         return [
-            'links' => [
-                'self' => url('api/factions/' . $this->id),
-                'parent' => url('api/factions/'),
-            ],
             'id' => $this->id,
             'name' => $this->name,
-            'datasheets' => DatasheetResource::collection($this->whenLoaded('datasheets')),
+            'miniatures' => MiniatureResource::collection($this->miniatures),
         ];
     }
 }
