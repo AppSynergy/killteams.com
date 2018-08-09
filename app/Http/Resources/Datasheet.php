@@ -18,6 +18,8 @@ class Datasheet extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'keywords' => $this->keywords->pluck('name'),
+            'abilities' => $this->abilities->pluck('name'),
             'miniatures' => MiniatureResource::collection($this->miniatures),
         ];
     }

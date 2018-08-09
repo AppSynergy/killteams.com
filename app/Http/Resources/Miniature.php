@@ -14,6 +14,15 @@ class Miniature extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'specialists' => $this->specialists->pluck('name'),
+            'wargear_options' => $this->wargearoptions->map(function ($x) {
+                return $x->only([
+                    'who', 'may', 'replace', 'method', 'options'
+                ]);
+            }),
+        ];
     }
 }
