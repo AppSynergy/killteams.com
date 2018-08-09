@@ -24,11 +24,9 @@ class Miniature extends Model
     // protected $dates = [];
 
     // @TODO need a field type
-    /*
     protected $casts = [
         'specialists' => 'array',
     ];
-    */
 
     /*
     |--------------------------------------------------------------------------

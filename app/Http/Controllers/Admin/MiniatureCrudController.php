@@ -87,7 +87,7 @@ class MiniatureCrudController extends CrudController
         $this->crud->addField([
             'label' => 'Specialists',
             'name' => 'specialists',
-            'type' => 'text',
+            'type' => 'select2_multiple_from_array',
             'options' => \Config::get('warhammer.specialisms'),
         ]);
 
