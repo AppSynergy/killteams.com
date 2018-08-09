@@ -21,6 +21,7 @@ class CreateMiniaturesTable extends Migration
                 $table->tinyInteger($profile)->nullable();
             }
             $table->text('description')->nullable();
+            $table->unsignedInteger('points');
             $table->timestamps();
             $table->foreign('datasheet_id')->references('id')->on('datasheets');
         });

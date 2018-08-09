@@ -26,6 +26,8 @@ class DeployFactions extends Command
      */
     protected $description = 'Deploy production faction data.';
 
+    protected $points = [];
+
     /**
      * Create a new command instance.
      *
@@ -55,12 +57,16 @@ class DeployFactions extends Command
     public function deploy($file)
     {
         $faction = $this->getFromYaml('data/' . $file, 0, true);
+        $this->initPoints($faction->points);
         $this->initDatasheets($faction);
     }
 
-    /**
-     * Initialize datasheets.
-     */
+    public function initPoints($points) {
+        foreach ($points as $category => $items) {
+            $this->points = array_merge($this->points, collect($items)->toArray());
+        }
+    }
+
     public function initDatasheets($faction)
     {
         foreach ($faction->datasheets as $datasheet) {
@@ -134,6 +140,7 @@ class DeployFactions extends Command
                 $row = [
                     'datasheet_id' => $datasheet_id,
                     'name' => $mini->name,
+                    'points' => $this->points[$mini->name],
                 ];
                 $profile = explode(' ', $mini->profile);
                 foreach (\Config::get('warhammer.profiles') as $i => $key) {
