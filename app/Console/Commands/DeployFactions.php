@@ -132,6 +132,7 @@ class DeployFactions extends Command
                 $row = [
                     'datasheet_id' => $datasheet_id,
                     'name' => $mini->name,
+                    'specialists' => json_encode($mini->specialists),
                 ];
                 $profile = explode(' ', $mini->profile);
                 foreach (\Config::get('warhammer.profiles') as $i => $key) {

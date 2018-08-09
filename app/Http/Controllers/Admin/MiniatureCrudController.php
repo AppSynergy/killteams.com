@@ -62,6 +62,11 @@ class MiniatureCrudController extends CrudController
 
         // ------ CRUD FIELDS
         $this->crud->addField([
+            'label' => 'Name',
+            'name' => 'name',
+            'type' => 'text',
+        ]);
+        $this->crud->addField([
             'label' => 'Datasheet',
             'name' => 'datasheet_id',
             'type' => 'select2',
@@ -79,6 +84,12 @@ class MiniatureCrudController extends CrudController
                 ],
             ]);
         }
+        $this->crud->addField([
+            'label' => 'Specialists',
+            'name' => 'specialists',
+            'type' => 'text',
+            'options' => \Config::get('warhammer.specialisms'),
+        ]);
 
         $this->crud->setFromDb();
 

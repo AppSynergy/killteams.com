@@ -11,10 +11,7 @@ class SpecialistSeeder extends Seeder
      */
     public function run()
     {
-        $specialisms = [
-            'Leader', 'Combat', 'Comms', 'Demolitions',
-            'Heavy', 'Medic', 'Scout', 'Sniper', 'Veteran', 'Zealot'
-        ];
+        $specialisms = \Config::get('warhammer.specialisms');
 
         $abilities = [
             ['Resourceful', 1, null, 1],

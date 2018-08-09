@@ -65,6 +65,13 @@ class Datasheet extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+    public function getSpecialistsAttribute()
+    {
+        $groups = $this->miniatures()->get()->flatMap(function($item) {
+            return [$item->name => $item->specialists];
+        });
+        return $groups;
+    }
 
     /*
     |--------------------------------------------------------------------------

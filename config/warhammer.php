@@ -6,6 +6,11 @@ return [
 
     'suffixes' => explode('-', '"-+-+------+-'),
 
+    'specialisms' => [
+        'Leader', 'Combat', 'Comms', 'Demolitions',
+        'Heavy', 'Medic', 'Scout', 'Sniper', 'Veteran', 'Zealot'
+    ],
+
     'gear' => [
         'may' => ['TAKE', 'REPLACE'],
         'method' => ['ONEOF', 'ONEOFEACHOF', 'ALLOF'],

@@ -28,6 +28,15 @@ class Miniature extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function faction()
+    {
+        return $this->datasheet->faction;
+    }
+
+    public function factionName()
+    {
+        return $this->faction()->name;
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -60,14 +69,9 @@ class Miniature extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    public function faction()
+    public function getSpecialistsAttribute($value)
     {
-        return $this->datasheet->faction;
-    }
-
-    public function factionName()
-    {
-        return $this->faction()->name;
+        return json_decode($value);
     }
 
     /*

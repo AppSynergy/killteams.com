@@ -16,7 +16,6 @@ class CreateMiniaturesTable extends Migration
         Schema::create('miniatures', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('datasheet_id');
-            $table->foreign('datasheet_id')->references('id')->on('datasheets');
             // Model Name
             $table->string('name');
             // Profiles
@@ -28,7 +27,9 @@ class CreateMiniaturesTable extends Migration
             // Wargear Options
             // Abilities
             // Specialists
+            $table->string('specialists');
             $table->timestamps();
+            $table->foreign('datasheet_id')->references('id')->on('datasheets');
         });
     }
 
