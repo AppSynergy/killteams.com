@@ -29,6 +29,7 @@
                 @endforeach
             </div>
             <div class="">
+                {{--
                 @foreach ($datasheet->specialists as $name => $specialists)
                     <div class="">
                         {{ $name }}:
@@ -37,6 +38,7 @@
                         @endforeach
                     </div>
                 @endforeach
+                --}}
             </div>
             <div class="">
                 @foreach ($datasheet->keywords as $keyword)

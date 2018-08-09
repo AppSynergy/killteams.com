@@ -23,6 +23,13 @@ class Miniature extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+    // @TODO need a field type
+    /*
+    protected $casts = [
+        'specialists' => 'array',
+    ];
+    */
+
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS
@@ -69,10 +76,6 @@ class Miniature extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
-    public function getSpecialistsAttribute($value)
-    {
-        return json_decode($value);
-    }
 
     /*
     |--------------------------------------------------------------------------
