@@ -11,16 +11,15 @@ class SpecialistSeeder extends Seeder
      */
     public function run()
     {
-        $specialisms = \Config::get('warhammer.specialisms');
-
         $abilities = [
             ['Resourceful', 1, null, 1],
             ['Bold', 2, 1, 1],
-            ['Inspiring', 2, 1, 2],
+            ['Inspiring', 2, 1, 1],
             ['Paragon', 3, 2, 1],
             ['Tyrant', 3, 2, 1],
             ['Tactician', 3, 3, 1],
             ['Mentor', 3, 3, 1],
+
             ['Expert Fighter', 1, null, 2],
             ['Warrior Adept', 2, 8, 2],
             ['Deadly Counter', 2, 8, 2],
@@ -29,12 +28,6 @@ class SpecialistSeeder extends Seeder
             ['Killer Instinct', 3, 10, 2],
             ['Bloodlust', 3, 10, 2],
         ];
-
-        foreach ($specialisms as $name) {
-            DB::table('specialisms')->insert([
-                'name' => $name,
-            ]);
-        }
 
         foreach ($abilities as $ability) {
             DB::table('abilities')->insert([

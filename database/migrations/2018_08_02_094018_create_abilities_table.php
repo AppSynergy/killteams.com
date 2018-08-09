@@ -24,6 +24,15 @@ class CreateAbilitiesTable extends Migration
             $table->foreign('parent_id')->references('id')->on('abilities');
             $table->timestamps();
         });
+
+        foreach (\Config::get('warhammer.specialism_abilities') as $ability) {
+            DB::table('abilities')->insert([
+                'name' => $ability[0],
+                'level' => $ability[1],
+                'parent_id' => $ability[2],
+                'specialism_id' => $ability[3],
+            ]);
+        }
     }
 
     /**

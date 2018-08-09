@@ -18,6 +18,14 @@ class CreateSpecialismsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        $specialisms = \Config::get('warhammer.specialisms');
+
+        foreach ($specialisms as $name) {
+            DB::table('specialisms')->insert([
+                'name' => $name,
+            ]);
+        }
     }
 
     /**

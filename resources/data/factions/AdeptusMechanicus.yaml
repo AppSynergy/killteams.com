@@ -121,7 +121,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: Radium Carbine
+            replace: Radium carbine
             method: ONEOFEACHOF
             options: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
         specialists: [Leader, Comms, Scout, Sniper, Zealot]
@@ -151,7 +151,7 @@ datasheets:
             may: REPLACE
             replace: [Transonic razor, Chordclaw]
             method: ALLOF
-            options: Transonic Blades
+            options: Transonic blades
         specialists: [Leader, Combat, Comms, Scout, Veteran, Zealot]
 
   - name: Sicarian Infiltrator

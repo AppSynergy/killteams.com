@@ -18,6 +18,12 @@ class CreateFactionsTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        foreach (\Config::get('warhammer.factions') as $name) {
+            DB::table('factions')->insert([
+                'name' => $name,
+            ]);
+        }
     }
 
     /**

@@ -28,6 +28,8 @@ class DeployFactions extends Command
 
     protected $points = [];
 
+    protected $wargear = [];
+
     /**
      * Create a new command instance.
      *
@@ -84,6 +86,7 @@ class DeployFactions extends Command
                         $this->info('Inserting wargear: ' . $name);
                         $id = \DB::table('wargears')->insertGetId($row);
                     }
+                    $this->wargear[$name] = $id;
                 }
             }
         }
@@ -194,21 +197,41 @@ class DeployFactions extends Command
     public function initWargearoptions($wargear_options, $miniature_id, $mini_name)
     {
         foreach ($wargear_options as $wargear_option) {
+
             $row = [
                 'miniature_id' => $miniature_id,
                 'who' => $wargear_option->who,
                 'may' => $wargear_option->may,
                 'method' => $wargear_option->method,
-                'options' => json_encode($wargear_option->options),
+                'options' => json_encode($this->validateAndKeyWargear($wargear_option->options)),
             ];
             if (property_exists($wargear_option, 'replace')) {
-                $row['replace'] = json_encode($wargear_option->replace);
+                $row['replace'] = json_encode($this->validateAndKeyWargear($wargear_option->replace));
             }
             $id = $this->getIdByData('wargearoptions', $row);
             if (!$id) {
                 $this->info('Inserting wargear option for: ' . $mini_name);
                 $id = \DB::table('wargearoptions')->insertGetId($row);
             }
+        }
+    }
+
+    protected function validateAndKeyWargear($flexible_list)
+    {
+        if (is_array($flexible_list)) {
+            if (is_array($flexible_list[0])) {
+                return collect($flexible_list)->map(function ($x) {
+                    return collect($x)->map(function ($y) {
+                        return $this->wargear[$y];
+                    });
+                })->toArray();
+            } else {
+                return collect($flexible_list)->map(function ($x) {
+                    return $this->wargear[$x];
+                })->toArray();
+            }
+        } else {
+            return $this->wargear[$flexible_list];
         }
     }
 
