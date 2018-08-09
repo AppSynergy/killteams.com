@@ -23,6 +23,16 @@
                     </tr>
                 @endforeach
             </table>
+            <ul class="list-group">
+                @foreach ($datasheet->miniatures as $mini)
+                    @foreach ($mini->wargearoptions as $w)
+                        <li class="list-group-item">
+                            {{ sprintf('%s %s may %s %s %s %s',
+                            $w->who, $mini->name, $w->may, $w->replace, $w->method, $w->options) }}
+                        </li>
+                    @endforeach
+                @endforeach
+            </ul>
             <div class="">
                 @foreach ($datasheet->abilities as $ability)
                     <span class="badge">{{ $ability->name }}</span>
