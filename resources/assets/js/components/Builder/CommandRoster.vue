@@ -51,22 +51,43 @@
                                     <tr v-for="fighter in fighters">
                                         <td class="grey-box"
                                             v-for="stat, key in stats.fighter">
-                                            <span v-if="'name' == key">
-                                                {{ fighter.name }}
-                                                <button class="btn btn-primary"
-                                                    v-on:click="removeFighter(fighter.id)">
-                                                    &times;
-                                                </button>
-                                            </span>
-                                            <span v-if="'mini' == key">
-                                                {{ fighter.miniature_name }}
-                                            </span>
-                                            <span v-if="'wargear' == key">
-                                                {{ getWargearText(fighter) }}
-                                            </span>
-                                            <span v-if="'pts' == key">
-                                                {{ fighter.points }}
-                                            </span>
+                                            <div v-if="'name' == key" class="form-group">
+                                                <div class="input-group">
+                                                    <input class="form-control" v-model="fighter.name">
+                                                    <div class="input-group-append">
+                                                        <button type="button" class="btn btn-danger text-white"
+                                                            v-on:click="removeFighter(fighter.id)"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div v-if="'mini' == key" class="form-group">
+                                                <div class="form-control-plaintext">
+                                                    {{ fighter.miniature_name }}
+                                                </div>
+                                            </div>
+                                            <div v-if="'wargear' == key" class="form-group">
+                                                <div class="form-control-plaintext d-flex justify-content-between">
+                                                    {{ getWargearText(fighter) }}
+                                                    <button type="button" class="ml-3 btn btn-sm btn-info btn-wargear"
+                                                        v-on:click="openWargearOptions(fighter)">
+                                                        COG
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                            <div v-if="'exp' == key" class="form-group">
+                                                <div class="form-control-plaintext">
+                                                    0
+                                                </div>
+                                            </div>
+                                            <div v-if="'pts' == key" class="form-group">
+                                                <div class="form-control-plaintext">
+                                                    {{ fighter.points }}
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -103,6 +124,9 @@ export default {
         },
         getWargearName(wargear_id) {
             return _.find(this.faction.wargear, (x) => (x.id == wargear_id)).name
+        },
+        openWargearOptions(fighter) {
+
         }
     },
     data() {
