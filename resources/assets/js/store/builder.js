@@ -4,11 +4,23 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        count: 0
+        factions: [],
+        faction: []
+    },
+    getters: {
+        getFactions(state) {
+            return state.factions
+        },
+        getFaction(state) {
+            return state.faction
+        }
     },
     mutations: {
-        increment (state) {
-            state.count++
+        setFactions(state, factions) {
+            state.factions = factions
+        },
+        setFaction(state, faction) {
+            state.faction = faction
         }
     }
 })
