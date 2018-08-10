@@ -117,7 +117,7 @@ datasheets:
 
       - name: Vanguard Alpha
         profile: 6 4 3 3 3 1 2 7 4 1
-        armament: Radium Carbine
+        armament: Radium carbine
         wargear_options:
           - who: ANY
             may: REPLACE
@@ -161,7 +161,7 @@ datasheets:
 
       - name: Sicarian Infiltrator
         profile: 8 3 3 4 3 2 3 6 4 0
-        armament: Stubcarbine, Power sword
+        armament: [Stubcarbine, Power sword]
         wargear_options:
           - who: ANY
             may: REPLACE
@@ -172,7 +172,7 @@ datasheets:
 
       - name: Infiltrator Princeps
         profile: 8 3 3 4 3 2 4 7 4 1
-        armament: Stubcarbine, Power sword
+        armament: [Stubcarbine, Power sword]
         wargear_options:
           - who: ANY
             may: REPLACE

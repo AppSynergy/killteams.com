@@ -166,6 +166,7 @@ class DeployFactions extends Command
                     'datasheet_id' => $datasheet_id,
                     'name' => $mini->name,
                     'points' => $this->points[$mini->name],
+                    'armament' => $this->validateAndKeyWargear($mini->armament),
                 ];
                 $profile = explode(' ', $mini->profile);
                 foreach (\Config::get('warhammer.profiles') as $i => $key) {
@@ -203,10 +204,10 @@ class DeployFactions extends Command
                 'who' => $wargear_option->who,
                 'may' => $wargear_option->may,
                 'method' => $wargear_option->method,
-                'options' => json_encode($this->validateAndKeyWargear($wargear_option->options)),
+                'options' => $this->validateAndKeyWargear($wargear_option->options),
             ];
             if (property_exists($wargear_option, 'replace')) {
-                $row['replace'] = json_encode($this->validateAndKeyWargear($wargear_option->replace));
+                $row['replace'] = $this->validateAndKeyWargear($wargear_option->replace);
             }
             $id = $this->getIdByData('wargearoptions', $row);
             if (!$id) {
@@ -220,19 +221,20 @@ class DeployFactions extends Command
     {
         if (is_array($flexible_list)) {
             if (is_array($flexible_list[0])) {
-                return collect($flexible_list)->map(function ($x) {
+                $out = collect($flexible_list)->map(function ($x) {
                     return collect($x)->map(function ($y) {
                         return $this->wargear[$y];
                     });
                 })->toArray();
             } else {
-                return collect($flexible_list)->map(function ($x) {
+                $out = collect($flexible_list)->map(function ($x) {
                     return $this->wargear[$x];
                 })->toArray();
             }
         } else {
-            return $this->wargear[$flexible_list];
+            $out = [$this->wargear[$flexible_list]];
         }
+        return json_encode($out);
     }
 
 }

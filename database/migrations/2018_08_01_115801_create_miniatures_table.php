@@ -20,6 +20,7 @@ class CreateMiniaturesTable extends Migration
             foreach (\Config::get('warhammer.profiles') as $profile) {
                 $table->tinyInteger($profile)->nullable();
             }
+            $table->string('armament');
             $table->text('description')->nullable();
             $table->unsignedInteger('points');
             $table->timestamps();

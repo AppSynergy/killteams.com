@@ -61,6 +61,9 @@
                                             <span v-if="'mini' == key">
                                                 {{ fighter.miniature_name }}
                                             </span>
+                                            <span v-if="'wargear' == key">
+                                                {{ getWargearText(fighter) }}
+                                            </span>
                                             <span v-if="'pts' == key">
                                                 {{ fighter.points }}
                                             </span>
@@ -79,6 +82,9 @@
 <script>
 export default {
     computed: {
+        faction() {
+            return this.$store.getters.getFaction
+        },
         fighters() {
             return this.$store.getters.getFighters
         },
@@ -91,6 +97,12 @@ export default {
     methods: {
         removeFighter(fighter_id) {
             this.$store.commit('removeFighter', fighter_id)
+        },
+        getWargearText(fighter) {
+            return _.map(fighter.armament, (x) => (this.getWargearName(x))).join(', ')
+        },
+        getWargearName(wargear_id) {
+            return _.find(this.faction.wargear, (x) => (x.id == wargear_id)).name
         }
     },
     data() {
