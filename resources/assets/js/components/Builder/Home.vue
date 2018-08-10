@@ -16,19 +16,28 @@
             </div>
 
         </div>
+
+        <command-roster>
+
+        </command-roster>
+
     </div>
 </template>
 
 <script>
+import CommandRoster from './CommandRoster.vue'
 export default {
     props: [],
+    components: { CommandRoster },
     data() {
         return {
-            selectedFaction: null
+            selectedFaction: 5 //null,
         }
     },
     mounted() {
         this.fetchFactions()
+        // dev - auto load ad mech
+        this.fetchFaction(5)
     },
     watch: {
         selectedFaction(newFactionId, oldFactionId) {
