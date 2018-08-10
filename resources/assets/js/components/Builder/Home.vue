@@ -1,6 +1,6 @@
 <template>
     <div class="vue-builder-home">
-        <div class="container my-5">
+        <div class="container my-2">
 
             <select class="form-control" v-model="selectedFaction">
                 <option disabled="disabled" :value="null">Choose faction</option>
@@ -10,8 +10,18 @@
             </select>
 
             <div class="my-5" v-if="faction">
-                <div class="card my-2 p-4" v-for="datasheet in faction.datasheets">
-                    {{ datasheet.name }}
+                <div class="card my-4"
+                    v-for="datasheet in faction.datasheets">
+                    <div class="card-header">
+                        {{ datasheet.name }}
+                    </div>
+                    <div class="card-body">
+                        <h2 class="p-2 m-2 badge badge-primary"
+                            v-on:click="addFighter(mini)"
+                            v-for="mini in datasheet.miniatures">
+                            {{ mini.name }}
+                        </h2>
+                    </div>
                 </div>
             </div>
 
@@ -66,6 +76,9 @@ export default {
         },
         setFaction(data) {
             this.$store.commit('setFaction', data)
+        },
+        addFighter(data) {
+            this.$store.commit('addFighter', data)
         }
     }
 }
