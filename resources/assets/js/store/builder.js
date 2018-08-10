@@ -8,7 +8,8 @@ export default new Vuex.Store({
         factions: [],
         faction: [],
         killteam: {
-            name: null,
+            name: 'Example kill team name',
+            faction_id: null,
             fighters: [],
         }
     },
@@ -32,6 +33,7 @@ export default new Vuex.Store({
         },
         setFaction(state, faction) {
             state.faction = _.cloneDeep(faction)
+            state.killteam.faction_id = faction.id
         },
         addFighter(state, data) {
             let fighter = _.cloneDeep(data)

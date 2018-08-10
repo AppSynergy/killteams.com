@@ -10,19 +10,20 @@
             </select>
 
             <div class="my-5" v-if="faction">
-                <div class="card my-4"
-                    v-for="datasheet in faction.datasheets">
-                    <div class="card-header">
-                        {{ datasheet.name }}
-                    </div>
-                    <div class="card-body">
-                        <h2 class="p-2 m-2 badge badge-primary"
-                            v-on:click="addFighter(mini)"
-                            v-for="mini in datasheet.miniatures">
-                            {{ mini.name }}
-                        </h2>
-                    </div>
-                </div>
+                <span v-for="datasheet in faction.datasheets">
+                    <h3 class="h5 d-inline">
+                        {{ datasheet.name }}:
+                    </h3>
+                    <button class="p-2 m-2 btn btn-primary"
+                        v-on:click="addFighter(mini)"
+                        v-for="mini in datasheet.miniatures">
+                        {{ mini.name }}
+                    </button>
+                </span>
+                <button class="btn btn-success"
+                    v-on:click="saveKillTeam">
+                    Save
+                </button>
             </div>
 
         </div>
@@ -41,7 +42,8 @@ export default {
     components: { CommandRoster },
     data() {
         return {
-            selectedFaction: 5 //null,
+            saved: false,
+            selectedFaction: 5 //null
         }
     },
     mounted() {
@@ -60,6 +62,9 @@ export default {
         },
         faction() {
             return this.$store.getters.getFaction
+        },
+        killteam() {
+            return this.$store.getters.getKillteam
         }
     },
     methods: {
@@ -79,6 +84,10 @@ export default {
         },
         addFighter(data) {
             this.$store.commit('addFighter', data)
+        },
+        saveKillTeam() {
+            axios.post(API_URL + '/killteam', this.killteam)
+                .then(response => (this.saved = true))
         }
     }
 }
