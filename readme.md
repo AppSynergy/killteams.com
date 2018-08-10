@@ -1,3 +1,42 @@
+# killteams.com
+
+A Warhammer 40,000 living database and roster builder.
+
+## Installation
+
+Not tested, so let me know if I missed something.
+
+#### Prerequisites
+
+A web server, php 7.x, a database. See: https://laravel.com/docs/5.6/installation
+
+````
+git clone git@github.com:AppSynergy/killteams.com.git
+cd killteams.com
+composer install
+npm install
+````
+
+Create a `.env` file and add your database info. Ensure the `APP_URL` is correct.
+
+Then set up the application key, create the database, and deploy the faction data:
+
+````
+php artisan key_generate
+php artisan migrate --seed
+php artisan factions:deploy
+
+````
+
+Now you should be able to visit:
+
+* `/admin` for the back-end (no authorization yet, use any user from the seed),
+* `/api/factions` for the data api,
+* `/builder` for where the front-end roster builder will go.
+
+
+---
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
