@@ -25,10 +25,9 @@
             <div v-if="'wargear' == key" class="form-group">
                 <div class="form-control-plaintext d-flex justify-content-between">
                     {{ getWargearText(fighter) }}
-                    <button type="button" class="ml-3 btn btn-sm btn-info btn-wargear"
-                        v-on:click="openWargearOptions(fighter)">
-                        COG
-                    </button>
+                    <wargear-selector
+                        :fighter="fighter"
+                    ></wargear-selector>
                 </div>
             </div>
 
@@ -49,9 +48,11 @@
 </template>
 
 <script>
+import WargearSelector from '../WargearSelector.vue'
 import hasFactionStore from '../../../mixins/hasFactionStore.js'
 export default {
     mixins: [ hasFactionStore ],
+    components: { WargearSelector },
     props: ['fighter', 'stats'],
     methods: {
         removeFighter(fighter_id) {
@@ -62,9 +63,6 @@ export default {
         },
         getWargearName(wargear_id) {
             return _.find(this.faction.wargear, (x) => (x.id == wargear_id)).name
-        },
-        openWargearOptions(fighter) {
-
         }
     },
 }
