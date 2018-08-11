@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Home from './Home.vue'
+import Home from './Builder/Home.vue'
 export default {
     created() {
         this.$router.addRoutes([

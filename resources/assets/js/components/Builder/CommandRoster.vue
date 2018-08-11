@@ -48,48 +48,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="fighter in fighters">
-                                        <td class="grey-box"
-                                            v-for="stat, key in stats.fighter">
-                                            <div v-if="'name' == key" class="form-group">
-                                                <div class="input-group">
-                                                    <input class="form-control" v-model="fighter.name">
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="btn btn-danger text-white"
-                                                            v-on:click="removeFighter(fighter.id)"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div v-if="'mini' == key" class="form-group">
-                                                <div class="form-control-plaintext">
-                                                    {{ fighter.miniature_name }}
-                                                </div>
-                                            </div>
-                                            <div v-if="'wargear' == key" class="form-group">
-                                                <div class="form-control-plaintext d-flex justify-content-between">
-                                                    {{ getWargearText(fighter) }}
-                                                    <button type="button" class="ml-3 btn btn-sm btn-info btn-wargear"
-                                                        v-on:click="openWargearOptions(fighter)">
-                                                        COG
-                                                    </button>
-                                                </div>
-
-                                            </div>
-                                            <div v-if="'exp' == key" class="form-group">
-                                                <div class="form-control-plaintext">
-                                                    0
-                                                </div>
-                                            </div>
-                                            <div v-if="'pts' == key" class="form-group">
-                                                <div class="form-control-plaintext">
-                                                    {{ fighter.points }}
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <fighter-row
+                                        v-for="fighter in fighters"
+                                        :key="fighter.id"
+                                        :fighter="fighter"
+                                        :stats="stats.fighter">
+                                    </fighter-row>
                                 </tbody>
                             </table>
                         </div>
@@ -101,11 +65,12 @@
 </template>
 
 <script>
+import FighterRow from './CommandRoster/FighterRow.vue'
+import hasFactionStore from '../../mixins/hasFactionStore.js'
 export default {
+    components: { FighterRow },
+    mixins: [ hasFactionStore ],
     computed: {
-        faction() {
-            return this.$store.getters.getFaction
-        },
         fighters() {
             return this.$store.getters.getFighters
         },
@@ -113,20 +78,6 @@ export default {
             return _.reduce(this.fighters, function(xs, x) {
                 return xs + x.points;
             }, 0)
-        }
-    },
-    methods: {
-        removeFighter(fighter_id) {
-            this.$store.commit('removeFighter', fighter_id)
-        },
-        getWargearText(fighter) {
-            return _.map(fighter.armament, (x) => (this.getWargearName(x))).join(', ')
-        },
-        getWargearName(wargear_id) {
-            return _.find(this.faction.wargear, (x) => (x.id == wargear_id)).name
-        },
-        openWargearOptions(fighter) {
-
         }
     },
     data() {

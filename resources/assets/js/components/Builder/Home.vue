@@ -37,8 +37,9 @@
 
 <script>
 import CommandRoster from './CommandRoster.vue'
+import hasFactionStore from '../../mixins/hasFactionStore.js'
 export default {
-    props: [],
+    mixins: [ hasFactionStore ],
     components: { CommandRoster },
     data() {
         return {
@@ -57,12 +58,6 @@ export default {
         }
     },
     computed: {
-        factions() {
-            return this.$store.getters.getFactions
-        },
-        faction() {
-            return this.$store.getters.getFaction
-        },
         killteam() {
             return this.$store.getters.getKillteam
         }
