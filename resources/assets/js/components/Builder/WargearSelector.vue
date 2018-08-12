@@ -6,8 +6,9 @@
                 <wargear-option
                     v-for="option, key in fighter.wargear_options"
                     :fighter-id="fighter.id"
-                    :key="fighter.id"
-                    :opt="option">
+                    :key="key"
+                    :opt="option"
+                    v-on:wargearSelection="wargearSelection">
                 </wargear-option>
             </div>
 
@@ -28,6 +29,17 @@ import Popper from 'vue-popperjs'
 import WargearOption from './WargearSelector/WargearOption.vue'
 export default {
     components: { Popper, WargearOption },
-    props: ['fighter']
+    props: ['fighter'],
+    mounted() {
+        console.log("selector armament", this.fighter.armament)
+    },
+    methods: {
+        wargearSelection(subtract, add) {
+            console.warn("selector change", subtract, add)
+            _.each(options, (o) =>
+                this.fighter.armament.push(o)
+            )
+        }
+    }
 }
 </script>

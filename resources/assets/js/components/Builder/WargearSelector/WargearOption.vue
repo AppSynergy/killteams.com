@@ -2,7 +2,8 @@
     <div class="vue-builder-wargear-selector-wargear-option">
         <div class="form-check">
             <input type="checkbox" class="form-check-input"
-                v-model="selected">
+                v-model="checkbox"
+                v-on:change="updateOption">
             <span v-if="'REPLACE' == opt.may">
                 Replace {{ itemsToText(opt.replace) }} with
             </span>
@@ -13,15 +14,19 @@
                 {{ itemsToText(opt.options) }}
             </span>
             <span v-if="'ONEOF' == opt.method">
-                <select class="form-control">
+                <select class="form-control"
+                    v-model="selectedOption"
+                    v-on:change="updateOption">
                     <option v-for="choice in opt.options" :value="choice">
                         {{ idToName(choice) }}
                     </option>
                 </select>
             </span>
             <span v-if="'ONEOFEACHOF' == opt.method"
+                v-model="selectedOption"
                 v-for="options in opt.options">
-                <select class="form-control">
+                <select class="form-control"
+                    v-on:change="updateOption">
                     <option v-for="choice in options" :value="choice">
                         {{ idToName(choice) }}
                     </option>
@@ -39,14 +44,17 @@ export default {
     data() {
         return {
             checkbox: false,
+            selectedOption: false
         }
     },
-    watch: {
-        checkbox(newVal, oldVal) {
-            this.setFighterArmament()
-        }
-    },
+
     methods: {
+        updateOption() {
+            //console.log("Updates: ", this.checkbox, this.opt.replace, this.selectedOption)
+            if (this.checkbox) {
+                this.$emit('wargearSelection', this.opt.replace, [this.selectedOption])
+            }
+        },
         idToName(item) {
             return _.find(this.faction.wargear, (g) => g.id == item).name.toLowerCase()
         },
@@ -55,12 +63,6 @@ export default {
         },
         arrayToList(arr) {
             return arr.join(', ').replace(/,([^,]*)$/,' and$1')
-        },
-        setFighterArmament() {
-            this.$store.commit('setFighterArmament', {
-                fighter_id: this.fighterId,
-                armament: []
-            })
         }
     }
 }

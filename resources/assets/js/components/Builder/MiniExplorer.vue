@@ -30,13 +30,13 @@ export default {
     mixins: [ hasFactionStore ],
     data() {
         return {
-            selectedFaction: 5 //null
+            selectedFaction: 1 //null
         }
     },
     mounted() {
         this.fetchFactions()
         // dev - auto load ad mech
-        this.fetchFaction(5)
+        this.fetchFaction(1)
     },
     watch: {
         selectedFaction(newFactionId, oldFactionId) {
