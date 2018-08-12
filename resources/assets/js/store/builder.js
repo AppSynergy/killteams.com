@@ -47,6 +47,10 @@ export default new Vuex.Store({
             state.killteam.fighters = _.reject(state.killteam.fighters, function(x) {
                 return x.id == fighter_id
             })
+        },
+        setFighterArmament(state, obj) {
+            let fighter = _.find(state.killteam.fighters, (x) => x.id == obj.fighter_id)
+            fighter.armament = obj.armament
         }
     }
 })
