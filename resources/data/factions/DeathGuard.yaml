@@ -3,11 +3,11 @@ faction_keyword: DEATH GUARD
 abilities:
   - name: Death to the False Emperor
     description: >
-        If a model with this ability makes an attack in the Fight phase which targets an IMPERIUM model, each time you roll a hit roll of6+ you may make an additional attack with the sameweapon against the same target. These attacks cannot themselves generate any further attacks
+        If a model with this ability makes an attack in the Fight phase which targets an IMPERIUM model, each time you roll a hit roll of 6+ you may make an additional attack with the sameweapon against the same target. These attacks cannot themselves generate any further attacks.
   - name: Transhuman Physiology
-    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered
+    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered.
   - name: Disgustingly Resilient
-    description: Each time a model with this ability loses a wound, roll a D6; on a 5+ the model does not lose that wound
+    description: Each time a model with this ability loses a wound, roll a D6; on a 5+ the model does not lose that wound.
   - name: Icon of Despair
     description: Subtract 1 from the Leadership characteristic of enemy models within 6" of any models equipped with an Icon of Despair.
 
@@ -19,11 +19,11 @@ points:
     Plague Champion: 15
     Poxwalker: 3
   ranged_weapons:
-    Blight grenade: 0
+    Blight grenades: 0
     Blight launcher: 3
     Bolt pistol: 0
     Boltgun: 0
-    Krak grenade: 0
+    Krak grenades: 0
     Meltagun: 3
     Plague belcher: 3
     Plague spewer: 4
@@ -49,7 +49,7 @@ datasheets:
 
       - name: Plague Marine
         profile: 5 3 3 4 5 1 1 7 3 0
-        armament: [plague knife, boltgun, blight grenades, krak grenades]
+        armament: [Plague knife, Boltgun, Blight grenades, Krak grenades]
         wargear_options:
           - who: 1
             may: TAKE
@@ -59,44 +59,45 @@ datasheets:
 
       - name: Plague Marine Gunner
         profile: 5 3 3 4 5 1 1 7 3 2
-        armament: [plague knife, boltgun, blight grenades, krak grenades]
+        armament: [Plague knife, Boltgun, Blight grenades, Krak grenades]
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: boltgun
+            replace: Boltgun
             method: ONEOF
-            options: [plague spewer, plague belcher, blight launcher, meltagun, plasma gun]
+            options: [Plague spewer, Plague belcher, Blight launcher, Meltagun, Plasma gun]
         specialists: [Heavy, Combat, Demolitions, Veteran]
 
       - name: Plague Marine Fighter
         profile: 5 3 3 4 5 1 1 7 3 2
-        armament: [plague knife, boltgun, blight grenades, krak grenades]
+        armament: [Plague knife, Boltgun, Blight grenades, Krak grenades]
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: boltgun
-            method: ONEOFEACHOF
-            options: [[bubotic axe, great plague cleaver, flail of corruption], [second plague knife],[mace of contagion and bubotic axe]]
+            replace: Boltgun
+            method: ONEOF
+            options: [Bubotic axe, Great plague cleaver, Flail of corruption, Plague knife, Mace of contagion]
+            # @TODO - the last item needs to include a Bubotic axe as well
         specialists: [Zealot, Combat, Demolitions, Veteran]
 
-       - name: Plague Champion
+      - name: Plague Champion
         profile: 5 3 3 4 5 1 1 8 3 1
-        armament: [plague knife, boltgun, blight grenades, krak grenades]
+        armament: [Plague knife, Boltgun, Blight grenades, Krak grenades]
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: plague knife
+            replace: Plague knife
             method: ONEOF
-            options: [plaguesword]
-         - who: ANY
+            options: [Plaguesword]
+          - who: ANY
             may: REPLACE
-            replace: boltgun
+            replace: Boltgun
             method: ONEOF
-            options: [bolt pistol, plasma pistol, plasma gun]
-         - who: 1
+            options: [Bolt pistol, Plasma pistol, Plasma gun]
+          - who: 1
             may: TAKE
             method: ONEOF
-            options: [power fist]
+            options: [Power fist]
         specialists: [Leader, Combat, Demolitions, Veteran]
 
   - name: Poxwalker
@@ -106,5 +107,6 @@ datasheets:
 
       - name: Poxwalker
         profile: 4 5 6 3 3 1 2 4 7 0
-        armament: improvised weapon
+        armament: Improvised weapon
         specialists: [Combat, Zealot]
+        wargear_options: []
