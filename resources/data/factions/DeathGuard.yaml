@@ -53,7 +53,7 @@ datasheets:
         wargear_options:
           - who: 1
             may: TAKE
-            method: ONEOF
+            method: ALLOF
             options: [Icon of Despair]
         specialists: [Combat, Demolitions, Veteran]
 
@@ -76,8 +76,7 @@ datasheets:
             may: REPLACE
             replace: Boltgun
             method: ONEOF
-            options: [Bubotic axe, Great plague cleaver, Flail of corruption, Plague knife, Mace of contagion]
-            # @TODO - the last item needs to include a Bubotic axe as well
+            options: [Bubotic axe, Great plague cleaver, Flail of corruption, Plague knife, [Bubotic axe, Mace of contagion]]
         specialists: [Zealot, Combat, Demolitions, Veteran]
 
       - name: Plague Champion
@@ -87,7 +86,7 @@ datasheets:
           - who: ANY
             may: REPLACE
             replace: Plague knife
-            method: ONEOF
+            method: ALLOF
             options: [Plaguesword]
           - who: ANY
             may: REPLACE
@@ -96,7 +95,7 @@ datasheets:
             options: [Bolt pistol, Plasma pistol, Plasma gun]
           - who: 1
             may: TAKE
-            method: ONEOF
+            method: ALLOF
             options: [Power fist]
         specialists: [Leader, Combat, Demolitions, Veteran]
 

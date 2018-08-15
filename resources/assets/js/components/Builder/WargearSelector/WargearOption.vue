@@ -56,6 +56,9 @@ export default {
             }
         },
         idToName(item) {
+            if (_.isArray(item)) {
+                return _.map(item, this.idToName)
+            }
             return _.find(this.faction.wargear, (g) => g.id == item).name.toLowerCase()
         },
         itemsToText(items) {

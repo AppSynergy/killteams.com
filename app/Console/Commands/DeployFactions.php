@@ -227,6 +227,8 @@ class DeployFactions extends Command
     protected function validateAndKeyWargear($flexible_list)
     {
         if (is_array($flexible_list)) {
+            // pretty sure this can be compacted if you check
+            // all members, not just the first one here
             if (is_array($flexible_list[0])) {
                 $out = collect($flexible_list)->map(function ($x) {
                     return collect($x)->map(function ($y) {
@@ -235,7 +237,14 @@ class DeployFactions extends Command
                 })->toArray();
             } else {
                 $out = collect($flexible_list)->map(function ($x) {
-                    return $this->wargear[$x];
+                    // but this'll do for now
+                    if (is_array($x)) {
+                        return collect($x)->map(function ($y) {
+                            return $this->wargear[$y];
+                        });
+                    } else {
+                        return $this->wargear[$x];
+                    }
                 })->toArray();
             }
         } else {

@@ -34,6 +34,9 @@ class WargearCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
+            'name' => 'id',
+        ]);
+        $this->crud->addColumn([
             'label' => 'Faction',
             'name' => 'factions',
             'type' => 'select_multiple',
