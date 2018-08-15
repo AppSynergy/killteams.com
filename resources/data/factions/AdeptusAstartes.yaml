@@ -7,23 +7,66 @@ abilities:
     description: TODO
   - name: Camo Cloak
     description: TODO
+  - name: Auspex
+    description: TODO
+  - name: Grapnel Launcher
+    description: TODO
+  - name: Grav-chute
+    description: TODO
+  - name: Terror Troops
+    description: TODO
+  - name: Auxilliary Grenade Launcher
+    description: If a model is armed with an auxilliary grenade launcher, increase the range of any Grenade weapons they have to 30".
 
 points:
     kill_team:
+        Intercessor: 15
+        Intercessor Gunner: 16
+        Intercessor Sergeant: 16
+        Reiver: 16
+        Reiver Sergeant: 17
         Scout: 10
+        Scout Gunner: 11
+        Scout Sergeant: 11
+        Tactical Marine: 12
+        Tactical Marine Gunner: 13
+        Tactical Sergeant: 13
     ranged_weapons:
         Astartes shotgun: 0
+        Auto bolt rifle: 0
+        Bolt carbine: 0
         Bolt pistol: 0
+        Bolt rifle: 0
         Boltgun: 0
+        Combi-flamer: 3
+        Combi-grav: 2
+        Combi-melta: 3
+        Combi-plasma: 4
+        Flamer: 3
         Frag grenades: 0
+        Grav-gun: 2
+        Grav-pistol: 1
+        Heavy bolt pistol: 0
         Heavy bolter: 3
         Krak grenades: 0
+        Meltagun: 3
         Missile launcher: 5
+        Plasma gun: 3
+        Plasma pistol: 1
+        Shock grenades: 0
         Sniper rifle: 1
+        Stalker bolt rifle: 0
     melee_weapons:
+        Chainsword: 0
         Combat knife: 0
+        Power fist: 4
+        Power sword: 2
     other_wargear:
         Auspex: 1
+        Auxilliary grenade launcher: 0
+        Camo cloak: 1
+        Grapnel launcher: 1
+        Grav-chute: 1
 
 datasheets:
   - name: Scout
@@ -32,18 +75,160 @@ datasheets:
     minis:
 
       - name: Scout
-        profile: 6 4 3 3 3 1 1 6 4 0
+        profile: 6 3 3 4 4 1 1 7 4 0
         armament: [Boltgun, Bolt pistol, Frag grenades, Krak grenades]
-        wargear_options:
-        # TESTING OPTIONS
-          - who: ANY
-            may: REPLACE
-            replace: Boltgun
-            method: ONEOF
-            options: [Combat knife, Astartes shotgun, Sniper rifle]
-          - who: ANY
-            may: REPLACE
-            replace: Boltgun
-            method: ONEOF
-            options: [Heavy bolter, Missile launcher]
         specialists: [Comms, Demolitions, Scout, Sniper]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Boltgun
+            method: ONEOF
+            options: [Combat knife, Astartes shotgun, [Sniper rifle, Camo cloak]]
+
+      - name: Scout Gunner
+        profile: 6 3 3 4 4 1 1 7 4 2
+        armament: [Boltgun, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Comms, Demolitions, Heavy, Scout, Sniper]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Boltgun
+            method: ONEOF
+            options: [Heavy bolter, Missile launcher, [Sniper rifle, Camo cloak], [Missile launcher, Camo cloak]]
+
+      - name: Scout Sergeant
+        profile: 6 3 3 4 4 1 2 7 4 1
+        armament: [Boltgun, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Comms, Demolitions, Leader, Scout, Sniper]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Boltgun
+            method: ONEOF
+            options: [Astartes shotgun, Chainsword, [Sniper rifle, Camo cloak]]
+
+  - name: Tactical Marine
+    abilities: [And They Shall Know No Fear, Transhuman Physiology, Auspex]
+    keywords: [IMPERIUM, INFANTRY, TACTICAL MARINE]
+    minis:
+
+       - name: Tactical Marine
+         profile: 6 3 3 4 4 1 1 7 3 0
+         armament: [Boltgun, Bolt pistol, Frag grenades, Krak grenades]
+         specialists: [Comms, Demolitions, Sniper, Veteran]
+         wargear_options: []
+
+       - name: Tactical Marine Gunner
+         profile: 6 3 3 4 4 1 1 7 3 2
+         armament: [Boltgun, Bolt pistol, Frag grenades, Krak grenades]
+         specialists: [Comms, Demolitions, Heavy, Sniper, Veteran]
+         wargear_options:
+           - who: 1
+             may: REPLACE
+             replace: Boltgun
+             method: ONEOF
+             options: [Flamer, Meltagun, Plasma gun, Grav-gun]
+           - who: 1
+             may: REPLACE
+             replace: Boltgun
+             method: ONEOF
+             options: [Missile launcher, Heavy bolter]
+
+       - name: Tactical Sergeant
+         profile: 6 3 3 4 4 1 2 8 3 1
+         armament: [Boltgun, Bolt pistol, Frag grenades, Krak grenades]
+         specialists: [Comms, Demolitions, Leader, Sniper, Veteran]
+         wargear_options:
+          - who: 1
+            may: REPLACE
+            replace: [Bolt pistol, Boltgun]
+            method: ONEOF
+            options: [Combi-flamer, Combi-grav, Combi-melta, Combi-plasma]
+            # @TODO: also other stuff, this one's complicated
+
+  - name: Reiver
+    abilities: [And They Shall Know No Fear, Transhuman Physiology, Grapnel Launcher, Grav-chute, Terror Troops]
+    keywords: [IMPERIUM, INFANTRY, PRIMARIS, REIVER]
+    minis:
+      - name: Reiver
+        profile: 6 3 3 4 4 2 2 7 3 0
+        armament: [Bolt carbine, Heavy bolt pistol, Frag grenades, Krak grenades, Shock grenades]
+        specialists: [Combat, Comms, Demolitions, Scout, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt carbine
+            method: ALLOF
+            options: Combat knife
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grav-chute
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grapnel launcher
+      - name: Reiver Sergeant
+        profile: 6 3 3 4 4 2 3 8 3 1
+        armament: [Bolt carbine, Heavy bolt pistol, Frag grenades, Krak grenades, Shock grenades]
+        specialists: [Combat, Comms, Demolitions, Leader, Scout, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Bolt carbine, Heavy bolt pistol]
+            # @TODO: this should be OR, not BOTH
+            method: ALLOF
+            options: Combat knife
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grav-chute
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grapnel launcher
+
+  - name: Intercessor
+    abilities: [And They Shall Know No Fear, Transhuman Physiology, Auxilliary Grenade Launcher]
+    keywords: [IMPERIUM, INFANTRY, PRIMARIS, INTERCESSOR]
+    minis:
+      - name: Intercessor
+        profile: 6 3 3 4 4 2 2 7 3 0
+        armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Sniper, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt rifle
+            method: ONEOF
+            options: [Auto bolt rifle, Stalker bolt rifle]
+      - name: Intercessor Gunner
+        profile: 6 3 3 4 4 2 2 7 3 2
+        armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Heavy, Sniper, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt rifle
+            method: ONEOF
+            options: [Auto bolt rifle, Stalker bolt rifle]
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: [Auxilliary grenade launcher]
+      - name: Intercessor Sergeant
+        profile: 6 3 3 4 4 2 3 8 3 1
+        armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Leader, Sniper, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt rifle
+            method: ONEOF
+            options: [Auto bolt rifle, Stalker bolt rifle]
+          - who: ANY
+            may: REPLACE
+            replace: Bolt rifle
+            method: ONEOF
+            # @TODO: or you can not replace the rifle instead.
+            options: [Power sword, Chainsword]
