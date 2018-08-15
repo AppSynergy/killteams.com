@@ -16,11 +16,9 @@ class CreateWargearsTable extends Migration
         Schema::create('wargears', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('faction_id');
             $table->unsignedInteger('points');
             $table->string('category');
             $table->timestamps();
-            $table->foreign('faction_id')->references('id')->on('factions');
         });
     }
 

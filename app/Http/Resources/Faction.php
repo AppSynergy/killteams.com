@@ -24,7 +24,7 @@ class Faction extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'datasheets' => DatasheetResource::collection($this->whenLoaded('datasheets')),
-            'wargear' => WargearResource::collection($this->whenLoaded('wargear')),
+            'wargear' => WargearResource::collection($this->whenLoaded('wargears')),
         ];
     }
 }

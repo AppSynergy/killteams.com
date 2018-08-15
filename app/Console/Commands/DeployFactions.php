@@ -79,7 +79,6 @@ class DeployFactions extends Command
                     if (!$id) {
                         $row = [
                             'name' => $name,
-                            'faction_id' => $faction_id,
                             'points' => $points,
                             'category' => $category,
                         ];
@@ -87,6 +86,14 @@ class DeployFactions extends Command
                         $id = \DB::table('wargears')->insertGetId($row);
                     }
                     $this->wargear[$name] = $id;
+                    $relation = [
+                        'faction_id' => $faction_id,
+                        'wargear_id' => $id,
+                    ];
+                    if (!$this->dataExists('faction_wargear', $relation)) {
+                        $this->info('Relating wargear: ' . $name);
+                        \DB::table('faction_wargear')->insert($relation);
+                    }
                 }
             }
         }

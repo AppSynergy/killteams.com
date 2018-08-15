@@ -35,21 +35,23 @@ class WargearCrudController extends CrudController
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
             'label' => 'Faction',
-            'name' => 'faction_id',
-            'type' => 'select',
-            'entity' => 'faction',
+            'name' => 'factions',
+            'type' => 'select_multiple',
+            'entity' => 'factions',
             'attribute' => 'name',
             'model' => 'App\Models\Faction',
+            'pivot' => true,
         ]);
 
         // ------ CRUD FIELDS
         $this->crud->addField([
             'label' => 'Faction',
-            'name' => 'faction_id',
-            'type' => 'select2',
-            'entity' => 'faction',
+            'name' => 'factions',
+            'type' => 'select2_multiple',
+            'entity' => 'factions',
             'attribute' => 'name',
             'model' => 'App\Models\Faction',
+            'pivot' => true,
         ]);
 
         $this->crud->setFromDb();

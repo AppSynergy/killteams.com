@@ -44,9 +44,9 @@ class Faction extends Model
         return $this->hasManyThrough('App\Models\Miniature', 'App\Models\Datasheet');
     }
 
-    public function wargear()
+    public function wargears()
     {
-        return $this->hasMany('App\Models\Wargear');
+        return $this->belongsToMany('App\Models\Wargear');
     }
 
     public function killteams()

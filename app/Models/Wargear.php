@@ -34,9 +34,9 @@ class Wargear extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function faction()
+    public function factions()
     {
-        return $this->belongsTo('App\Models\Faction');
+        return $this->belongsToMany('App\Models\Faction');
     }
 
     /*
