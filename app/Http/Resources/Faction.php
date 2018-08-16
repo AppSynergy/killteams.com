@@ -16,15 +16,26 @@ class Faction extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $array = [
             'links' => [
                 'self' => url('api/factions/' . $this->id),
                 'parent' => url('api/factions/'),
             ],
             'id' => $this->id,
             'name' => $this->name,
+            'faction_keyword' => $this->faction_keyword,
             'datasheets' => DatasheetResource::collection($this->whenLoaded('datasheets')),
             'wargear' => WargearResource::collection($this->whenLoaded('wargears')),
+            'narrative' => [],
         ];
+
+        $config = collect(\Config::get('narrative.names'));
+        if ($config->has($this->faction_keyword)) {
+            $array['narrative']['names'] = $config->first(function($v, $k) {
+                return $k == $this->faction_keyword;
+            });
+        }
+
+        return $array;
     }
 }

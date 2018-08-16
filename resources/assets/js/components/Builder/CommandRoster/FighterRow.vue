@@ -12,6 +12,11 @@
                             aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
+                        <button type="button" class="btn btn-info text-white"
+                            v-on:click="getRandomName()"
+                            aria-label="Randomise">
+                            <span aria-hidden="true">DICE</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -54,7 +59,14 @@ export default {
     mixins: [ hasFactionStore ],
     components: { WargearSelector },
     props: ['fighter', 'stats'],
+    mounted() {
+        this.getRandomName()
+    },
     methods: {
+        getRandomName() {
+            let names = this.faction.narrative.names
+            this.fighter.name = _.sample(names.forename) + ' ' + _.sample(names.surname)
+        },
         removeFighter(fighter_id) {
             this.$store.commit('removeFighter', fighter_id)
         },

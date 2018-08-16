@@ -15,7 +15,10 @@ class FactionCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => $this->collection,
+            'data' => $this->collection->map(function ($faction, $key) {
+                return collect($faction)->except('narrative');
+            }),
         ];
     }
+
 }

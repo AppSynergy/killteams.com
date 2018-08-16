@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => [
+    'names' => [
 
         'DEATH GUARD' => [
 
