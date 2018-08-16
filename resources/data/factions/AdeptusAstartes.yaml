@@ -144,7 +144,19 @@ datasheets:
             replace: [Bolt pistol, Boltgun]
             method: ONEOF
             options: [Combi-flamer, Combi-grav, Combi-melta, Combi-plasma]
+          - who: ALTERNATIVELY
+            may: REPLACE
+            replace: [Boltgun, Bolt pistol, Frag grenades, Krak grenades]
+            method: ONEOF
+            options: [Bolt pistol, Plasma pistol, Grav-pistol]
+          - who: FUCK KNOWS
+            may: TAKE
+            method: ONEOF
+            options: [Chainsword, Power fist, Power sword, Auspex]
             # @TODO: also other stuff, this one's complicated
+            # SO
+            # This model is armed with a bolt pistol, boltgun, frag grenades and krak grenades.
+            # A Tactical Sergeant may replace their bolt pistol and boltgun with a combi-flamer, combi-grav, combi-melta or combi plasma. Alternatively he may be armed with a bolt pistol, plasma pistol or grav-pistol, and may also take a chainsword, power fist, power sword or auspex.
 
   - name: Reiver
     abilities: [And They Shall Know No Fear, Transhuman Physiology, Grapnel Launcher, Grav-chute, Terror Troops]
