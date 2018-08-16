@@ -1,4 +1,4 @@
-faction_keyword: ORK
+faction_keyword: ORKS
 
 abilities:
   - name: ’Ere We Go
@@ -29,14 +29,12 @@ points:
     Rokkit launcha: 3
     Shoota: 0
     Slugga: 0
-    Stikkbomb: 0
+    Stikkbombs: 0
   melee_weapons:
     Big choppa: 2
     Choppa: 0
     Power klaw: 4
-  other_wargear:
-    na: 0
-    
+
 datasheets:
   - name: Ork Boy
     abilities: [’Ere We Go]
@@ -73,12 +71,12 @@ datasheets:
             may: REPLACE
             replace: [Slugga]
             method: ONEOF
-            options: [kombi-weapon with rokkit launcha, kombi-weapon with skorcha]]
-           - who: ANY
+            options: [Kombi-weapon with rokkit launcha, Kombi-weapon with skorcha]
+          - who: ANY
             may: REPLACE
             replace: [Choppa]
             method: ONEOF
-            options: [big Choppa, Power klaw]
+            options: [Big choppa, Power klaw]
         specialists: [Leader, Combat, Demolitions, Veteran]
 
   - name: Gretchin
@@ -88,8 +86,9 @@ datasheets:
 
       - name: Gretchin
         profile: 6 4 3 3 3 1 1 6 4 0
-        armament: [Grot Blasta]
+        armament: [Grot blasta]
         specialists: [Leader, Scout]
+        wargear_options: []
 
   - name: Kommando
     abilities: [’Ere We Go, Sneaky Gits]
@@ -100,6 +99,7 @@ datasheets:
         profile: 6 3 5 4 4 1 2 6 6 0
         armament: [Slugga, Choppa, Stikkbombs]
         specialists: [Combat, Demolitions, Scout, Veteran]
+        wargear_options: []
 
       - name: Kommando Boss Nob
         profile: 6 3 5 4 4 1 2 7 6 1
@@ -109,7 +109,7 @@ datasheets:
             may: REPLACE
             replace: [Choppa]
             method: ONEOF
-            options: [power klaw]
+            options: [Power klaw]
         specialists: [Leader, Combat, Demolitions, Scout, Veteran]
 
   - name: Burna Boy
@@ -121,6 +121,7 @@ datasheets:
         profile: 5 3 5 4 4 1 2 6 6 0
         armament: [Burna, Stikkbombs]
         specialists: [Leader, Combat, Demolitions, Veteran, Zealot]
+        wargear_options: []
 
       - name: Burna Spanner
         profile: 5 3 5 4 4 1 2 6 6 3
@@ -128,11 +129,11 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: [Big Shoota]
+            replace: [Big shoota]
             method: ONEOF
             options: [Kustom mega-blasta, Rokkit launcha]
         specialists: [Comms, Leader, Combat, Demolitions, Veteran, Zealot]
-        
+
   - name: Loota
     abilities: [’Ere We Go]
     keywords: [INFANTRY, LOOTA]
@@ -142,6 +143,7 @@ datasheets:
         profile: 5 3 5 4 4 1 2 6 6 0
         armament: [Deffgun, Stikkbombs]
         specialists: [Leader, Combat, Demolitions, Heavy, Veteran]
+        wargear_options: []
 
       - name: Loota Spanner
         profile: 5 3 5 4 4 1 2 6 6 3
@@ -149,7 +151,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: [Big Shoota]
+            replace: [Big shoota]
             method: ONEOF
             options: [Kustom mega-blasta, Rokkit launcha]
         specialists: [Comms, Leader, Combat, Demolitions, Heavy, Veteran]
