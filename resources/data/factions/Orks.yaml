@@ -1,0 +1,155 @@
+faction_keyword: ORK
+
+abilities:
+  - name: ’Ere We Go
+    description: Re-roll failed charge rolls for a model with this ability
+  - name: Sneaky Gits
+    description: When an enemy player makes a hit roll for a shooting attack that targets this model, and this model is obscured, that hit roll suffers an additional -1 modifier
+
+points:
+  kill_team:
+    Burna Boy: 12
+    Burna Spanner: 10
+    Gretchin: 3
+    Kommando: 8
+    Kommando Boss Nob: 12
+    Loota: 12
+    Loota Spanner: 10
+    Ork Boy: 6
+    Ork Boy Gunner: 7
+    Boss Nob: 10
+  ranged_weapons:
+    Big shoota: 0
+    Burna: 0
+    Deffgun: 0
+    Grot blasta: 0
+    Kombi-weapon with rokkit launcha: 3
+    Kombi-weapon with skorcha: 4
+    Kustom mega-blasta: 0
+    Rokkit launcha: 3
+    Shoota: 0
+    Slugga: 0
+    Stikkbomb: 0
+  melee_weapons:
+    Big choppa: 2
+    Choppa: 0
+    Power klaw: 4
+  other_wargear:
+    na: 0
+    
+datasheets:
+  - name: Ork Boy
+    abilities: [’Ere We Go]
+    keywords: [INFANTRY, ORK BOY]
+    minis:
+
+      - name: Ork Boy
+        profile: 5 3 5 4 4 1 2 6 6 0
+        armament: [Slugga, Choppa, Stikkbombs]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Slugga, Choppa]
+            method: ONEOF
+            options: [Shoota]
+        specialists: [Combat, Demolitions, Veteran]
+
+      - name: Ork Boy Gunner
+        profile: 5 3 5 4 4 1 2 6 6 2
+        armament: [Slugga, Choppa, Stikkbombs]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Slugga, Choppa]
+            method: ONEOF
+            options: [Big shoota, Rokkit launcha]
+        specialists: [Heavy, Combat, Demolitions, Veteran]
+
+      - name: Boss Nob
+        profile: 5 3 5 4 4 1 2 7 6 1
+        armament: [Slugga, Choppa, Stikkbombs]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Slugga]
+            method: ONEOF
+            options: [kombi-weapon with rokkit launcha, kombi-weapon with skorcha]]
+           - who: ANY
+            may: REPLACE
+            replace: [Choppa]
+            method: ONEOF
+            options: [big Choppa, Power klaw]
+        specialists: [Leader, Combat, Demolitions, Veteran]
+
+  - name: Gretchin
+    abilities: [0]
+    keywords: [INFANTRY, GRETCHIN]
+    minis:
+
+      - name: Gretchin
+        profile: 6 4 3 3 3 1 1 6 4 0
+        armament: [Grot Blasta]
+        specialists: [Leader, Scout]
+
+  - name: Kommando
+    abilities: [’Ere We Go, Sneaky Gits]
+    keywords: [INFANTRY, KOMMANDO]
+    minis:
+
+      - name: Kommando
+        profile: 6 3 5 4 4 1 2 6 6 0
+        armament: [Slugga, Choppa, Stikkbombs]
+        specialists: [Combat, Demolitions, Scout, Veteran]
+
+      - name: Kommando Boss Nob
+        profile: 6 3 5 4 4 1 2 7 6 1
+        armament: [Slugga, Choppa, Stikkbombs]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Choppa]
+            method: ONEOF
+            options: [power klaw]
+        specialists: [Leader, Combat, Demolitions, Scout, Veteran]
+
+  - name: Burna Boy
+    abilities: [’Ere We Go]
+    keywords: [INFANTRY, BURNA BOY]
+    minis:
+
+      - name: Burna Boy
+        profile: 5 3 5 4 4 1 2 6 6 0
+        armament: [Burna, Stikkbombs]
+        specialists: [Leader, Combat, Demolitions, Veteran, Zealot]
+
+      - name: Burna Spanner
+        profile: 5 3 5 4 4 1 2 6 6 3
+        armament: [Big shoota, Stikkbombs]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Big Shoota]
+            method: ONEOF
+            options: [Kustom mega-blasta, Rokkit launcha]
+        specialists: [Comms, Leader, Combat, Demolitions, Veteran, Zealot]
+        
+  - name: Loota
+    abilities: [’Ere We Go]
+    keywords: [INFANTRY, LOOTA]
+    minis:
+
+      - name: Loota
+        profile: 5 3 5 4 4 1 2 6 6 0
+        armament: [Deffgun, Stikkbombs]
+        specialists: [Leader, Combat, Demolitions, Heavy, Veteran]
+
+      - name: Loota Spanner
+        profile: 5 3 5 4 4 1 2 6 6 3
+        armament: [Big shoota, Stikkbombs]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Big Shoota]
+            method: ONEOF
+            options: [Kustom mega-blasta, Rokkit launcha]
+        specialists: [Comms, Leader, Combat, Demolitions, Heavy, Veteran]
