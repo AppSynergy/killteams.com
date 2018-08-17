@@ -1,0 +1,269 @@
+faction_keyword: ADEPTUS MECHANICUS
+
+abilities:
+  - name: For the Greater Good
+    description: When an enemy model declares a charge against a model from your kill team, models from your kill team with this ability within 6" of one of the charging model’s targets may fire Overwatch as if they were also targeted. Once a model has done so, they cannot fire Overwatch or Retreat for the rest of the phase.
+  - name: Bonding Knife Ritual
+    description: You can subtract 1 from Nerve tests for Shas’las or Shas’uis from your kill team within 3" of any friendly models with this ability that are not shaken.
+  - name: DS8 Tactical Support Turret
+    description: A Tactical Support Turret is set up within 2" of the model it accompanies when that model is set up on the battlefield. It is treated as a separate model, but cannot move for any reason. If this model is more than 2" from the model it accompanies at any point, it is removed from the battlefield. It does not count as having been taken out of action. Tactical Support Turrets may not be specialists, are not part of a fire team and do not gain experience.
+  - name: Target Lock
+    description: A model with a target lock does not suffer the penalty to their hit rolls for Advancing and firing Assault weapons.
+  - name: Camouflage Fields
+    description: Your opponent must subtract 1 from all hit rolls for attacks that target this model.
+  - name: Support Subroutines
+    description: Drones cannot be specialists, are not part of a fire team and cannot gain experience.
+  - name: Saviour Protocols
+    description: If a DRONE is within 3" of a friendly T’AU EMPIRE INFANTRY model when an enemy attack successfully wounds it, you can inflict a mortal wound on the Drone, and the target model does not suffer any damage from this attack.
+  - name: Guardian Fields (Guardian Drone only)
+    description: A Guardian Drone has a 5+ invulnerable save. Friendly T’AU EMPIRE models within 6" of this model have a 6+ invulnerable save.
+  - name: Gravity Wave Projector (MV33 Grav-inhibitor Drone)
+    description: Enemy models beginning a charge move within 12" of any Grav-inhibitor Drones reduce their charge distance by D3".
+  - name: Pulse Accelerator (MV31 Pulse Accelerator Drone only)
+    description: Whilst a T’AU EMPIRE INFANTRY model is within 3" of a friendly Pulse Accelerator Drone, increase the Range characteristic of that model’s pulse pistol, pulse carbine or pulse rifle by 6".
+  - name: Recon Suite (MB3 Recon Drone only)
+    description: At the start of the Shooting phase, you can choose a PATHFINDER from your kill team within 6" of a friendly Recon Drone. Until the end of the phase, that model does not suffer penalties to their hit and Injury rolls due to their target being obscured.
+  - name: Shield Generator
+    description: A model with a shield generator has a 4+ invulnerable save.
+    
+points:
+  kill_team:
+    Shas’la: 8
+    Shas’ui: 8
+    DS8 Tactical Support Turret: 0
+    Breacher Shas’la: 8
+    Breacher Shas’ui: 0
+    Pathfinder: 6
+    Pathfinder Gunner: 7
+    Pathfinder Shas’ui: 7
+    Stealth Shas’ui: 20
+    Stealth Shas’vre: 20
+    MV1 Gun Drone: 7
+    MV4 Shield Drone: 7
+    MV7 Marker Drone: 7
+    MV36 Guardian Drone: 7
+    MV33 Grav-inhibitor Drone: 7
+    MV31 Pulse Accelerator Drone: 7
+    MB3 Recon Drone: 7
+  ranged_weapons:
+    Burst cannon: 0
+    Fusion blaster: 4
+    Ion rifle: 3
+    Markerlight: 0
+    Missile pod: 7
+    Photon grenade: 0
+    Pulse blaster: 0
+    Pulse carbine: 0
+    Pulse pistol: 0
+    Pulse rifle: 0
+    Rail rifle: 5
+    Smart missile system: 5
+  melee_weapons:
+    na: 0
+  other_wargear:
+    Target lock: 1
+
+datasheets:
+  - name: Fire Warrior
+    abilities: [For the Greater Good, Bonding Knife Ritual, DS8 Tactical Support Turret]
+    keywords: [INFANTRY, FIRE WARRIOR]
+    minis:
+
+      - name: Shas’la
+        profile: 6 5 4 3 3 1 1 6 4 0
+        armament: [Pulse rifle, Photon grenades]
+        wargear_options:
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: [Pulse pistol, DS8 Tactical Support Turret]
+          - who: ANY
+            may: REPLACE
+            replace: [Pulse rifle]
+            method: ONEOF
+            options: [Pulse carbine]
+        specialists: [Comms, Medic, Scout, Sniper, Veteran]
+
+      - name: Shas’ui
+        profile: 6 5 4 3 3 1 1 7 4 1
+        armament: [Pulse rifle, Photon grenades]
+        wargear_options:
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: [Pulse pistol, Markerlight]
+          - who: ANY
+            may: REPLACE
+            replace: [Pulse rifle]
+            method: ONEOF
+            options: [Pulse carbine, Pulse pistol.]
+        specialists: [Leader, Comms, Medic, Scout, Sniper, Veteran]
+
+      - name: DS8 Tactical Support Turret
+        profile: 0 0 4 3 3 1 0 4 4 1
+        armament: [Missile pod]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Missile pod]
+            method: ONEOF
+            options: [smart missile system]
+        specialists: []
+
+  - name: Fire Warrior Breacher
+    abilities: [For the Greater Good, Bonding Knife Ritual, DS8 Tactical Support Turret]
+    keywords: [INFANTRY, FIRE WARRIOR BREACHER]
+
+      - name: Breacher Shas’la
+        profile: 6 5 4 3 3 1 1 6 4 0
+        armament: [Pulse Blaster, Photon grenades]
+        wargear_options:
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: [Pulse pistol, DS8 Tactical Support Turret]
+        specialists: [Comms, Demolitions, Medic, Scout, Veteran]
+
+      - name: Breacher Shas’ui
+        profile: 6 5 4 3 3 1 1 7 4 1
+        armament: [Pulse Blaster, Photon grenades]
+        wargear_options:
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: [Pulse pistol, Markerlight]
+          - who: ANY
+            may: REPLACE
+            replace: [Pulse Blaster]
+            method: ONEOF
+            options: [Pulse pistol.]
+        specialists: [Leader, Comms, Demolitions, Medic, Scout, Veteran]
+
+      - name: DS8 Tactical Support Turret
+        profile: 0 0 4 3 3 1 0 4 4 1
+        armament: [Missile pod]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Missile pod]
+            method: ONEOF
+            options: [smart missile system]
+        specialists: []
+
+
+  - name: Pathfinder
+    abilities: [For the Greater Good, Bonding Knife Ritual]
+    keywords: [INFANTRY, PATHFINDER]
+    minis:
+
+      - name: Pathfinder
+        profile: 7 5 4 3 3 1 1 6 5 0
+        armament: [Pulse carbine, Markerlight, Photon grenades]
+        wargear_options: []
+        specialists: [Comms, Demolitions, Medic, Scout, Veteran]
+
+      - name: Pathfinder Gunner
+        profile: 7 5 4 3 3 1 1 6 5 3
+        armament: [Pulse carbine, Markerlight, Photon grenades]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Pulse carbine, Markerlight]
+            method: ONEOF
+            options: [Ion rifle, Rail rifle]
+        specialists: [Sniper, Comms, Demolitions, Medic, Scout, Veteran]
+        
+        - name: Pathfinder Shas’ui
+        profile: 7 5 4 3 3 1 1 7 5 1
+        armament: [Pulse carbine, Markerlight, Photon grenades]
+        wargear_options:
+          - who: ANY
+            may: TAKE
+            method: ONEOF
+            options: [Pulse pistol]
+        specialists: [Leader, Sniper, Comms, Demolitions, Medic, Scout, Veteran]
+
+  - name: XV25 Stealth Battlesuit
+    abilities: [For the Greater Good, Bonding Knife Ritual, Target Lock, Camouflage Fields]
+    keywords: [BATTLESUIT, INFANTRY, JET PACK, FLY, XV25 STEALTH BATTLESUIT]
+    minis:
+
+      - name: Stealth Shas’ui
+        profile: 8 5 4 4 4 2 2 7 3 0
+        armament: [Burst cannon]
+        wargear_options:
+          - who: 1
+            may: REPLACE
+            replace: [Burst cannon]
+            method: ONEOF
+            options: [Fusion blaster]
+        specialists: [Comms, Heavy, Scout, Veteran]
+
+      - name: Stealth Shas’vre
+        profile: 8 5 4 4 4 2 2 8 3 1
+        armament: [Burst cannon]
+        wargear_options:
+          - who: 1
+            may: REPLACE
+            replace: [Burst cannon]
+            method: ONEOF
+            options: [Fusion blaster]
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: [Markerlight, Target lock]
+        specialists: [Leader, Comms, Heavy, Scout, Veteran]
+        
+  - name: Drone
+    abilities: [Support Subroutines, For the Greater Good, Saviour Protocols, Guardian Fields (Guardian Drone only), Gravity Wave Projector (MV33 Grav-inhibitor Drone), Pulse Accelerator (MV31 Pulse Accelerator Drone only), Recon Suite (MB3 Recon Drone only), Shield Generator]
+    keywords: [FLY, DRONE]
+    minis:
+
+      - name: MV1 Gun Drone
+        profile: 8 5 5 3 4 1 1 6 5 0
+        armament: [Pulse carbine, Pulse carbine]
+        wargear_options: []
+        specialists: []
+
+      - name: MV1 Gun Drone
+        profile: 8 5 5 3 4 1 1 6 5 0
+        armament: [Pulse carbine, Pulse carbine]
+        wargear_options: []
+        specialists: []
+
+      - name: MV4 Shield Drone
+        profile: 8 5 5 3 4 1 1 6 5 0
+        armament: [Shield generator]
+        wargear_options: []
+        specialists: []
+
+      - name: MV7 Marker Drone
+        profile: 8 5 5 3 4 1 1 6 5 0
+        armament: [Markerlight]
+        wargear_options: []
+        specialists: []
+        
+      - name: MV36 Guardian Drone
+        profile: 8 5 5 3 4 1 1 6 5 1
+        armament: []
+        wargear_options: []
+        specialists: []
+        
+      - name: MV33 Grav-inhibitor Drone
+        profile: 8 5 5 3 4 1 1 6 5 1
+        armament: []
+        wargear_options: []
+        specialists: []
+        
+      - name: MV31 Pulse Accelerator Drone
+        profile: 8 5 5 3 4 1 1 6 5 1
+        armament: []
+        wargear_options: []
+        specialists: []
+        
+      - name: MB3 Recon Drone
+        profile: 8 5 5 3 4 1 1 6 5 1
+        armament: [Burst cannon]
+        wargear_options: []
+        specialists: []
+        
