@@ -227,9 +227,12 @@ class DeployFactions extends Command
     protected function validateAndKeyWargear($flexible_list)
     {
         if (is_array($flexible_list)) {
+            if (empty($flexible_list)) {
+                $out = [];
+            }
             // pretty sure this can be compacted if you check
             // all members, not just the first one here
-            if (is_array($flexible_list[0])) {
+            else if (is_array($flexible_list[0])) {
                 $out = collect($flexible_list)->map(function ($x) {
                     return collect($x)->map(function ($y) {
                         return $this->wargear[$y];

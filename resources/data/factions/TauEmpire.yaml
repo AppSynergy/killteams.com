@@ -1,4 +1,4 @@
-faction_keyword: Tau
+faction_keyword: T'AU EMPIRE
 
 abilities:
   - name: For the Greater Good
@@ -25,7 +25,7 @@ abilities:
     description: At the start of the Shooting phase, you can choose a PATHFINDER from your kill team within 6" of a friendly Recon Drone. Until the end of the phase, that model does not suffer penalties to their hit and Injury rolls due to their target being obscured.
   - name: Shield Generator
     description: A model with a shield generator has a 4+ invulnerable save.
-    
+
 points:
   kill_team:
     Shas’la: 8
@@ -51,16 +51,15 @@ points:
     Ion rifle: 3
     Markerlight: 0
     Missile pod: 7
-    Photon grenade: 0
+    Photon grenades: 0
     Pulse blaster: 0
     Pulse carbine: 0
     Pulse pistol: 0
     Pulse rifle: 0
     Rail rifle: 5
     Smart missile system: 5
-  melee_weapons:
-    na: 0
   other_wargear:
+    Shield generator: 0
     Target lock: 1
 
 datasheets:
@@ -76,7 +75,7 @@ datasheets:
           - who: ANY
             may: TAKE
             method: ALLOF
-            options: [Pulse pistol, DS8 Tactical Support Turret]
+            options: [Pulse pistol]
           - who: ANY
             may: REPLACE
             replace: [Pulse rifle]
@@ -96,7 +95,7 @@ datasheets:
             may: REPLACE
             replace: [Pulse rifle]
             method: ONEOF
-            options: [Pulse carbine, Pulse pistol.]
+            options: [Pulse carbine, Pulse pistol]
         specialists: [Leader, Comms, Medic, Scout, Sniper, Veteran]
 
       - name: DS8 Tactical Support Turret
@@ -107,26 +106,28 @@ datasheets:
             may: REPLACE
             replace: [Missile pod]
             method: ONEOF
-            options: [smart missile system]
+            options: [Smart missile system]
         specialists: []
+        # @TODO - needs a compulsory Shas'la babysitter
 
   - name: Fire Warrior Breacher
     abilities: [For the Greater Good, Bonding Knife Ritual, DS8 Tactical Support Turret]
     keywords: [INFANTRY, FIRE WARRIOR BREACHER]
+    minis:
 
       - name: Breacher Shas’la
         profile: 6 5 4 3 3 1 1 6 4 0
-        armament: [Pulse Blaster, Photon grenades]
+        armament: [Pulse blaster, Photon grenades]
         wargear_options:
           - who: ANY
             may: TAKE
             method: ALLOF
-            options: [Pulse pistol, DS8 Tactical Support Turret]
+            options: [Pulse pistol]
         specialists: [Comms, Demolitions, Medic, Scout, Veteran]
 
       - name: Breacher Shas’ui
         profile: 6 5 4 3 3 1 1 7 4 1
-        armament: [Pulse Blaster, Photon grenades]
+        armament: [Pulse blaster, Photon grenades]
         wargear_options:
           - who: ANY
             may: TAKE
@@ -134,9 +135,9 @@ datasheets:
             options: [Pulse pistol, Markerlight]
           - who: ANY
             may: REPLACE
-            replace: [Pulse Blaster]
+            replace: [Pulse blaster]
             method: ONEOF
-            options: [Pulse pistol.]
+            options: [Pulse pistol]
         specialists: [Leader, Comms, Demolitions, Medic, Scout, Veteran]
 
       - name: DS8 Tactical Support Turret
@@ -147,9 +148,9 @@ datasheets:
             may: REPLACE
             replace: [Missile pod]
             method: ONEOF
-            options: [smart missile system]
+            options: [Smart missile system]
         specialists: []
-
+        # @TODO - needs a compulsory Shas'la babysitter
 
   - name: Pathfinder
     abilities: [For the Greater Good, Bonding Knife Ritual]
@@ -172,8 +173,8 @@ datasheets:
             method: ONEOF
             options: [Ion rifle, Rail rifle]
         specialists: [Sniper, Comms, Demolitions, Medic, Scout, Veteran]
-        
-        - name: Pathfinder Shas’ui
+
+      - name: Pathfinder Shas’ui
         profile: 7 5 4 3 3 1 1 7 5 1
         armament: [Pulse carbine, Markerlight, Photon grenades]
         wargear_options:
@@ -213,7 +214,7 @@ datasheets:
             method: ALLOF
             options: [Markerlight, Target lock]
         specialists: [Leader, Comms, Heavy, Scout, Veteran]
-        
+
   - name: Drone
     abilities: [Support Subroutines, For the Greater Good, Saviour Protocols, Guardian Fields (Guardian Drone only), Gravity Wave Projector (MV33 Grav-inhibitor Drone), Pulse Accelerator (MV31 Pulse Accelerator Drone only), Recon Suite (MB3 Recon Drone only), Shield Generator]
     keywords: [FLY, DRONE]
@@ -242,28 +243,31 @@ datasheets:
         armament: [Markerlight]
         wargear_options: []
         specialists: []
-        
+
       - name: MV36 Guardian Drone
         profile: 8 5 5 3 4 1 1 6 5 1
         armament: []
         wargear_options: []
         specialists: []
-        
+        # @TODO: if you have any Fire Warriors or Fire Warrior Breachers
+
       - name: MV33 Grav-inhibitor Drone
         profile: 8 5 5 3 4 1 1 6 5 1
         armament: []
         wargear_options: []
         specialists: []
-        
+        # @TODO: if you have any Pathfinders
+
       - name: MV31 Pulse Accelerator Drone
         profile: 8 5 5 3 4 1 1 6 5 1
         armament: []
         wargear_options: []
         specialists: []
-        
+        # @TODO: if you have any Pathfinders
+
       - name: MB3 Recon Drone
         profile: 8 5 5 3 4 1 1 6 5 1
         armament: [Burst cannon]
         wargear_options: []
         specialists: []
-        
+        # @TODO: if you have any Pathfinders
