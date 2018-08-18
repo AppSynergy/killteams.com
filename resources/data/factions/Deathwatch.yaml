@@ -2,62 +2,136 @@ faction_keyword: DEATHWATCH
 
 abilities:
   - name: Special Issue Ammunition
-    description: TODO
+    description: >
+        When this model fires an auto bolt rifle, bolt carbine, bolt pistol, bolt rifle, boltgun, combi-melta (boltgun profile only), combi-plasma (boltgun profile only), heavy bolt pistol, stalker bolt rifle or stalker pattern boltgun, you can choose one kind of ammunition from the table and apply the corresponding modifier.
+
+        Dragonfire Bolts: Add 1 to hit rolls for this weapon when targeting a model which is obscured.
+
+        Hellfire round: This weapon always wounds on a 2+.
+
+        Kraken bolt: Add 3" to the range of this weapon if it a Pistol - or 6" otherwise - and improve the AP of the attack by 1.
+
+        Vengeance round: Subtract 3" from the range of this weapon if it a Pistol - or 6" otherwise - and improve the AP of the attack by 2.
   - name: And They Shall Know No Fear
-    description: TODO
+    description: You can re-roll failed Nerve tests for this model.
   - name: Transhuman Physiology
-    description: TODO
+    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered.
   - name: Storm Shield
     description: A model armed with a storm shield has a 3+ invulnerable save.
   - name: Atonement Through Honour
     description: You can re-roll failed charge rolls for a Black Shield.
   - name: Grapnel Launcher
-    description: TODO
+    description: A model with a grapnel launcher can climb any distance vertically (up and down) when it makes a normal move - do not measure the distance moved in this way.
   - name: Grav-chute
-    description: TODO
+    description: A model with a grav-chute never suffers falling damage, and never falls on another model. If it would, place this model as close as possible to the point where it would have landed. This can bring it within 1" of another model.
   - name: Terror Troops
-    description: TODO
+    description: Enemy models must subtract 1 from their Leadership if they are within 3" of any Reiver or Reiver Sergeant models.
   - name: Auxilliary Grenade Launcher
     description: If a model is armed with an auxilliary grenade launcher, increase the range of any Grenade weapons they have to 30".
 
 points:
-    kill_team:
-        Deathwatch Veteran: 14
-        Deathwatch Veteran Gunner: 15
-        Black Shield: 16
-        Watch Sergeant: 16
-        Intercessor: 15
-        Intercessor Gunner: 16
-        Intercessor Sergeant: 16
-        Reiver: 16
-        Reiver Sergeant: 17
-    melee_weapons:
-        Heavy thunder hammer: 5
-        Power maul: 2
-        Power sword: 2
-        Xenophase blade: 3
-    ranged_weapons:
-        Auto bolt rifle: 2
-        Bolt carbine: 2
-        Bolt pistol: 2
-        Bolt rifle: 2
-        Boltgun: 0
-        Combi-melta: 3
-        Combi-plasma: 4
-        Deathwatch frag cannon: 5
-        Deathwatch shotgun: 1
-        Frag grenades: 0
-        Heavy bolt pistol: 2
-        Krak grenades: 0
-        Stalker bolt rifle: 2
-        Stalker pattern boltgun: 1
+  kill_team:
+    Deathwatch Veteran: 14
+    Deathwatch Veteran Gunner: 15
+    Black Shield: 16
+    Watch Sergeant: 16
+    Deathwatch Intercessor: 15
+    Deathwatch Intercessor Gunner: 16
+    Deathwatch Intercessor Sergeant: 16
+    Deathwatch Reiver: 16
+    Deathwatch Reiver Sergeant: 17
+  melee_weapons:
+    Heavy thunder hammer: 5
+    Power maul: 2
+    Power sword: 2
+    Xenophase blade: 3
+  ranged_weapons:
+    Auto bolt rifle: 2
+    Bolt carbine: 2
+    Bolt pistol: 2
+    Bolt rifle: 2
+    Boltgun: 0
+    Combi-melta: 3
+    Combi-plasma: 4
+    Deathwatch frag cannon: 5
+    Deathwatch shotgun: 1
+    Frag grenades: 0
+    Heavy bolt pistol: 2
+    Infernus heavy bolter: 2
+    Krak grenades: 0
+    Stalker bolt rifle: 2
+    Stalker pattern boltgun: 1
+  other_wargear:
+    Storm shield: 3
 
 datasheets:
-  - name: Reiver
+  - name: Deathwatch Veteran
+    abilities: [Special Issue Ammunition, And They Shall Know No Fear, Transhuman Physiology, Storm Shield, Atonement Through Honour]
+    keywords: [IMPERIUM, ADEPTUS ASTARTES, INFANTRY, DEATHWATCH VETERAN]
+    minis:
+      - name: Deathwatch Veteran
+        profile: 6 3 3 4 4 1 2 8 3 0
+        armament: [Boltgun, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Demolitions, Sniper, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Boltgun
+            method: ONEOF
+            options: [Combi-melta, Combi-plasma, Stalker pattern boltgun, Power sword, Power maul, Storm shield, Deathwatch shotgun, Heavy thunder hammer]
+          - who: ANY
+            may: TAKE
+            method: ONEOF
+            options: [Power sword, Power maul]
+            # @TODO : if they take a DW shotgun or heavy hammer, they can't take one of the above
+      - name: Deathwatch Veteran Gunner
+        profile: 6 3 3 4 4 1 2 8 3 4
+        armament: [Boltgun, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Demolitions, Heavy, Sniper, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Boltgun
+            method: ONEOF
+            options: [Combi-melta, Combi-plasma, Stalker pattern boltgun, Power sword, Power maul, Storm shield, Deathwatch frag cannon, Infernus heavy bolter]
+          - who: ANY
+            may: TAKE
+            method: ONEOF
+            options: [Power sword, Power maul]
+      - name: Black Shield
+        profile: 6 3 3 4 4 1 3 8 3 1
+        armament: [Boltgun, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Demolitions, Sniper, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Boltgun
+            method: ONEOF
+            options: [Combi-melta, Combi-plasma, Stalker pattern boltgun, Power sword, Power maul, Storm shield]
+          - who: ANY
+            may: TAKE
+            method: ONEOF
+            options: [Power sword, Power maul]
+      - name: Watch Sergeant
+        profile: 6 3 3 4 4 1 3 9 3 1
+        armament: [Boltgun, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Demolitions, Leader, Sniper, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Boltgun
+            method: ONEOF
+            options: [Combi-melta, Combi-plasma, Stalker pattern boltgun, Power sword, Power maul, Storm shield]
+          - who: ANY
+            may: TAKE
+            method: ONEOF
+            options: [Power sword, Power maul, Xenophase blade]
+
+  - name: Deathwatch Reiver
     abilities: [And They Shall Know No Fear, Transhuman Physiology, Grapnel Launcher, Grav-chute, Terror Troops]
     keywords: [IMPERIUM, INFANTRY, PRIMARIS, REIVER]
     minis:
-      - name: Reiver
+      - name: Deathwatch Reiver
         profile: 6 3 3 4 4 2 2 7 3 0
         armament: [Bolt carbine, Heavy bolt pistol, Frag grenades, Krak grenades, Shock grenades]
         specialists: [Combat, Comms, Demolitions, Scout, Veteran]
@@ -75,7 +149,7 @@ datasheets:
             may: TAKE
             method: ALLOF
             options: Grapnel launcher
-      - name: Reiver Sergeant
+      - name: Deathwatch Reiver Sergeant
         profile: 6 3 3 4 4 2 3 8 3 1
         armament: [Bolt carbine, Heavy bolt pistol, Frag grenades, Krak grenades, Shock grenades]
         specialists: [Combat, Comms, Demolitions, Leader, Scout, Veteran]
@@ -95,11 +169,11 @@ datasheets:
             method: ALLOF
             options: Grapnel launcher
 
-  - name: Intercessor
+  - name: Deathwatch Intercessor
     abilities: [And They Shall Know No Fear, Transhuman Physiology, Auxilliary Grenade Launcher]
     keywords: [IMPERIUM, INFANTRY, PRIMARIS, INTERCESSOR]
     minis:
-      - name: Intercessor
+      - name: Deathwatch Intercessor
         profile: 6 3 3 4 4 2 2 7 3 0
         armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
         specialists: [Combat, Comms, Sniper, Veteran]
@@ -109,7 +183,7 @@ datasheets:
             replace: Bolt rifle
             method: ONEOF
             options: [Auto bolt rifle, Stalker bolt rifle]
-      - name: Intercessor Gunner
+      - name: Deathwatch Intercessor Gunner
         profile: 6 3 3 4 4 2 2 7 3 2
         armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
         specialists: [Combat, Comms, Heavy, Sniper, Veteran]
@@ -123,7 +197,7 @@ datasheets:
             may: TAKE
             method: ALLOF
             options: [Auxilliary grenade launcher]
-      - name: Intercessor Sergeant
+      - name: Deathwatch Intercessor Sergeant
         profile: 6 3 3 4 4 2 3 8 3 1
         armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
         specialists: [Combat, Comms, Leader, Sniper, Veteran]

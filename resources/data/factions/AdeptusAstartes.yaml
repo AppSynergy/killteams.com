@@ -2,71 +2,71 @@ faction_keyword: ADEPTUS ASTARTES
 
 abilities:
   - name: And They Shall Know No Fear
-    description: TODO
+    description: You can re-roll failed Nerve tests for this model.
   - name: Transhuman Physiology
-    description: TODO
+    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered.
   - name: Camo Cloak
-    description: TODO
+    description: When an opponent makes a hit roll for a shooting attack that targets a model equipped with a camo cloak, and that model is obscured, that hit roll suffers an additional -1 modifier.
   - name: Auspex
-    description: TODO
+    description: At the start of the shooting phase, you can choose another ADEPTUS ASTARTES model within 3" of a friendly model equipped with an auspex that is not shaken. That model does not suffer penalties to their hit or injury rolls due to their target being obscured.
   - name: Grapnel Launcher
-    description: TODO
+    description: A model with a grapnel launcher can climb any distance vertically (up and down) when it makes a normal move - do not measure the distance moved in this way.
   - name: Grav-chute
-    description: TODO
+    description: A model with a grav-chute never suffers falling damage, and never falls on another model. If it would, place this model as close as possible to the point where it would have landed. This can bring it within 1" of another model.
   - name: Terror Troops
-    description: TODO
+    description: Enemy models must subtract 1 from their Leadership if they are within 3" of any Reiver or Reiver Sergeant models.
   - name: Auxilliary Grenade Launcher
     description: If a model is armed with an auxilliary grenade launcher, increase the range of any Grenade weapons they have to 30".
 
 points:
-    kill_team:
-        Intercessor: 15
-        Intercessor Gunner: 16
-        Intercessor Sergeant: 16
-        Reiver: 16
-        Reiver Sergeant: 17
-        Scout: 10
-        Scout Gunner: 11
-        Scout Sergeant: 11
-        Tactical Marine: 12
-        Tactical Marine Gunner: 13
-        Tactical Sergeant: 13
-    ranged_weapons:
-        Astartes shotgun: 0
-        Auto bolt rifle: 0
-        Bolt carbine: 0
-        Bolt pistol: 0
-        Bolt rifle: 0
-        Boltgun: 0
-        Combi-flamer: 3
-        Combi-grav: 2
-        Combi-melta: 3
-        Combi-plasma: 4
-        Flamer: 3
-        Frag grenades: 0
-        Grav-gun: 2
-        Grav-pistol: 1
-        Heavy bolt pistol: 0
-        Heavy bolter: 3
-        Krak grenades: 0
-        Meltagun: 3
-        Missile launcher: 5
-        Plasma gun: 3
-        Plasma pistol: 1
-        Shock grenades: 0
-        Sniper rifle: 1
-        Stalker bolt rifle: 0
-    melee_weapons:
-        Chainsword: 0
-        Combat knife: 0
-        Power fist: 4
-        Power sword: 2
-    other_wargear:
-        Auspex: 1
-        Auxilliary grenade launcher: 0
-        Camo cloak: 1
-        Grapnel launcher: 1
-        Grav-chute: 1
+  kill_team:
+    Intercessor: 15
+    Intercessor Gunner: 16
+    Intercessor Sergeant: 16
+    Reiver: 16
+    Reiver Sergeant: 17
+    Scout: 10
+    Scout Gunner: 11
+    Scout Sergeant: 11
+    Tactical Marine: 12
+    Tactical Marine Gunner: 13
+    Tactical Sergeant: 13
+  ranged_weapons:
+    Astartes shotgun: 0
+    Auto bolt rifle: 0
+    Bolt carbine: 0
+    Bolt pistol: 0
+    Bolt rifle: 0
+    Boltgun: 0
+    Combi-flamer: 3
+    Combi-grav: 2
+    Combi-melta: 3
+    Combi-plasma: 4
+    Flamer: 3
+    Frag grenades: 0
+    Grav-gun: 2
+    Grav-pistol: 1
+    Heavy bolt pistol: 0
+    Heavy bolter: 3
+    Krak grenades: 0
+    Meltagun: 3
+    Missile launcher: 5
+    Plasma gun: 3
+    Plasma pistol: 1
+    Shock grenades: 0
+    Sniper rifle: 1
+    Stalker bolt rifle: 0
+  melee_weapons:
+    Chainsword: 0
+    Combat knife: 0
+    Power fist: 4
+    Power sword: 2
+  other_wargear:
+    Auspex: 1
+    Auxilliary grenade launcher: 0
+    Camo cloak: 1
+    Grapnel launcher: 1
+    Grav-chute: 1
 
 datasheets:
   - name: Scout
