@@ -69,7 +69,6 @@ root:
                                     _required: true
                                     _prototype:
                                         _type: array
-                                        _ignore_extra_keys: true
                                         _children:
                                             who:
                                                 _type: text
@@ -91,10 +90,10 @@ root:
                                                     - ONEOF
                                                     - ONEOFEACHOF
                                                     - ALLOF
-                                            #options:
-                                            #    _type: partial
-                                            #    _partial: flexible_lists
-                                            #    _required: false
+                                            options:
+                                                _type: partial
+                                                _partial: flexible_lists
+                                                _required: false
                                 specialists:
                                     _type: partial
                                     _partial: list_of_texts
@@ -124,6 +123,21 @@ partials:
             3:
                 _type: partial
                 _partial: list_of_list_of_texts
+            4:
+                _type: partial
+                _partial: list_of_mixed_lists
+
+    list_of_mixed_lists:
+        _type: prototype
+        _required: true
+        _prototype:
+            _type: choice
+            _choices:
+                1:
+                    _type: text
+                2:
+                    _type: partial
+                    _partial: list_of_texts
 
     list_of_list_of_texts:
         _type: prototype
