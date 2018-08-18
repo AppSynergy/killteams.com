@@ -48,7 +48,7 @@ class DeployFactions extends Command
      */
     public function handle()
     {
-        //$this->call('factions:validate');
+        $this->call('factions:validate');
         $this->info('Deploying factions...');
         $this->eachFaction([$this, 'deploy']);
     }

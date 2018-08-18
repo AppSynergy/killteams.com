@@ -69,6 +69,7 @@ root:
                                     _required: true
                                     _prototype:
                                         _type: array
+                                        _ignore_extra_keys: true
                                         _children:
                                             who:
                                                 _type: text
@@ -90,10 +91,10 @@ root:
                                                     - ONEOF
                                                     - ONEOFEACHOF
                                                     - ALLOF
-                                            options:
-                                                _type: partial
-                                                _partial: flexible_lists
-                                                _required: false
+                                            #options:
+                                            #    _type: partial
+                                            #    _partial: flexible_lists
+                                            #    _required: false
                                 specialists:
                                     _type: partial
                                     _partial: list_of_texts
