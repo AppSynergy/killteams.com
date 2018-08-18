@@ -1,0 +1,114 @@
+faction_keyword: THOUSAND SONS
+
+abilities:
+  - name: Death to the False Emperor
+    description: If a model with this ability makes an attack in the Fight phase which targets an IMPERIUM model, each time you roll a hit roll of 6+ you may make an additional attack with the same weapon against the same target. These attacks cannot themselves generate any further attacks.
+  - name: All is Dust
+    description: Add 1 to saving throws for a Rubric Marine or Rubric Marine Gunner if the attack has a Damage characteristic of 1. In addition, the -1 modifier to hit rolls for moving and shooting Heavy weapons does not apply to Rubric Marine Gunners
+  - name: Favoured of Tzeentch
+    description: This model has a 5+ invulnerable save
+  - name: Icon of Flame
+    description: At the start of your turn in the Psychic phase, roll a D6 for each model from your kill team equipped with an Icon of Flame. On a 6 inflict 1 mortal wound on the closest enemy model within 12" of the model being rolled for
+  - name: Transhuman Physiology (Aspiring Sorcerer only)
+    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered
+  - name: Aura of Dark Glory
+    description: This model has a 5+ invulnerable save
+  - name: Brayhorn
+    description: Add 1 to Advance and charge rolls made for TZAANGORS within 6" of any friendly models equipped with a brayhorn
+
+points:
+  kill_team:
+    Rubric Marine: 16
+    Rubric Marine Gunner: 16
+    Aspiring Sorcerer: 17
+    Tzaangor: 7
+    Twistbray: 8
+  ranged_weapons:
+    Autopistol: 0
+    Inferno bolt pistol: 0
+    Inferno boltgun: 0
+    Soulreaper cannon: 4
+    Warpflame pistol: 1
+    Warpflamer: 4
+  melee_weapons:
+    Chainsword: 0
+    Force stave: 0
+    Tzaangor blades: 0
+  other_wargear:
+    Brayhorn: 3
+    Icon of Flame: 1
+
+datasheets:
+  - name: Plague Marine
+    abilities: [Death to the False Emperor, All is Dust, Favoured of Tzeentch, Icon of Flame, Transhuman Physiology (Aspiring Sorcerer only)]
+    keywords: [CHAOS, TZEENTCH, HERETIC ASTARTES, INFANTRY, PSYKER (ASPIRING SORCERER ONLY), RUBRIC MARINE]
+    minis:
+
+      - name: Rubric Marine
+        profile: 5 3 3 4 4 1 1 7 3 0
+        armament: [Inferno boltgun]
+        wargear_options:
+          - who: 1
+            may: TAKE
+            method: ONEOF
+            options: [Icon of Flame]
+          - who: Any
+            may: REPLACE
+            replace: [Inferno boltgun]
+            method: ONEOF
+            options: [Warpflamer]
+        specialists: [Combat, Demolitions, Veteran]
+
+      - name: Rubric Marine Gunner
+        profile: 5 3 3 4 4 1 1 7 3 1
+        armament: [Inferno boltgun]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Inferno boltgun]
+            method: ONEOF
+            options: [Soulreaper cannon]
+        specialists: [Heavy, Combat, Demolitions, Veteran]
+
+      - name: Aspiring Sorcerer
+        profile: 6 3 3 4 4 1 2 8 3 1
+        armament: [Force stave, Inferno bolt pistol]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Inferno bolt pistol]
+            method: ONEOF
+            options: [Warpflame pistol]
+        specialists: [Leader, Combat, Demolitions, Veteran]
+
+  - name: Tzaangor
+    abilities: [Aura of Dark Glory, Brayhorn]
+    keywords: [CHAOS, TZEENTCH, HERETIC ASTARTES, INFANTRY, TZAANGOR]
+    minis:
+
+      - name: Tzaangor
+        profile: 6 3 4 4 4 1 1 6 6 0
+        armament: [Tzaangor blades]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Tzaangor blades]
+            method: AllOF
+            options: [Autopistol, chainsword]
+        specialists: [Combat, Medic, Veteran, Zealot]
+        
+      - name: Twistbray
+        profile: 6 3 4 4 4 1 1 7 6 1
+        armament: [Tzaangor blades]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Tzaangor blades]
+            method: AllOF
+            options: [Autopistol, chainsword]
+          - who: 1
+            may: TAKE
+            method: ONEOF
+            options: [Brayhorn]
+        specialists: [Leader, Comms(with brayhorn only) ,Combat, Medic, Veteran, Zealot]
+        
