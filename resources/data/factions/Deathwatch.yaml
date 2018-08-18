@@ -1,0 +1,140 @@
+faction_keyword: DEATHWATCH
+
+abilities:
+  - name: Special Issue Ammunition
+    description: TODO
+  - name: And They Shall Know No Fear
+    description: TODO
+  - name: Transhuman Physiology
+    description: TODO
+  - name: Storm Shield
+    description: A model armed with a storm shield has a 3+ invulnerable save.
+  - name: Atonement Through Honour
+    description: You can re-roll failed charge rolls for a Black Shield.
+  - name: Grapnel Launcher
+    description: TODO
+  - name: Grav-chute
+    description: TODO
+  - name: Terror Troops
+    description: TODO
+  - name: Auxilliary Grenade Launcher
+    description: If a model is armed with an auxilliary grenade launcher, increase the range of any Grenade weapons they have to 30".
+
+points:
+    kill_team:
+        Deathwatch Veteran: 14
+        Deathwatch Veteran Gunner: 15
+        Black Shield: 16
+        Watch Sergeant: 16
+        Intercessor: 15
+        Intercessor Gunner: 16
+        Intercessor Sergeant: 16
+        Reiver: 16
+        Reiver Sergeant: 17
+    melee_weapons:
+        Heavy thunder hammer: 5
+        Power maul: 2
+        Power sword: 2
+        Xenophase blade: 3
+    ranged_weapons:
+        Auto bolt rifle: 2
+        Bolt carbine: 2
+        Bolt pistol: 2
+        Bolt rifle: 2
+        Boltgun: 0
+        Combi-melta: 3
+        Combi-plasma: 4
+        Deathwatch frag cannon: 5
+        Deathwatch shotgun: 1
+        Frag grenades: 0
+        Heavy bolt pistol: 2
+        Krak grenades: 0
+        Stalker bolt rifle: 2
+        Stalker pattern boltgun: 1
+
+datasheets:
+  - name: Reiver
+    abilities: [And They Shall Know No Fear, Transhuman Physiology, Grapnel Launcher, Grav-chute, Terror Troops]
+    keywords: [IMPERIUM, INFANTRY, PRIMARIS, REIVER]
+    minis:
+      - name: Reiver
+        profile: 6 3 3 4 4 2 2 7 3 0
+        armament: [Bolt carbine, Heavy bolt pistol, Frag grenades, Krak grenades, Shock grenades]
+        specialists: [Combat, Comms, Demolitions, Scout, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt carbine
+            method: ALLOF
+            options: Combat knife
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grav-chute
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grapnel launcher
+      - name: Reiver Sergeant
+        profile: 6 3 3 4 4 2 3 8 3 1
+        armament: [Bolt carbine, Heavy bolt pistol, Frag grenades, Krak grenades, Shock grenades]
+        specialists: [Combat, Comms, Demolitions, Leader, Scout, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Bolt carbine, Heavy bolt pistol]
+            # @TODO: this should be OR, not BOTH
+            method: ALLOF
+            options: Combat knife
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grav-chute
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: Grapnel launcher
+
+  - name: Intercessor
+    abilities: [And They Shall Know No Fear, Transhuman Physiology, Auxilliary Grenade Launcher]
+    keywords: [IMPERIUM, INFANTRY, PRIMARIS, INTERCESSOR]
+    minis:
+      - name: Intercessor
+        profile: 6 3 3 4 4 2 2 7 3 0
+        armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Sniper, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt rifle
+            method: ONEOF
+            options: [Auto bolt rifle, Stalker bolt rifle]
+      - name: Intercessor Gunner
+        profile: 6 3 3 4 4 2 2 7 3 2
+        armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Heavy, Sniper, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt rifle
+            method: ONEOF
+            options: [Auto bolt rifle, Stalker bolt rifle]
+          - who: ANY
+            may: TAKE
+            method: ALLOF
+            options: [Auxilliary grenade launcher]
+      - name: Intercessor Sergeant
+        profile: 6 3 3 4 4 2 3 8 3 1
+        armament: [Bolt rifle, Bolt pistol, Frag grenades, Krak grenades]
+        specialists: [Combat, Comms, Leader, Sniper, Veteran]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Bolt rifle
+            method: ONEOF
+            options: [Auto bolt rifle, Stalker bolt rifle]
+          - who: ANY
+            may: TAKE
+            method: ONEOF
+            # @TODO: or you can replace the rifle instead.
+            options: [Power sword, Chainsword]

@@ -239,8 +239,7 @@ datasheets:
             method: ONEOF
             options: [Auto bolt rifle, Stalker bolt rifle]
           - who: ANY
-            may: REPLACE
-            replace: Bolt rifle
+            may: TAKE
             method: ONEOF
-            # @TODO: or you can not replace the rifle instead.
+            # @TODO: or you can replace the rifle instead.
             options: [Power sword, Chainsword]
