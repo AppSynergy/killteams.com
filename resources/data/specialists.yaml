@@ -1,0 +1,30 @@
+specialisms:
+    Leader, Combat, Comms, Demolitions,
+    Heavy, Medic, Scout, Sniper, Veteran, Zealot
+
+specialism_abilities:
+    Leader:
+      - name: Resourceful
+        description:
+        level: 1
+        unlocks:
+          - name: Bold
+            description:
+            level: 2
+            unlocks:
+              - name: Paragon
+                description:
+                level: 3
+              - name: Tyrant
+                description:
+                level: 3
+          - name: Inspiring
+            description:
+            level: 2
+            unlocks:
+              - name: Tactician
+                description:
+                level: 3
+              - name: Mentor
+                description:
+                level: 3
