@@ -41,6 +41,8 @@ points:
     Deathwatch Reiver: 16
     Deathwatch Reiver Sergeant: 17
   melee_weapons:
+    Chainsword: 0
+    Combat knife: 0
     Heavy thunder hammer: 5
     Power maul: 2
     Power sword: 2
@@ -59,9 +61,13 @@ points:
     Heavy bolt pistol: 2
     Infernus heavy bolter: 2
     Krak grenades: 0
+    Shock grenades: 0
     Stalker bolt rifle: 2
     Stalker pattern boltgun: 1
   other_wargear:
+    Auxilliary grenade launcher: 0
+    Grapnel launcher: 1
+    Grav-chute: 1
     Storm shield: 3
 
 datasheets:
