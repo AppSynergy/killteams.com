@@ -13,11 +13,11 @@
                     <small>{{ datasheet.abilities.join(' &middot; ') }}</small>
                     <div class="card body text-dark my-3 p-3" v-for="mini, m_i in datasheet.miniatures">
                         <span class="h3 mb-2 d-flex justify-content-between align-items-center">
-                            <span class="w-50">
+                            <span class="">
                                 <span class="font-weight-bold">{{ mini.name }}</span>
                                 <span class="badge badge-info">{{ mini.points }}</span>
                             </span>
-                            <span class="w-50">
+                            <span class="">
                                 <table class="table table-sm table-bordered">
                                     <thead class="thead-dark"><tr>
                                         <th class="text-center"
@@ -30,18 +30,21 @@
                                 </table>
                             </span>
                         </span>
-                        <span class="alert alert-info"
-                            v-html="armamentToText(mini.armament, faction.wargear)">
+                        <span class="alert alert-info">
+                            <strong>Armed with:</strong> <em
+                                v-html="armamentToText(mini.armament, faction.wargear)"></em><br>
+                            <strong>Wargear options:</strong> <em v-for="wgo in mini.wargear_options"
+                                v-html="wargearOptionToText(wgo, faction.wargear)"></em>
                         </span>
                         <span class="alert alert-success">
-                            <em class="d-none" v-for="wgo in mini.wargear_options"
-                                v-html="wargearOptionToText(wgo, faction.wargear)">
-                            </em>
                             <wargear-selector v-for="wgo, wgo_i in mini.wargear_options"
                                 :key="d_i + '.' + m_i + '.' + wgo_i"
+                                :faction-id="faction.id"
+                                :fighter-id="mini.id"
                                 :armament="mini.armament"
                                 :wgo="wgo"
-                                :wargear="faction.wargear">
+                                :wargear="faction.wargear"
+                                v-on:selectWargear="selectWargear">
                             </wargear-selector>
                         </span>
                         <span class="alert alert-warning">
@@ -92,6 +95,25 @@ export default {
         },
     },
     methods: {
+
+        selectWargear(selection) {
+            //console.log(selection.faction_id, selection.fighter_id)
+            const faction = _.find(this.factionData, { id: selection.faction_id })
+            const mini = _.head(_.compact(_.map(faction.datasheets, (x) => {
+                return _.find(x.miniatures, { id: selection.fighter_id })
+            })))
+            let armed = mini.armament
+            console.log(armed, selection.replace, selection.option)
+            // replace
+            if (selection.replace) {
+                _.each(selection.replace, (x) => {
+                    _.pull(armed, x)
+                })
+            }
+            armed.push(selection.option)
+            console.log(armed)
+        },
+
         wargearOptionToText(wargear_option, wargear) {
             let out = ''
             if (wargear_option.replace) {

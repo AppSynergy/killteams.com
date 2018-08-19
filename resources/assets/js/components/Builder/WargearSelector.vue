@@ -1,8 +1,11 @@
 <template>
     <div class="vue-builder-wargear-selector">
-        <span class="form-check form-inline">
 
-            <input type="checkbox" class="form-check-input">
+        <span class="form-check form-inline pl-0">
+
+            <input type="checkbox" class="form-check-input"
+                v-model="selection.isSelected"
+                v-on:change="changeWargear">
 
             <span v-if="'REPLACE' == wgo.may">
                 Replace {{ itemListToText(wgo.replace, wargear, ' and ') }}
@@ -14,13 +17,15 @@
             </span>
 
             <span v-if="'ALLOF' == wgo.method">
-                {{ itemListToText(wgo.options, wargear, ' and ') }}
+                {{ itemOrItemListToText(wgo.options, wargear, ' and ') }}
             </span>
 
             <span v-if="'ONEOF' == wgo.method">
-                <select class="form-control ml-2">
+                <select class="form-control ml-2"
+                    v-model="selection.option"
+                    v-on:change="changeWargear">
                     <option v-for="choice in wgo.options" :value="choice">
-                        {{ itemToText(choice, wargear) }}
+                        {{ itemOrItemListToText(choice, wargear, ' and ') }}
                     </option>
                 </select>
             </span>
@@ -31,11 +36,34 @@
 
 <script>
 export default {
-    props: ['armament', 'wargear', 'wgo'],
+    props: ['armament', 'factionId', 'fighterId', 'wargear', 'wgo'],
+    data() {
+        return {
+            selection: {
+                faction_id: this.factionId,
+                fighter_id: this.fighterId,
+                isSelected: false,
+                replace: this.wgo.replace,
+                option: ('ALLOF' == this.wgo.method) ? this.wgo.options : null
+            }
+        }
+    },
     methods: {
+        changeWargear() {
+            this.$emit('selectWargear', this.selection)
+        },
+
+        itemOrItemListToText(mixed, wargear, conjunction = ' or ') {
+            if (_.isArray(mixed)) {
+                return this.itemListToText(mixed, wargear, conjunction)
+            } else {
+                return this.itemToText(mixed, wargear)
+            }
+        },
+
         // copied from Tester, maybe a mixin
-        itemListToText(armament, wargear, conjunction = ' or ') {
-            const list = _.map(armament, (x) => {
+        itemListToText(items, wargear, conjunction = ' or ') {
+            const list = _.map(items, (x) => {
                 if (_.isArray(x)) {
                     return this.itemListToText(x, wargear, ' and ')
                 } else {
