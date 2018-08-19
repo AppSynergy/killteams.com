@@ -35,8 +35,14 @@
 </template>
 
 <script>
+import itemsToText from '../../mixins/itemsToText.js'
 export default {
-    props: ['armament', 'factionId', 'fighterId', 'wargear', 'wgo'],
+    mixins: [
+        itemsToText
+    ],
+    props: [
+        'armament', 'factionId', 'fighterId', 'wargear', 'wgo'
+    ],
     data() {
         return {
             selection: {
@@ -51,41 +57,6 @@ export default {
     methods: {
         changeWargear() {
             this.$emit('selectWargear', this.selection)
-        },
-
-        itemOrItemListToText(mixed, wargear, conjunction = ' or ') {
-            if (_.isArray(mixed)) {
-                return this.itemListToText(mixed, wargear, conjunction)
-            } else {
-                return this.itemToText(mixed, wargear)
-            }
-        },
-
-        // copied from Tester, maybe a mixin
-        itemListToText(items, wargear, conjunction = ' or ') {
-            const list = _.map(items, (x) => {
-                if (_.isArray(x)) {
-                    return this.itemListToText(x, wargear, ' and ')
-                } else {
-                    return this.itemToText(x, wargear)
-                }
-            })
-            return this.joinListWithConjunction(list, ', ', conjunction)
-
-        },
-        joinListWithConjunction(list, conjunction, final_conjunction) {
-            const init = _.initial(list)
-            const last = _.last(list)
-            if (!_.isEmpty(init)) {
-                return init.join(conjunction) + final_conjunction + last
-            } else {
-                return last
-            }
-        },
-        itemToText(item_id, wargear) {
-            const gear = _.find(wargear, { id: item_id })
-            const name = (gear) ? gear.name : 'FAIL ITEM'
-            return name
         }
     }
 }
