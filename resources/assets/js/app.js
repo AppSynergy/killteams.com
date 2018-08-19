@@ -21,7 +21,7 @@ Vue.use(Vuex)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('builder', require('./components/Builder.vue'))
+Vue.component('app', require('./components/App.vue'))
 
 const router = new VueRouter([])
 import store from './store/builder.js'

@@ -9,7 +9,6 @@
 
 @section('content')
     <div id="app">
-        <builder>
-        </builder>
+        <app></app>
     </div>
 @endsection

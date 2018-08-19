@@ -27,18 +27,26 @@
 <script>
 import Popper from 'vue-popperjs'
 import WargearOption from './WargearSelector/WargearOption.vue'
+import hasFactionStore from '../../mixins/hasFactionStore.js'
 export default {
     components: { Popper, WargearOption },
+    mixins: [ hasFactionStore ],
     props: ['fighter'],
-    mounted() {
-        console.log("selector armament", this.fighter.armament)
-    },
     methods: {
-        wargearSelection(subtract, add) {
-            console.warn("selector change", subtract, add)
-            _.each(options, (o) =>
-                this.fighter.armament.push(o)
-            )
+        wargearSelection(replace_items, add_items) {
+
+            _.each(replace_items, (item) => {
+                console.log("replace", item)
+                if (_.includes(this.fighter.armament, item)) {
+                    this.fighter.armament = _.remove(this.fighter.armament, item)
+                }
+            })
+
+            _.each(add_items, (item) => {
+                console.log("add", item)
+                this.fighter.armament.push(item)
+            })
+
         }
     }
 }

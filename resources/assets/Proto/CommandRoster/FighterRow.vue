@@ -69,12 +69,6 @@ export default {
         },
         removeFighter(fighter_id) {
             this.$store.commit('removeFighter', fighter_id)
-        },
-        getWargearText(fighter) {
-            return _.map(fighter.armament, (x) => (this.getWargearName(x))).join(', ')
-        },
-        getWargearName(wargear_id) {
-            return _.find(this.faction.wargear, (x) => (x.id == wargear_id)).name
         }
     },
 }
