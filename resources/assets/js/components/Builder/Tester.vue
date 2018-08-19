@@ -5,13 +5,18 @@
                 <h3 class="h3 mb-3">
                     {{ faction.name }}
                 </h3>
-                <div class="card p-3" v-for="datasheet in faction.datasheets">
+                <div class="" v-for="datasheet in faction.datasheets">
                     <h4 class="h4 mb-2">
                         {{ datasheet.name }}
                     </h4>
-                    <div class="card p-2" v-for="mini in datasheet.miniatures">
-                        {{ mini.name }}
-                        {{ mini.armament }}
+                    <div class="card mb-2" v-for="mini in datasheet.miniatures">
+                        <div class="card-header">
+                            {{ mini.name }}
+                        </div>
+                        <div class="card-body">
+                            {{ mini.armament }}
+                            {{ mini.wargear_options }}
+                        </div>
                     </div>
                 </div>
             </div>
