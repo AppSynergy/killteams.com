@@ -50,13 +50,13 @@ datasheets:
         wargear_options:
           - who: 1
             may: TAKE
-            method: ONEOF
-            options: [Icon of Flame]
+            method: ALLOF
+            options: Icon of Flame
           - who: Any
             may: REPLACE
-            replace: [Inferno boltgun]
-            method: ONEOF
-            options: [Warpflamer]
+            replace: Inferno boltgun
+            method: ALLOF
+            options: Warpflamer
         specialists: [Combat, Demolitions, Veteran]
 
       - name: Rubric Marine Gunner
@@ -65,9 +65,9 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: [Inferno boltgun]
-            method: ONEOF
-            options: [Soulreaper cannon]
+            replace: Inferno boltgun
+            method: ALLOF
+            options: Soulreaper cannon
         specialists: [Heavy, Combat, Demolitions, Veteran]
 
       - name: Aspiring Sorcerer
@@ -76,9 +76,9 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: [Inferno bolt pistol]
-            method: ONEOF
-            options: [Warpflame pistol]
+            replace: Inferno bolt pistol
+            method: ALLOF
+            options: Warpflame pistol
         specialists: [Leader, Combat, Demolitions, Veteran]
 
   - name: Tzaangor
@@ -92,7 +92,7 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: [Tzaangor blades]
+            replace: Tzaangor blades
             method: ALLOF
             options: [Autopistol, Chainsword]
         specialists: [Combat, Medic, Veteran, Zealot]
@@ -103,12 +103,12 @@ datasheets:
         wargear_options:
           - who: ANY
             may: REPLACE
-            replace: [Tzaangor blades]
+            replace: Tzaangor blades
             method: ALLOF
             options: [Autopistol, Chainsword]
           - who: 1
             may: TAKE
-            method: ONEOF
-            options: [Brayhorn]
+            method: ALLOF
+            options: Brayhorn
         specialists: [Leader, Comms, Combat, Medic, Veteran, Zealot]
         # @TODO: Comms specialist with the Brayhorn only
