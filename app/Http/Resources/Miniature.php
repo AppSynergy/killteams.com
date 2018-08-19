@@ -14,9 +14,10 @@ class Miniature extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $array = [
             'id' => $this->id,
             'name' => $this->name,
+            'profile' => [],
             'points' => $this->points,
             'specialists' => $this->specialists->pluck('name'),
             'armament' => $this->decode($this->armament),
@@ -30,6 +31,10 @@ class Miniature extends JsonResource
                 ];
             }),
         ];
+        foreach (\Config::get('warhammer.profiles') as $profile) {
+            $array['profile'][$profile] = $this->$profile;
+        }
+        return $array;
     }
 
     protected function decode($json)
