@@ -4,17 +4,17 @@ abilities:
   - name: Death to the False Emperor
     description: If a model with this ability makes an attack in the Fight phase which targets an IMPERIUM model, each time you roll a hit roll of 6+ you may make an additional attack with the same weapon against the same target. These attacks cannot themselves generate any further attacks.
   - name: All is Dust
-    description: Add 1 to saving throws for a Rubric Marine or Rubric Marine Gunner if the attack has a Damage characteristic of 1. In addition, the -1 modifier to hit rolls for moving and shooting Heavy weapons does not apply to Rubric Marine Gunners
+    description: Add 1 to saving throws for a Rubric Marine or Rubric Marine Gunner if the attack has a Damage characteristic of 1. In addition, the -1 modifier to hit rolls for moving and shooting Heavy weapons does not apply to Rubric Marine Gunners.
   - name: Favoured of Tzeentch
-    description: This model has a 5+ invulnerable save
+    description: This model has a 5+ invulnerable save.
   - name: Icon of Flame
-    description: At the start of your turn in the Psychic phase, roll a D6 for each model from your kill team equipped with an Icon of Flame. On a 6 inflict 1 mortal wound on the closest enemy model within 12" of the model being rolled for
+    description: At the start of your turn in the Psychic phase, roll a D6 for each model from your kill team equipped with an Icon of Flame. On a 6 inflict 1 mortal wound on the closest enemy model within 12" of the model being rolled for.
   - name: Transhuman Physiology (Aspiring Sorcerer only)
-    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered
+    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered.
   - name: Aura of Dark Glory
-    description: This model has a 5+ invulnerable save
+    description: This model has a 5+ invulnerable save.
   - name: Brayhorn
-    description: Add 1 to Advance and charge rolls made for TZAANGORS within 6" of any friendly models equipped with a brayhorn
+    description: Add 1 to Advance and charge rolls made for TZAANGORS within 6" of any friendly models equipped with a brayhorn.
 
 points:
   kill_team:
@@ -39,7 +39,7 @@ points:
     Icon of Flame: 1
 
 datasheets:
-  - name: Plague Marine
+  - name: Rubric Marine
     abilities: [Death to the False Emperor, All is Dust, Favoured of Tzeentch, Icon of Flame, Transhuman Physiology (Aspiring Sorcerer only)]
     keywords: [CHAOS, TZEENTCH, HERETIC ASTARTES, INFANTRY, PSYKER (ASPIRING SORCERER ONLY), RUBRIC MARINE]
     minis:
@@ -93,10 +93,10 @@ datasheets:
           - who: ANY
             may: REPLACE
             replace: [Tzaangor blades]
-            method: AllOF
-            options: [Autopistol, chainsword]
+            method: ALLOF
+            options: [Autopistol, Chainsword]
         specialists: [Combat, Medic, Veteran, Zealot]
-        
+
       - name: Twistbray
         profile: 6 3 4 4 4 1 1 7 6 1
         armament: [Tzaangor blades]
@@ -104,11 +104,11 @@ datasheets:
           - who: ANY
             may: REPLACE
             replace: [Tzaangor blades]
-            method: AllOF
-            options: [Autopistol, chainsword]
+            method: ALLOF
+            options: [Autopistol, Chainsword]
           - who: 1
             may: TAKE
             method: ONEOF
             options: [Brayhorn]
-        specialists: [Leader, Comms(with brayhorn only) ,Combat, Medic, Veteran, Zealot]
-        
+        specialists: [Leader, Comms, Combat, Medic, Veteran, Zealot]
+        # @TODO: Comms specialist with the Brayhorn only
