@@ -5,13 +5,13 @@
                 <span class="h1 mb-3 font-weight-bold text-uppercase">
                     {{ faction.name }}
                 </span>
-                <div class="card mb-5 p-3 bg-dark text-light" v-for="datasheet in faction.datasheets">
+                <div class="card mb-5 p-3 bg-dark text-light" v-for="datasheet, d_i in faction.datasheets">
                     <span class="h2 mb-2 font-weight-bold">
                         {{ datasheet.name }}
                     </span>
                     <small>{{ datasheet.keywords.join(' &middot; ') }}</small>
                     <small>{{ datasheet.abilities.join(' &middot; ') }}</small>
-                    <div class="card body text-dark my-3 p-3" v-for="mini in datasheet.miniatures">
+                    <div class="card body text-dark my-3 p-3" v-for="mini, m_i in datasheet.miniatures">
                         <span class="h3 mb-2 d-flex justify-content-between align-items-center">
                             <span class="w-50">
                                 <span class="font-weight-bold">{{ mini.name }}</span>
@@ -33,9 +33,16 @@
                         <span class="alert alert-info"
                             v-html="armamentToText(mini.armament, faction.wargear)">
                         </span>
-                        <span class="alert alert-success"
-                            v-for="wgo in mini.wargear_options"
-                            v-html="wargearOptionToText(wgo, faction.wargear)">
+                        <span class="alert alert-success">
+                            <em class="d-none" v-for="wgo in mini.wargear_options"
+                                v-html="wargearOptionToText(wgo, faction.wargear)">
+                            </em>
+                            <wargear-selector v-for="wgo, wgo_i in mini.wargear_options"
+                                :key="d_i + '.' + m_i + '.' + wgo_i"
+                                :armament="mini.armament"
+                                :wgo="wgo"
+                                :wargear="faction.wargear">
+                            </wargear-selector>
                         </span>
                         <span class="alert alert-warning">
                             {{ mini.specialists.join(' &middot; ') }}
@@ -55,7 +62,11 @@
 </style>
 
 <script>
+import WargearSelector from './WargearSelector.vue'
 export default {
+    components: {
+        WargearSelector
+    },
     data() {
         return {
             factionData: []
@@ -84,13 +95,13 @@ export default {
         wargearOptionToText(wargear_option, wargear) {
             let out = ''
             if (wargear_option.replace) {
-                const items = this.itemListToText(wargear_option.replace, wargear, 'and')
+                const items = this.itemListToText(wargear_option.replace, wargear, ' and ')
                 out += "Replace " + items + ' with '
             } else {
                 out += "Take "
             }
             if (wargear_option.options) {
-                const items = this.itemListToText(wargear_option.options, wargear, 'or')
+                const items = this.itemListToText(wargear_option.options, wargear, ' or ')
                 out += items
             } else {
                 out += "FAIL ITEMS"
@@ -98,17 +109,27 @@ export default {
             return out
         },
         armamentToText(armament, wargear) {
-            return this.itemListToText(armament, wargear, 'and')
+            return this.itemListToText(armament, wargear, ' and ')
         },
-        itemListToText(armament, wargear, conjunction = 'or') {
-            const arr = _.map(armament, (x) => {
+        itemListToText(armament, wargear, conjunction = ' or ') {
+            const list = _.map(armament, (x) => {
                 if (_.isArray(x)) {
-                    return this.itemListToText(x, wargear, 'and')
+                    return this.itemListToText(x, wargear, ' and ')
                 } else {
                     return this.itemToText(x, wargear)
                 }
             })
-            return arr.join(' ' + conjunction + ' ')
+            return this.joinListWithConjunction(list, ', ', conjunction)
+
+        },
+        joinListWithConjunction(list, conjunction, final_conjunction) {
+            const init = _.initial(list)
+            const last = _.last(list)
+            if (!_.isEmpty(init)) {
+                return init.join(conjunction) + final_conjunction + last
+            } else {
+                return last
+            }
         },
         itemToText(item_id, wargear) {
             const gear = _.find(wargear, { id: item_id })
