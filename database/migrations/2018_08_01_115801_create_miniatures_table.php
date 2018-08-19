@@ -16,7 +16,7 @@ class CreateMiniaturesTable extends Migration
         Schema::create('miniatures', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('datasheet_id');
-            $table->string('name');
+            $table->string('name')->unique();
             foreach (\Config::get('warhammer.profiles') as $profile) {
                 $table->tinyInteger($profile)->nullable();
             }
