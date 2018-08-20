@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-builder-home">
+    <div class="vue-builder-tester">
         <div class="container">
             <div class="card p-4 my-4" v-for="faction, i in factionDataSorted" :key="i">
                 <span class="h1 mb-3 font-weight-bold text-uppercase">
