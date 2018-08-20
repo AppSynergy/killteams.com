@@ -3,24 +3,34 @@
         <div class="container">
             <div class="card">
 
-                <span class="card-header h3">Choose a Game Mode:</span>
+                <span class="card-header h3">Kill Team Builder &middot; Choose a Game Mode</span>
 
                 <div class="card-body">
-                    <router-link class="btn btn-primary"
-                        to="/sandbox/choosefaction">
-                        Sandbox Mode / Open/Narrative Play
-                    </router-link>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <router-link class="btn btn-primary mr-3"
+                                to="/sandbox/choosefaction">
+                                Sandbox Mode
+                            </router-link>
+                            Freely build any Kill Team you like, suitable for Open or Narrative play.
+                        </li>
 
+                        <li class="list-group-item">
+                            <router-link class="btn btn-primary mr-3"
+                                to="/tournament/choosefaction">
+                                Tournament Mode
+                            </router-link>
+                            Build a tournament-legal Kill Team from a single faction. Suitable for any Matched play game.
+                        </li>
 
-                    <router-link class="btn btn-primary"
-                        to="/tournament/choosefaction">
-                        Tournament Mode / Matched Play
-                    </router-link>
-
-                    <router-link class="btn btn-primary"
-                        to="/campaign/choosefaction">
-                        Campaign Mode / Narrative Play
-                    </router-link>
+                        <li class="list-group-item">
+                            <router-link class="btn btn-primary mr-3 disabled"
+                                to="/campaign/choosefaction">
+                                Campaign Mode
+                            </router-link>
+                            Coming soon!
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="card-footer">

@@ -9,7 +9,22 @@
 <script>
 export default {
     props: [
-        'factionKeyword', 'gameMode'
-    ]
+        'factionId', 'factionKeyword', 'gameMode'
+    ],
+    data() {
+        return {
+            faction: null
+        }
+    },
+    mounted() {
+        this.fetchFaction(this.factionId)
+    },
+    methods: {
+        fetchFaction(id) {
+            axios.get(API_URL + '/factions/' + id).then(response => {
+                this.faction = response.data.data
+            })
+        },
+    }
 }
 </script>

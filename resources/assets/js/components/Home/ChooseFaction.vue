@@ -3,12 +3,16 @@
         <div class="container">
             <div class="card">
 
-                <span class="card-header h2">Choose a Faction:</span>
+                <span class="card-header h2">Kill Team Builder &middot; Choose a Faction</span>
 
                 <div class="card-body">
-                    <router-link to="/sandbox/DEATH GUARD/builder">
-                        e.g. Death Guard
-                    </router-link>
+                    <span v-for="faction in factions">
+                        <router-link class="btn btn-info mr-3 mb-3"
+                            :to="'/sandbox/' + faction.id + '/'
+                            + faction.faction_keyword + '/builder'">
+                            {{ faction.name }}
+                        </router-link>
+                    </span>
                 </div>
 
                 <div class="card-footer">
@@ -26,6 +30,21 @@
 export default {
     props: [
         'gameMode'
-    ]
+    ],
+    data() {
+        return {
+            factions: []
+        }
+    },
+    mounted() {
+        this.fetchFactions()
+    },
+    methods: {
+        fetchFactions() {
+            axios.get(API_URL + '/factions').then(response => {
+                this.factions = response.data.data
+            })
+        },
+    }
 }
 </script>

@@ -14,13 +14,13 @@ import Builder from './Builder/Builder.vue'
 export default {
     created() {
         this.$router.addRoutes([
-            { path: '/home/intro', component: Intro, props: true, name: 'intro' },
+            { path: '/', component: Intro, props: true, name: 'intro' },
             { path: '/home/gamemode', component: GameMode, props: true, name: 'gamemode' },
             { path: '/:gameMode/choosefaction', component: ChooseFaction, props: true, name: 'choosefaction' },
-            { path: '/:gameMode/:factionKeyword/builder', component: Builder, props: true, name: 'builder' },
+            { path: '/:gameMode/:factionId/:factionKeyword/builder', component: Builder, props: true, name: 'builder' },
             //{ path: '/test', component: Tester, props: true, name: 'test' },
         ])
-        this.$router.push({ name: 'intro' })
+        //this.$router.push({ name: 'intro' })
     }
 }
 </script>
