@@ -22,8 +22,7 @@
 
         <span class="alert alert-info d-block">
             <strong>Armed with:</strong> <em
-                v-html="armamentToText(fighter.armament, faction.wargear)"></em><br>
-
+                v-html="armamentToText(finalArmament, faction.wargear)"></em><br>
         </span>
 
         <span class="alert alert-success d-block"
@@ -62,12 +61,23 @@ export default {
     props: [
         'faction', 'fighterInit'
     ],
+    data() {
+        return {
+            wargearMasks: []
+        }
+    },
     computed: {
         fighter() {
             return _.clone(this.fighterInit)
         },
+        finalArmament() {
+            let armament = _.clone(this.fighter.armament)
+            _.each(this.wargearMasks, (mask) => {
+                armament = this.applyWargearMask(armament, mask)
+            })
+            return armament
+        },
         hasWargearOptions() {
-            console.log(this.fighter.name, this.fighter.wargear_options)
             return !_.isEmpty(this.fighter.wargear_options)
         }
     },
@@ -79,9 +89,9 @@ export default {
             let out = ''
             if (wargear_option.replace) {
                 const items = this.itemListToText(wargear_option.replace, wargear, ' and ')
-                out += "Replace " + items + ' with '
+                out += 'Replace ' + items + ' with '
             } else {
-                out += "Take "
+                out += 'Take '
             }
             if (wargear_option.options) {
                 const items = this.itemListToText(wargear_option.options, wargear, ' or ')
@@ -91,21 +101,27 @@ export default {
             }
             return out
         },
+        applyWargearMask(armament, mask) {
+            _.each(mask.replace_items, (item) => {
+                _.remove(armament, x => x == item)
+            })
+            _.each(mask.add_items, (item) => {
+                armament.push(item)
+            })
+            return armament
+        },
         selectWargear(selection) {
+            const replace = (_.isArray(selection.replace)) ? selection.replace : [selection.replace]
+            const option = (_.isArray(selection.option)) ? selection.option : [selection.option]
+            // clear previous masks
+            this.wargearMasks = _.reject(this.wargearMasks, { selection_id: selection.selection_id })
+            // add to masks
             if (selection.isSelected) {
-                if (selection.replace) {
-                    _.each(selection.replace, (x) => {
-                        _.pull(this.fighter.armament, x)
-                    })
-                }
-                this.fighter.armament.push(selection.option)
-            } else {
-                if (selection.replace) {
-                    _.each(selection.replace, (x) => {
-                        this.fighter.armament.push(selection.replace)
-                    })
-                }
-                _.pull(this.fighter.armament, selection.option)
+                this.wargearMasks.push({
+                    selection_id: selection.selection_id,
+                    replace_items: replace,
+                    add_items: option,
+                })
             }
         }
 

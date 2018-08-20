@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import uniqid from 'uniqid'
 import itemsToText from '../../mixins/itemsToText.js'
 export default {
     mixins: [
@@ -46,8 +47,7 @@ export default {
     data() {
         return {
             selection: {
-                faction_id: this.factionId,
-                fighter_id: this.fighterId,
+                selection_id: uniqid(),
                 isSelected: false,
                 replace: this.wgo.replace,
                 option: ('ALLOF' == this.wgo.method) ? this.wgo.options : null
