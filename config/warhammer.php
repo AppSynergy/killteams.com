@@ -3,7 +3,7 @@
 return [
 
     'factions' => [
-        'Adeptus Astartes', 'Grey Knights', 'Deathwatch', 'Astra Militarum',
+        'Adeptus Astartes', 'Deathwatch', 'Grey Knights', 'Astra Militarum',
         'Adeptus Mechanicus', 'Heretic Astartes', 'Death Guard', 'Thousand Sons',
         'Asuryani', 'Drukhari', 'Harlequins', 'Necrons', 'Orks', 'T\'au Empire',
         'Tyranids', 'Genestealer Cults',
@@ -40,6 +40,6 @@ return [
 
     'gear' => [
         'may' => ['TAKE', 'REPLACE'],
-        'method' => ['ONEOF', 'ONEOFEACHOF', 'ALLOF'],
+        'method' => ['ONEOF', 'ALLOF'],
     ],
 ];

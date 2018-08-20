@@ -11,7 +11,7 @@ class DeployFactions extends Command
      *
      * @var string
      */
-    protected $signature = 'factions:deploy {--silent}';
+    protected $signature = 'factions:deploy {--silent} {--refresh}';
     /**
      * The console command description.
      *
@@ -37,10 +37,16 @@ class DeployFactions extends Command
     public function handle()
     {
         if ($this->option('silent')) {
+            if ($this->option('refresh')) {
+                $this->callSilent('migrate:refresh', ['--seed']);
+            }
             $this->info('Deploying factions silently...');
             $this->callSilent('factions:validate');
             $this->callSilent('factions:fulldeployment');
         } else {
+            if ($this->option('refresh')) {
+                $this->call('migrate:refresh', ['--seed']);
+            }
             $this->call('factions:validate');
             $this->call('factions:fulldeployment');
         }
