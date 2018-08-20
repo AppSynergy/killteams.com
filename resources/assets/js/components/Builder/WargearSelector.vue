@@ -5,7 +5,8 @@
 
             <input type="checkbox" class="form-check-input"
                 v-model="selection.isSelected"
-                v-on:change="selectWargearCheckbox">
+                v-on:change="selectWargearCheckbox"
+                :disabled="availableOrSelected == false">
 
             <span v-if="'REPLACE' == wgo.may">
                 Replace {{ itemListToText(wgo.replace, wargear, ' and ') }}
@@ -23,7 +24,8 @@
             <span v-if="'ONEOF' == wgo.method">
                 <select class="form-control ml-2"
                     v-model="selection.option"
-                    v-on:change="selectWargearDropdown">
+                    v-on:change="selectWargearDropdown"
+                    :disabled="availableOrSelected == false">
                     <option v-for="choice in wgo.options" :value="choice">
                         {{ itemOrItemListToText(choice, wargear, ' and ') }}
                     </option>
@@ -42,7 +44,7 @@ export default {
         itemsToText
     ],
     props: [
-        'armament', 'factionId', 'fighterId', 'wargear', 'wgo'
+        'armament', 'available', 'wargear', 'wgo'
     ],
     data() {
         return {
@@ -52,6 +54,11 @@ export default {
                 replace: this.wgo.replace,
                 option: ('ALLOF' == this.wgo.method) ? this.wgo.options : null
             }
+        }
+    },
+    computed: {
+        availableOrSelected() {
+            return this.available || this.selection.isSelected
         }
     },
     methods: {

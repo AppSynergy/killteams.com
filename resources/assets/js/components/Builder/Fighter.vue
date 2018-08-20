@@ -30,9 +30,8 @@
             <wargear-selector
                 v-for="wgo, wgo_i in fighter.wargear_options"
                 :key="wgo_i"
-                :faction-id="faction.id"
-                :fighter-id="fighter.id"
                 :armament="fighter.armament"
+                :available="getAvailable(wgo)"
                 :wgo="wgo"
                 :wargear="faction.wargear"
                 v-on:selectWargear="selectWargear"
@@ -82,6 +81,12 @@ export default {
         }
     },
     methods: {
+        getAvailable(wargear_option) {
+            const replaceable = _.every(wargear_option.replace, (item) => {
+                return _.includes(this.finalArmament, item)
+            })
+            return replaceable
+        },
         armamentToText(armament, wargear) {
             return this.itemListToText(armament, wargear, ' and ')
         },
