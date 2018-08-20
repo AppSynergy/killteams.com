@@ -1,0 +1,44 @@
+faction_keyword: HARLEQUINS
+
+abilities:
+  - name: Flip Belt
+    description: This model can move across other models and terrain as if they were not there. In addition, it never suffers falling damage, and never falls on another model. If it would, instead place this model as close as possible to the point where it would have landed. This can bring it within 1" of another model.
+  - name: Holo-suit
+    description: This model has a 4+ invulnerable save.
+  - name: Rising Crescendo
+    description: You may roll 3D6 instead of 2D6 for this model when making a charge roll, and may choose an enemy model within 18" of this model as a charge, rather than 12".
+
+points:
+  kill_team:
+    Player: 12
+  ranged_weapons:
+    Fusion pistol: 3
+    Neuro disruptor: 2
+    Plasma grenades: 0
+    Shuriken pistol: 0
+  melee_weapons:
+    Harlequin's blade: 0
+    Harlequin's caress: 3
+    Harlequin's embrace: 2
+    Harlequin's kiss: 4
+datasheets:
+  - name: Player
+    abilities: [Flip Belt, Holo-suit, Rising Crescendo]
+    keywords: [AELDARI, INFANTRY, PLAYER]
+    minis:
+
+      - name: Player
+        profile: 8 3 3 3 3 1 4 8 6 0
+        armament: [Shuriken pistol, Harlequin's blade, Plasma grenades]
+        specialists: [Leader, Combat, Medic, Scout, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Shuriken pistol
+            method: ONEOF
+            options: [Neuro disruptor, Fusion pistol]
+          - who: ANY
+            may: REPLACE
+            replace: Harlequin's blade
+            method: ONEOF
+            options: [Harlequin's embrace, Harlequin's caress, Harlequin's kiss]
