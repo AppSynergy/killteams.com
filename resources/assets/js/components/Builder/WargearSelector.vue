@@ -22,7 +22,7 @@
             </span>
 
             <span v-if="'ONEOF' == wgo.method">
-                <select class="form-control ml-2"
+                <select class="form-control ml-2 custom-select"
                     v-model="selection.option"
                     v-on:change="selectWargearDropdown"
                     :disabled="availableOrSelected == false">

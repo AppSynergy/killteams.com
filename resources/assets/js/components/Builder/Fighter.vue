@@ -4,7 +4,7 @@
         <span class="h3 mb-2 d-flex justify-content-between align-items-center">
             <span class="">
                 <span class="font-weight-bold">{{ fighter.name }}</span>
-                <span class="badge badge-info">{{ fighter.points }}</span>
+                <span class="badge badge-info">{{ finalPoints }}</span>
             </span>
             <span class="">
                 <table class="table table-sm table-bordered">
@@ -76,6 +76,12 @@ export default {
             })
             return armament
         },
+        finalPoints() {
+            const armament_points = _.reduce(this.finalArmament, (xs, x) => {
+                return xs + this.getWargearPoints(x)
+            }, 0)
+            return this.fighter.points + armament_points
+        },
         hasWargearOptions() {
             return !_.isEmpty(this.fighter.wargear_options)
         }
@@ -86,6 +92,10 @@ export default {
                 return _.includes(this.finalArmament, item)
             })
             return replaceable
+        },
+        getWargearPoints(item_id) {
+            const item = _.find(this.faction.wargear, { id: item_id })
+            return item.points
         },
         armamentToText(armament, wargear) {
             return this.itemListToText(armament, wargear, ' and ')
