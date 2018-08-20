@@ -36,7 +36,7 @@
                 :wargear="faction.wargear"
                 v-on:selectWargear="selectWargear"
             ></wargear-selector>
-            <em class="pr-2 d-block" v-for="wgo in fighter.wargear_options"
+            <em class="pr-2 d-none" v-for="wgo in fighter.wargear_options"
                 v-html="wargearOptionToText(wgo, faction.wargear)"></em>
         </span>
 
