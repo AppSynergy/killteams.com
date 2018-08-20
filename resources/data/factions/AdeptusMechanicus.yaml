@@ -85,8 +85,8 @@ datasheets:
           - who: ANY
             may: REPLACE
             replace: Galvanic rifle
-            method: ONEOFEACHOF
-            options: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
+            method: ONEOF
+            options: [[Arc pistol, Arc maul], [Arc pistol, Power sword], [Arc pistol, Taser goad], [Phosphor blast pistol, Arc maul], [Phosphor blast pistol, Power sword], [Phosphor blast pistol, Taser goad], [Radium pistol, Arc maul], [Radium pistol, Power sword], [Radium pistol, Taser goad]]
         specialists: [Leader, Comms, Scout, Sniper, Zealot]
 
   - name: Skitarii Vanguard
@@ -122,8 +122,8 @@ datasheets:
           - who: ANY
             may: REPLACE
             replace: Radium carbine
-            method: ONEOFEACHOF
-            options: [[Arc pistol, Phosphor blast pistol, Radium pistol], [Arc maul, Power sword, Taser goad]]
+            method: ONEOF
+            options: [[Arc pistol, Arc maul], [Arc pistol, Power sword], [Arc pistol, Taser goad], [Phosphor blast pistol, Arc maul], [Phosphor blast pistol, Power sword], [Phosphor blast pistol, Taser goad], [Radium pistol, Arc maul], [Radium pistol, Power sword], [Radium pistol, Taser goad]]
         specialists: [Leader, Comms, Scout, Sniper, Zealot]
 
 
