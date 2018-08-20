@@ -1,5 +1,7 @@
 faction_keyword: DEATH GUARD
 
+description: The Death Guard are foulness made manifest. They are a vision of unnatural corruption, of nobility, courage and strength perverted into rancour, rot and diseased might.
+
 abilities:
   - name: Death to the False Emperor
     description: >

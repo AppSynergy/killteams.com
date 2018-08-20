@@ -1,5 +1,7 @@
 faction_keyword: THOUSAND SONS
 
+description: The tang of sorcery taints the air as the Thousand Sons attack. Coruscating bolts of warp energy explode in washes of mutilating fire, while hails of ensorcelled rounds mow down the foe in the name of Tzeentch, Chaos God of Change.
+
 abilities:
   - name: Death to the False Emperor
     description: If a model with this ability makes an attack in the Fight phase which targets an IMPERIUM model, each time you roll a hit roll of 6+ you may make an additional attack with the same weapon against the same target. These attacks cannot themselves generate any further attacks.

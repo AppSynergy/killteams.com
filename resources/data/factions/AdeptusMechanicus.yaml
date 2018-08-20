@@ -1,5 +1,7 @@
 faction_keyword: ADEPTUS MECHANICUS
 
+description: The Adeptus Mechanicus is ancient and powerful. Hoarding and ambitious, the Tech-Priests of Mars view the acquisition of knowledge as a holy directive.
+
 abilities:
   - name: Canticles of the Omnissiah
     description: >

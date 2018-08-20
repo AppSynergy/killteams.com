@@ -1,5 +1,7 @@
 faction_keyword: HARLEQUINS
 
+description: To the warrior-acrobats of the Harlequins, who fight for the Laughing God, warfare and art are inseperable disciplines.
+
 abilities:
   - name: Flip Belt
     description: This model can move across other models and terrain as if they were not there. In addition, it never suffers falling damage, and never falls on another model. If it would, instead place this model as close as possible to the point where it would have landed. This can bring it within 1" of another model.

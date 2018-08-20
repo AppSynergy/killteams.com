@@ -59,9 +59,16 @@ class DeployFactionsFull extends Command
     {
         $faction = $this->getFromYaml('data/' . $file, 0, true);
         $faction_id = $this->getIdByName('factions', $faction->faction_keyword);
+        $this->addFactionDescription($faction->description, $faction_id);
         $this->initPoints($faction->points);
         $this->initWargear($faction->points, $faction_id);
         $this->initDatasheets($faction, $faction_id);
+    }
+
+    public function addFactionDescription($description, $faction_id) {
+        \DB::table('factions')->where('id', $faction_id)->update([
+            'description' => $description,
+        ]);
     }
 
     public function initPoints($points) {

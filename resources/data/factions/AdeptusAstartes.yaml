@@ -1,5 +1,7 @@
 faction_keyword: ADEPTUS ASTARTES
 
+description: The Adeptus Astartes are the Imperium's Angels of Death. They descend from the skies upon trails of fire to bring swif and bloody destruction to the enemies of Mankind, for they know no fear.
+
 abilities:
   - name: And They Shall Know No Fear
     description: You can re-roll failed Nerve tests for this model.

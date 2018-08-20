@@ -1,5 +1,7 @@
 faction_keyword: DEATHWATCH
 
+description: The Deathwatch are the foremost alien hunters in the Imperium. Their ranks comprise the finest warriors of the Adeptus Astartes Chapters.
+
 abilities:
   - name: Special Issue Ammunition
     description: >

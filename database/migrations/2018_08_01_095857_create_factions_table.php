@@ -17,6 +17,7 @@ class CreateFactionsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('faction_keyword');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
 

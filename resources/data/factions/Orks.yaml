@@ -1,5 +1,7 @@
 faction_keyword: ORKS
 
+description: The Orks are the most belligerant and resourceful race in the galaxy. Rampaging across the void in their billions, the greenskins devastate everything in their path.
+
 abilities:
   - name: ’Ere We Go
     description: Re-roll failed charge rolls for a model with this ability

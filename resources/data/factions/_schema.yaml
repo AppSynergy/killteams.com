@@ -6,6 +6,10 @@ root:
             _type: text
             _required: true
 
+        description:
+            _type: text
+            _required: true
+
         points:
             _type: array
             _not_empty: true

@@ -1,5 +1,7 @@
 faction_keyword: T'AU EMPIRE
 
+description: The T'au Empire is a rising force in the galaxy. United by the Greater Good, the T'au strive to bring enlightenment to other races, by force if necessary.
+
 abilities:
   - name: For the Greater Good
     description: When an enemy model declares a charge against a model from your kill team, models from your kill team with this ability within 6" of one of the charging model’s targets may fire Overwatch as if they were also targeted. Once a model has done so, they cannot fire Overwatch or Retreat for the rest of the phase.
