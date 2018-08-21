@@ -1,21 +1,22 @@
 <template>
     <span class="vue-builder-fighter">
 
-        <span class="h3 mb-2 d-flex justify-content-between align-items-center">
-            <span class="">
-                <span class="font-weight-bold">{{ fighter.name }}</span>
+        <span class="h3 mb-2 d-flex justify-content-between align-items-end">
+            <div class="">
                 <span class="badge badge-info">{{ finalPoints }}</span>
-            </span>
-            <fighter-profile :profile="fighter.profile">
+            </div>
+            <span class="font-weight-bold">{{ fighter.name }}</span>
+            <fighter-profile :profile="fighter.profile"
+                :suffixes="fighter.profile_suffixes">
             </fighter-profile>
         </span>
 
-        <span class="alert alert-info d-block">
+        <span class="my-2 d-block">
             <strong>Armed with:</strong> <em
                 v-html="armamentToText(finalArmament, faction.wargear)"></em><br>
         </span>
 
-        <span class="alert alert-success d-block"
+        <span class="my-2 d-block"
             v-if="hasWargearOptions">
             <wargear-selector
                 v-for="wgo, wgo_i in fighter.wargear_options"

@@ -23,13 +23,6 @@
     </div>
 </template>
 
-<style lang="sass">
-    .table td, .badge
-        font-family: Courier
-    .alert
-        font-size: 110%
-</style>
-
 <script>
 import Fighter from './Fighter.vue'
 export default {

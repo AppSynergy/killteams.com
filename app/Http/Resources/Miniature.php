@@ -34,6 +34,7 @@ class Miniature extends JsonResource
         foreach (\Config::get('warhammer.profiles') as $profile) {
             $array['profile'][$profile] = $this->$profile;
         }
+        $array['profile_suffixes'] = \Config::get('warhammer.suffixes');
         return $array;
     }
 

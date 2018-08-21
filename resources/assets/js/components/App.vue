@@ -4,6 +4,14 @@
     </div>
 </template>
 
+<style lang="sass">
+    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700')
+
+    .vue-app
+        font-family: 'Source Sans Pro', sans-serif
+</style>
+
+
 <script>
 
 import Intro from './Home/Intro.vue'

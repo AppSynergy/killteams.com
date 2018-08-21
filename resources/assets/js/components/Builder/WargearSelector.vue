@@ -1,20 +1,22 @@
 <template>
     <div class="vue-builder-wargear-selector">
 
-        <span class="form-check form-inline pl-0">
+        <div class="form-check form-inline pl-0">
 
             <input type="checkbox" class="form-check-input"
                 v-model="selection.isSelected"
                 v-on:change="selectWargearCheckbox"
                 :disabled="availableOrSelected == false">
 
-            <span v-if="'REPLACE' == wgo.may">
-                Replace {{ itemListToText(wgo.replace, wargear, ' and ') }}
-                with&nbsp;
-            </span>
+            <span class="text-nowrap">
+                <template v-if="'REPLACE' == wgo.may">
+                    Replace {{ itemListToText(wgo.replace, wargear, ' and ') }}
+                    with&nbsp;
+                </template>
 
-            <span v-if="'TAKE' == wgo.may">
-                Take&nbsp;
+                <template v-if="'TAKE' == wgo.may">
+                    Take&nbsp;
+                </template>
             </span>
 
             <span v-if="'ALLOF' == wgo.method">
@@ -32,7 +34,7 @@
                 </select>
             </span>
 
-        </span>
+        </div>
     </div>
 </template>
 
