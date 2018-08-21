@@ -19,11 +19,6 @@
     </span>
 </template>
 
-<style lang="sass">
-    table
-        font-size: 70%
-</style>
-
 <script>
 export default {
     props: [

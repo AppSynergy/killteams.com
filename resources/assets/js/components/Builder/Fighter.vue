@@ -1,14 +1,30 @@
 <template>
     <div class="vue-builder-fighter my-3 pb-3 border-bottom">
 
-        <span class="h3 mb-2 d-flex justify-content-between align-items-start">
-            <div class="">
+        <span class="mb-2 d-flex justify-content-between align-items-start">
+            <div class="h3">
                 <span class="badge badge-info">{{ fighter.finalPoints }}</span>
             </div>
-            <span class="font-weight-bold">{{ fighter.name }}</span>
+
+            <div class="">
+                <span class="form-inline">
+                    <input type="text" class="form-control"
+                        v-model="fighter.name">
+                </span>
+                <div class="text-sm">
+                    {{ fighter.miniatureName }}
+                </div>
+            </div>
+
             <fighter-profile :profile="fighter.profile"
                 :suffixes="fighter.profile_suffixes">
             </fighter-profile>
+            <span class="">
+                <span class="close"
+                    v-on:click="removeFighter(fighter.id)">
+                    &times;
+                </span>
+            </span>
         </span>
 
         <span class="my-2 d-block">
@@ -68,6 +84,9 @@ export default {
         }
     },
     methods: {
+        removeFighter(fighterId) {
+            this.$store.commit('removeFighter', fighterId)
+        },
         getAvailable(wargear_option) {
             const replaceable = _.every(wargear_option.replace, (item) => {
                 return _.includes(this.fighter.finalArmament, item)

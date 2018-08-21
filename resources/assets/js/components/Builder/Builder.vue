@@ -29,8 +29,13 @@
 
                                 <button class="btn btn-primary btn-sm mr-2 mb-2"
                                     v-on:click="addFighter(mini)"
-                                    v-for="mini in datasheet.miniatures">
+                                    v-for="mini in datasheet.miniatures"
+                                    :disabled="fightersByMiniature[mini.name] >= mini.profile.Max">
                                     {{ mini.name }}
+                                    <span class="badge badge-light"
+                                        v-if="mini.profile.Max > 0">
+                                        {{ countMiniature(mini.name) }} / {{ mini.profile.Max }}
+                                    </span>
                                 </button>
 
                             </div>
@@ -85,7 +90,7 @@ export default {
             availableFactions: [],
             currentFactionId: false,
             sandboxSelectedFactionId: this.factionId,
-            specialisms: []
+            specialisms: [],
         }
     },
     computed: {
@@ -97,6 +102,9 @@ export default {
         },
         fighters() {
             return this.$store.getters.getFighters
+        },
+        fightersByMiniature() {
+            return _.countBy(this.fighters, 'miniatureName')
         },
         totalPoints() {
             return _.sum(_.map(this.fighters, (fighter) => {
@@ -135,10 +143,27 @@ export default {
             })
         },
         addFighter(mini) {
+            let clone = _.clone(mini)
+            clone.miniatureName = clone.name
+            clone.name = this.getRandomName()
             this.$store.commit('addFighter', {
                 factionId: this.currentFactionId,
-                miniature: mini
+                miniature: clone
             })
+        },
+        getRandomName() {
+            if (!_.isEmpty(this.faction.narrative)) {
+                let names = this.faction.narrative.names
+                return _.sample(names.forename) + ' ' + _.sample(names.surname)
+            }
+            return "Matt Ward"
+        },
+        countMiniature(miniature_name) {
+            if (_.has(this.fightersByMiniature, miniature_name)) {
+                return this.fightersByMiniature[miniature_name]
+            } else {
+                return 0
+            }
         },
         sandboxChangeFaction() {
             const id = this.sandboxSelectedFactionId
