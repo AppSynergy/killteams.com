@@ -18,17 +18,16 @@
                             </select>
                         </div>
 
-                        <div class="card-body"
+                        <div class="card-body pt-0"
                             v-if="faction != undefined">
-                            <div class="d-flex align-items-center my-3 flex-wrap"
-
+                            <div class=""
                                 v-for="datasheet in faction.datasheets">
 
-                                <div class="h5 mr-3 font-weight-bold">
+                                <div class="h5 mr-3 font-weight-bold d-block">
                                     {{ datasheet.name }}
                                 </div>
 
-                                <button class="btn btn-primary btn-sm mr-3 mb-2"
+                                <button class="btn btn-primary btn-sm mr-2 mb-2"
                                     v-on:click="addFighter(mini)"
                                     v-for="mini in datasheet.miniatures">
                                     {{ mini.name }}
@@ -36,12 +35,13 @@
 
                             </div>
                         </div>
-                    </div>
 
-                    <div class="card-footer">
-                        <router-link :to="'/' + gameMode + '/choosefaction'">
-                            Back
-                        </router-link>
+                        <div class="card-footer">
+                            <router-link :to="'/' + gameMode + '/choosefaction'">
+                                Back
+                            </router-link>
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-12 col-sm-7 col-lg-8">
@@ -56,8 +56,8 @@
                             <div class="fighter-list">
                                 <span v-for="fighter in fighters">
                                     <fighter
-                                        :faction="faction"
-                                        :fighter-init="fighter"
+                                        :factions="factions"
+                                        :fighter="fighter"
                                         :specialisms="specialisms"
                                     ></fighter>
                                 </span>
@@ -84,20 +84,24 @@ export default {
         return {
             availableFactions: [],
             currentFactionId: false,
-            factions: {},
             sandboxSelectedFactionId: this.factionId,
             specialisms: []
         }
     },
     computed: {
         faction() {
-            return this.factions[this.currentFactionId]
+            return this.$store.getters.getFaction(this.currentFactionId)
+        },
+        factions() {
+            return this.$store.getters.getFactions
         },
         fighters() {
             return this.$store.getters.getFighters
         },
         totalPoints() {
-            return this.$store.getters.getTotalPoints
+            return _.sum(_.map(this.fighters, (fighter) => {
+                return fighter.finalPoints
+            }))
         }
     },
     mounted() {
@@ -116,8 +120,8 @@ export default {
         fetchFaction(id) {
             axios.get(API_URL + '/factions/' + id).then(response => {
                 const faction = response.data.data
-                this.factions[faction.id] = faction
                 this.currentFactionId = faction.id
+                this.$store.commit('setFaction', faction)
             })
         },
         fetchFactions() {
@@ -131,7 +135,10 @@ export default {
             })
         },
         addFighter(mini) {
-            this.$store.commit('addFighter', mini)
+            this.$store.commit('addFighter', {
+                factionId: this.currentFactionId,
+                miniature: mini
+            })
         },
         sandboxChangeFaction() {
             const id = this.sandboxSelectedFactionId

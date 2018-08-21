@@ -3,7 +3,7 @@
 
         <span class="h3 mb-2 d-flex justify-content-between align-items-start">
             <div class="">
-                <span class="badge badge-info">{{ finalPoints }}</span>
+                <span class="badge badge-info">{{ fighter.finalPoints }}</span>
             </div>
             <span class="font-weight-bold">{{ fighter.name }}</span>
             <fighter-profile :profile="fighter.profile"
@@ -13,7 +13,7 @@
 
         <span class="my-2 d-block">
             <strong>Armed with:</strong> <em
-                v-html="armamentToText(finalArmament, faction.wargear)"></em><br>
+                v-html="itemListToText(fighter.finalArmament, faction.wargear, ' and ')"></em><br>
         </span>
 
         <span class="my-2 d-block"
@@ -27,8 +27,6 @@
                 :wargear="faction.wargear"
                 v-on:selectWargear="selectWargear"
             ></wargear-selector>
-            <em class="pr-2 d-none" v-for="wgo in fighter.wargear_options"
-                v-html="wargearOptionToText(wgo, faction.wargear)"></em>
         </span>
 
         <fighter-specialism
@@ -53,7 +51,7 @@ export default {
         itemsToText
     ],
     props: [
-        'faction', 'fighterInit', 'specialisms'
+        'factions', 'fighter', 'specialisms'
     ],
     data() {
         return {
@@ -62,27 +60,8 @@ export default {
         }
     },
     computed: {
-        fighter() {
-            return _.clone(this.fighterInit)
-        },
-        finalArmament() {
-            let armament = _.clone(this.fighter.armament)
-            _.each(this.wargearMasks, (mask) => {
-                armament = this.applyWargearMask(armament, mask)
-            })
-            /*
-            this.$store.commit('setFighterArmament', {
-                fighter_id: this.fighter.id,
-                armament: armament
-            })
-            */
-            return armament
-        },
-        finalPoints() {
-            const armament_points = _.reduce(this.finalArmament, (xs, x) => {
-                return xs + this.getWargearPoints(x)
-            }, 0)
-            return this.fighter.points + armament_points
+        faction() {
+            return this.factions[this.fighter.factionId]
         },
         hasWargearOptions() {
             return !_.isEmpty(this.fighter.wargear_options)
@@ -91,32 +70,9 @@ export default {
     methods: {
         getAvailable(wargear_option) {
             const replaceable = _.every(wargear_option.replace, (item) => {
-                return _.includes(this.finalArmament, item)
+                return _.includes(this.fighter.finalArmament, item)
             })
             return replaceable
-        },
-        getWargearPoints(item_id) {
-            const item = _.find(this.faction.wargear, { id: item_id })
-            return item.points
-        },
-        armamentToText(armament, wargear) {
-            return this.itemListToText(armament, wargear, ' and ')
-        },
-        wargearOptionToText(wargear_option, wargear) {
-            let out = ''
-            if (wargear_option.replace) {
-                const items = this.itemListToText(wargear_option.replace, wargear, ' and ')
-                out += 'Replace ' + items + ' with '
-            } else {
-                out += 'Take '
-            }
-            if (wargear_option.options) {
-                const items = this.itemListToText(wargear_option.options, wargear, ' or ')
-                out += items
-            } else {
-                out += "FAIL ITEMS"
-            }
-            return out
         },
         applyWargearMask(armament, mask) {
             _.each(mask.replace_items, (item) => {
@@ -140,6 +96,14 @@ export default {
                     add_items: option,
                 })
             }
+            let finalArmament = _.clone(this.fighter.armament)
+            _.each(this.wargearMasks, (mask) => {
+                finalArmament = this.applyWargearMask(finalArmament, mask)
+            })
+            this.$store.commit('setFighterArmament', {
+                fighter_id: this.fighter.id,
+                armament: finalArmament
+            })
         }
 
     }
