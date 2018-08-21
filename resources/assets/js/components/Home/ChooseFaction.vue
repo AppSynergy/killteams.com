@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <span v-for="faction in factions">
                         <router-link class="btn btn-info mr-3 mb-3"
-                            :to="'/sandbox/' + faction.id + '/'
+                            :to="'/' + gameMode + '/' + faction.id + '/'
                             + faction.faction_keyword + '/builder'">
                             {{ faction.name }}
                         </router-link>

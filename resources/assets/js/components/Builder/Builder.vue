@@ -3,20 +3,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-5 col-lg-4">
-                    <div class="card">
+                    <div class="card mb-4">
 
-                        <span class="card-header">Choose Fighters</span>
+                        <span class="card-header">Choose Your Fighters</span>
 
-                        <div class="card-body">
+                        <div class="card-body"
+                            v-if="'sandbox' == gameMode">
+                            <select class="custom-select custom-select-sm"
+                                v-model="sandboxSelectedFactionId"
+                                v-on:change="sandboxChangeFaction">
+                                <option v-for="faction in availableFactions"
+                                    :value="faction.id">{{ faction.name }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="card-body"
+                            v-if="faction != undefined">
                             <div class="d-flex align-items-center my-3 flex-wrap"
-                                v-if="faction != null"
+
                                 v-for="datasheet in faction.datasheets">
 
-                                <span class="mr-3 font-weight-bold">
+                                <div class="h5 mr-3 font-weight-bold">
                                     {{ datasheet.name }}
-                                </span>
+                                </div>
 
-                                <button class="btn btn-primary mr-3 mb-2"
+                                <button class="btn btn-primary btn-sm mr-3 mb-2"
                                     v-on:click="addFighter(mini)"
                                     v-for="mini in datasheet.miniatures">
                                     {{ mini.name }}
@@ -33,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-7 col-lg-8">
-                    <div class="card">
+                    <div class="card mb-4">
 
                         <span class="card-header">Command Roster</span>
 
@@ -66,27 +78,47 @@ export default {
     ],
     data() {
         return {
-            faction: {
-                datasheets: []
-            }
+            availableFactions: [],
+            currentFactionId: false,
+            factions: {},
+            sandboxSelectedFactionId: this.factionId
         }
     },
     computed: {
+        faction() {
+            return this.factions[this.currentFactionId]
+        },
         fighters() {
             return this.$store.getters.getFighters
         }
     },
     mounted() {
         this.fetchFaction(this.factionId)
+        if ('sandbox' == this.gameMode) {
+            this.fetchFactions();
+        }
     },
     methods: {
         fetchFaction(id) {
             axios.get(API_URL + '/factions/' + id).then(response => {
-                this.faction = response.data.data
+                const faction = response.data.data
+                this.factions[faction.id] = faction
+                this.currentFactionId = faction.id
+            })
+        },
+        fetchFactions() {
+            axios.get(API_URL + '/factions').then(response => {
+                this.availableFactions = response.data.data
             })
         },
         addFighter(mini) {
             this.$store.commit('addFighter', mini)
+        },
+        sandboxChangeFaction() {
+            const id = this.sandboxSelectedFactionId
+            if (id) {
+                this.fetchFaction(id)
+            }
         }
     }
 }
