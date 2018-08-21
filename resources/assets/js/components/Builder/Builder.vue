@@ -98,6 +98,11 @@ export default {
             this.fetchFactions();
         }
     },
+    beforeRouteLeave (to, from, next) {
+        console.log("@TODO: warning, this will delete your kill team!")
+        this.$store.commit('clearKillteam')
+        next()
+    },
     methods: {
         fetchFaction(id) {
             axios.get(API_URL + '/factions/' + id).then(response => {
