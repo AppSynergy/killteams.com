@@ -1,7 +1,7 @@
 <template>
-    <span class="vue-builder-fighter">
+    <div class="vue-builder-fighter my-3 pb-3 border-bottom">
 
-        <span class="h3 mb-2 d-flex justify-content-between align-items-end">
+        <span class="h3 mb-2 d-flex justify-content-between align-items-start">
             <div class="">
                 <span class="badge badge-info">{{ finalPoints }}</span>
             </div>
@@ -37,7 +37,7 @@
             :specialisms="specialisms">
         </fighter-specialism>
 
-    </span>
+    </div>
 </template>
 
 <script>
@@ -70,6 +70,12 @@ export default {
             _.each(this.wargearMasks, (mask) => {
                 armament = this.applyWargearMask(armament, mask)
             })
+            /*
+            this.$store.commit('setFighterArmament', {
+                fighter_id: this.fighter.id,
+                armament: armament
+            })
+            */
             return armament
         },
         finalPoints() {

@@ -14,17 +14,28 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        getFactions(state) {
+        getFactions: (state) => {
             return state.factions
         },
-        getFaction(state) {
+        getFaction: (state) => {
             return state.faction
         },
-        getKillteam(state) {
+        getKillteam: (state) => {
             return state.killteam
         },
-        getFighters(state) {
+        getFighters: (state) => {
             return state.killteam.fighters
+        },
+        getFighterPoints: (state) => (fighter) => {
+            const armament_points = _.reduce(fighter.armament, (xs, x) => {
+                return xs // @TODO + this.getWargearPoints(x)
+            }, 0)
+            return fighter.points + armament_points
+        },
+        getTotalPoints: (state, getters) => {
+            return _.sum(_.map(state.killteam.fighters, (fighter) => {
+                return getters.getFighterPoints(fighter)
+            }))
         }
     },
     mutations: {

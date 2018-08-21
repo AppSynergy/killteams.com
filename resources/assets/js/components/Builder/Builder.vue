@@ -5,7 +5,7 @@
                 <div class="col-12 col-sm-5 col-lg-4">
                     <div class="card mb-4">
 
-                        <span class="card-header">Choose Your Fighters</span>
+                        <span class="card-header h3">Choose Your Fighters</span>
 
                         <div class="card-body"
                             v-if="'sandbox' == gameMode">
@@ -47,9 +47,12 @@
                 <div class="col-12 col-sm-7 col-lg-8">
                     <div class="card mb-4">
 
-                        <span class="card-header">Command Roster</span>
+                        <span class="card-header h3 d-flex justify-content-between">
+                            Command Roster
+                            <span class="badge badge-info">{{ totalPoints }}</span>
+                        </span>
 
-                        <div class="card-body">
+                        <div class="card-body py-0">
                             <div class="fighter-list">
                                 <span v-for="fighter in fighters">
                                     <fighter
@@ -92,6 +95,9 @@ export default {
         },
         fighters() {
             return this.$store.getters.getFighters
+        },
+        totalPoints() {
+            return this.$store.getters.getTotalPoints
         }
     },
     mounted() {
