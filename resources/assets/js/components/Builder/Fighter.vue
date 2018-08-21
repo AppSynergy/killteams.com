@@ -32,6 +32,7 @@
         </span>
 
         <fighter-specialism
+            :level="level"
             :specialists="fighter.specialists"
             :specialisms="specialisms">
         </fighter-specialism>
@@ -56,6 +57,7 @@ export default {
     ],
     data() {
         return {
+            level: 1,
             wargearMasks: []
         }
     },
