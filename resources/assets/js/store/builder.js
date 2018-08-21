@@ -48,6 +48,7 @@ export default new Vuex.Store({
             fighter.factionId = obj.factionId
             fighter.finalPoints = fighter.points
             fighter.finalArmament = fighter.armament
+            fighter.wargearMasks = []
             delete fighter.id
             fighter.id = UUID()
             state.killteam.fighters.push(fighter)
@@ -65,6 +66,33 @@ export default new Vuex.Store({
                 const item = _.find(faction.wargear, { id: x })
                 return xs + item.points
             }, 0)
+        },
+        selectWargear(state, obj) {
+            console.log(obj)
+            let fighter = _.find(state.killteam.fighters, (x) => x.id == obj.fighter_id)
+            const selection = obj.selection
+            const replace = (_.isArray(selection.replace)) ? selection.replace : [selection.replace]
+            const option = (_.isArray(selection.option)) ? selection.option : [selection.option]
+            // clear previous masks
+            fighter.wargearMasks = _.reject(fighter.wargearMasks, { selection_id: selection.selection_id })
+            // add to masks
+            if (selection.isSelected) {
+                fighter.wargearMasks.push({
+                    selection_id: selection.selection_id,
+                    replace_items: replace,
+                    add_items: option,
+                })
+            }
+            let finalArmament = _.clone(fighter.armament)
+            _.each(fighter.wargearMasks, (mask) => {
+                _.each(mask.replace_items, (item) => {
+                    _.remove(finalArmament, x => x == item)
+                })
+                _.each(mask.add_items, (item) => {
+                    finalArmament.push(item)
+                })
+            })
+            fighter.finalArmament = finalArmament
         }
     }
 })

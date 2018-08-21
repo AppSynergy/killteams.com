@@ -46,7 +46,7 @@ export default {
         itemsToText
     ],
     props: [
-        'armament', 'available', 'wargear', 'wgo'
+        'armament', 'available', 'fighterId', 'wargear', 'wgo'
     ],
     data() {
         return {
@@ -76,7 +76,10 @@ export default {
             this.selectWargear()
         },
         selectWargear() {
-            this.$emit('selectWargear', this.selection)
+            this.$store.commit('selectWargear', {
+                selection: this.selection,
+                fighter_id: this.fighterId
+            })
         }
     }
 }

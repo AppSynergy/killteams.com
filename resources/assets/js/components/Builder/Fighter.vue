@@ -37,6 +37,7 @@
             <wargear-selector
                 v-for="wgo, wgo_i in fighter.wargear_options"
                 :key="wgo_i"
+                :fighter-id="fighter.id"
                 :armament="fighter.armament"
                 :available="getAvailable(wgo)"
                 :wgo="wgo"
@@ -72,7 +73,6 @@ export default {
     data() {
         return {
             level: 1,
-            wargearMasks: []
         }
     },
     computed: {
@@ -92,39 +92,7 @@ export default {
                 return _.includes(this.fighter.finalArmament, item)
             })
             return replaceable
-        },
-        applyWargearMask(armament, mask) {
-            _.each(mask.replace_items, (item) => {
-                _.remove(armament, x => x == item)
-            })
-            _.each(mask.add_items, (item) => {
-                armament.push(item)
-            })
-            return armament
-        },
-        selectWargear(selection) {
-            const replace = (_.isArray(selection.replace)) ? selection.replace : [selection.replace]
-            const option = (_.isArray(selection.option)) ? selection.option : [selection.option]
-            // clear previous masks
-            this.wargearMasks = _.reject(this.wargearMasks, { selection_id: selection.selection_id })
-            // add to masks
-            if (selection.isSelected) {
-                this.wargearMasks.push({
-                    selection_id: selection.selection_id,
-                    replace_items: replace,
-                    add_items: option,
-                })
-            }
-            let finalArmament = _.clone(this.fighter.armament)
-            _.each(this.wargearMasks, (mask) => {
-                finalArmament = this.applyWargearMask(finalArmament, mask)
-            })
-            this.$store.commit('setFighterArmament', {
-                fighter_id: this.fighter.id,
-                armament: finalArmament
-            })
         }
-
     }
 }
 </script>
