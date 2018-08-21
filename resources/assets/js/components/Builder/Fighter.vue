@@ -35,14 +35,14 @@
         <span class="my-2 d-block"
             v-if="hasWargearOptions">
             <wargear-selector
-                v-for="wgo, wgo_i in fighter.wargear_options"
-                :key="wgo_i"
+                v-for="selector in fighter.wargearSelectors"
+                :key="selector.id"
+                :selection-id="selector.id"
                 :fighter-id="fighter.id"
                 :armament="fighter.armament"
-                :available="getAvailable(wgo)"
-                :wgo="wgo"
+                :available="getAvailable(selector.wgo)"
+                :wgo="selector.wgo"
                 :wargear="faction.wargear"
-                v-on:selectWargear="selectWargear"
             ></wargear-selector>
         </span>
 

@@ -24,6 +24,11 @@ export default new Vuex.Store({
         },
         getFighters: (state) => {
             return state.killteam.fighters
+        },
+        getWargearSelectors: (state) => (fighterId, selectorId) => {
+            const fighter = _.find(state.killteam.fighters, { id: fighterId })
+            const selector = _.find(fighter.wargearSelectors, {id: selectorId })
+            return selector
         }
     },
     mutations: {
@@ -51,6 +56,16 @@ export default new Vuex.Store({
             fighter.wargearMasks = []
             delete fighter.id
             fighter.id = UUID()
+            fighter.wargearSelectors = []
+            _.each(fighter.wargear_options, (wgo) => {
+                fighter.wargearSelectors.push({
+                    id: UUID(),
+                    isSelected: false,
+                    replace: wgo.replace,
+                    option: ('ALLOF' == wgo.method) ? wgo.options : null,
+                    wgo: wgo
+                })
+            })
             state.killteam.fighters.push(fighter)
         },
         removeFighter(state, fighter_id) {
@@ -68,7 +83,6 @@ export default new Vuex.Store({
             }, 0)
         },
         selectWargear(state, obj) {
-            console.log(obj)
             let fighter = _.find(state.killteam.fighters, (x) => x.id == obj.fighter_id)
             const selection = obj.selection
             const replace = (_.isArray(selection.replace)) ? selection.replace : [selection.replace]

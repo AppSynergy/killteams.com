@@ -1,7 +1,7 @@
 <template>
     <div class="vue-builder-wargear-selector">
 
-        <div class="form-check form-inline pl-0">
+        <div class="form-check form-inline pl-0" v-if="selection">
 
             <input type="checkbox" class="form-check-input"
                 v-model="selection.isSelected"
@@ -46,19 +46,17 @@ export default {
         itemsToText
     ],
     props: [
-        'armament', 'available', 'fighterId', 'wargear', 'wgo'
+        'armament', 'available', 'fighterId', 'selectionId', 'wargear', 'wgo'
     ],
     data() {
         return {
-            selection: {
-                selection_id: uniqid(),
-                isSelected: false,
-                replace: this.wgo.replace,
-                option: ('ALLOF' == this.wgo.method) ? this.wgo.options : null
-            }
+
         }
     },
     computed: {
+        selection() {
+            return this.$store.getters.getWargearSelectors(this.fighterId, this.selectionId)
+        },
         availableOrSelected() {
             return this.available || this.selection.isSelected
         }

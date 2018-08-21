@@ -61,6 +61,7 @@
                             <div class="fighter-list">
                                 <span v-for="fighter in fighters">
                                     <fighter
+                                        :key="fighter.id"
                                         :factions="factions"
                                         :fighter="fighter"
                                         :specialisms="specialisms"
