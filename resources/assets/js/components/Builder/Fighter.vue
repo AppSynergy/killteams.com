@@ -6,18 +6,8 @@
                 <span class="font-weight-bold">{{ fighter.name }}</span>
                 <span class="badge badge-info">{{ finalPoints }}</span>
             </span>
-            <span class="">
-                <table class="table table-sm table-bordered">
-                    <thead class="thead-dark"><tr>
-                        <th class="text-center"
-                            v-for="_, key in fighter.profile">{{ key }}</th>
-                    </tr></thead>
-                    <tbody><tr>
-                        <td class="text-center"
-                            v-for="val in fighter.profile">{{ val }}</td>
-                    </tr></tbody>
-                </table>
-            </span>
+            <fighter-profile :profile="fighter.profile">
+            </fighter-profile>
         </span>
 
         <span class="alert alert-info d-block">
@@ -40,19 +30,20 @@
                 v-html="wargearOptionToText(wgo, faction.wargear)"></em>
         </span>
 
-        <span class="alert alert-warning d-block">
-            {{ fighter.specialists.join(' &middot; ') }}
-        </span>
+        <fighter-specialism :specialists="fighter.specialists">
+        </fighter-specialism>
 
     </span>
 </template>
 
 <script>
 import itemsToText from '../../mixins/itemsToText.js'
+import FighterProfile from './FighterProfile.vue'
+import FighterSpecialism from './FighterSpecialism.vue'
 import WargearSelector from './WargearSelector.vue'
 export default {
     components: {
-        WargearSelector
+        FighterProfile, FighterSpecialism, WargearSelector
     },
     mixins: [
         itemsToText
