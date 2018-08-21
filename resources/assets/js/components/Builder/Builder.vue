@@ -55,6 +55,7 @@
                                     <fighter
                                         :faction="faction"
                                         :fighter-init="fighter"
+                                        :specialisms="specialisms"
                                     ></fighter>
                                 </span>
                             </div>
@@ -81,7 +82,8 @@ export default {
             availableFactions: [],
             currentFactionId: false,
             factions: {},
-            sandboxSelectedFactionId: this.factionId
+            sandboxSelectedFactionId: this.factionId,
+            specialisms: []
         }
     },
     computed: {
@@ -94,6 +96,7 @@ export default {
     },
     mounted() {
         this.fetchFaction(this.factionId)
+        this.fetchSpecialisms();
         if ('sandbox' == this.gameMode) {
             this.fetchFactions();
         }
@@ -114,6 +117,11 @@ export default {
         fetchFactions() {
             axios.get(API_URL + '/factions').then(response => {
                 this.availableFactions = response.data.data
+            })
+        },
+        fetchSpecialisms() {
+            axios.get(API_URL + '/specialisms').then(response => {
+                this.specialisms = response.data.data
             })
         },
         addFighter(mini) {

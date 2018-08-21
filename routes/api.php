@@ -21,4 +21,6 @@ Route::get('factions', 'Api\FactionController@index');
 
 Route::get('factions/{id}', 'Api\FactionController@show');
 
+Route::get('specialisms', 'Api\SpecialismController@index');
+
 Route::post('killteam', 'Api\KillteamController@store');

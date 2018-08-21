@@ -11,7 +11,7 @@
 <script>
 export default {
     props: [
-        'specialists'
+        'specialisms', 'specialists'
     ]
 }
 </script>

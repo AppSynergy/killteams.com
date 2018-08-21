@@ -31,7 +31,9 @@
                 v-html="wargearOptionToText(wgo, faction.wargear)"></em>
         </span>
 
-        <fighter-specialism :specialists="fighter.specialists">
+        <fighter-specialism
+            :specialists="fighter.specialists"
+            :specialisms="specialisms">
         </fighter-specialism>
 
     </span>
@@ -50,7 +52,7 @@ export default {
         itemsToText
     ],
     props: [
-        'faction', 'fighterInit'
+        'faction', 'fighterInit', 'specialisms'
     ],
     data() {
         return {
