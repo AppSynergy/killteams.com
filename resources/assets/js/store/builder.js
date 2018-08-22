@@ -107,6 +107,10 @@ export default new Vuex.Store({
                 })
             })
             fighter.finalArmament = finalArmament
+            fighter.finalPoints = fighter.points + _.reduce(fighter.finalArmament, (xs, x) => {
+                const item = _.find(state.factions[fighter.factionId].wargear, { id: x })
+                return xs + item.points
+            }, 0)
         }
     }
 })

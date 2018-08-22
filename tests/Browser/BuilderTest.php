@@ -77,7 +77,8 @@ class BuilderTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/builder#/tournament/7/DEATH%20GUARD/builder')
-                ->assertFragmentIs('/tournament/7/DEATH%20GUARD/builder');
+                ->assertFragmentIs('/tournament/7/DEATH%20GUARD/builder')
+                ->assertElementsCountIs(0, '.vue-builder-fighter');
 
             // Can add Plague Marine
             $browser->click('@add Plague Marine')
@@ -97,8 +98,28 @@ class BuilderTest extends DuskTestCase
             $browser->click('@add Plague Marine')
                 ->click('@add Plague Marine Gunner')
                 ->waitForText('Armed with')
-                ->assertElementsCountIs(4, '.vue-builder-fighter');
+                ->assertElementsCountIs(4, '.vue-builder-fighter')
+                ->click('@back')->click('@back');
 
+        });
+    }
+
+    public function testPointsCosts()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/builder#/tournament/7/DEATH%20GUARD/builder')
+                ->assertFragmentIs('/tournament/7/DEATH%20GUARD/builder')
+                ->waitForText('Choose Your Fighters');
+
+            // Can add Plague Marine Gunner
+            $browser->click('@add Plague Marine Gunner')
+                ->waitForText('Armed with')
+                ->assertSeeIn('@points', 15)
+                ->assertSeeIn('@fighters', 'Plague Marine Gunner')
+                ->select('select.custom-select', 53) // Plague Belcher
+                ->pause(5)
+                ->assertSeeIn('@points', 18)
+                ;
         });
     }
 }

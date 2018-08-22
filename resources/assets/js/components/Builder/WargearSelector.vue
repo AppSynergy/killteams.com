@@ -75,7 +75,8 @@ export default {
         selectWargear() {
             this.$store.commit('selectWargear', {
                 selection: this.selection,
-                fighter_id: this.fighterId
+                fighter_id: this.fighterId,
+                faction_id: this.factionId,
             })
         }
     }

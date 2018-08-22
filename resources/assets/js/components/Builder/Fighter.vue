@@ -3,7 +3,9 @@
 
         <span class="mb-2 d-flex justify-content-between align-items-start">
             <div class="h3">
-                <span class="badge badge-info">{{ fighter.finalPoints }}</span>
+                <span class="badge badge-info" dusk="points">
+                    {{ fighter.finalPoints }}
+                </span>
             </div>
 
             <div class="">
