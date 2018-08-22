@@ -7,6 +7,7 @@
 
                 <div class="card-body">
                     <router-link class="btn btn-primary"
+                        dusk="new-kill-team"
                         :to="{ name: 'gamemode' }">
                         Start a new Kill Team
                     </router-link>

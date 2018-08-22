@@ -8,6 +8,7 @@
                 <div class="card-body">
                     <span v-for="faction in factions">
                         <router-link class="btn btn-info mr-3 mb-3"
+                            :dusk="faction.name"
                             :to="'/' + gameMode + '/' + faction.id + '/'
                             + faction.faction_keyword + '/builder'">
                             {{ faction.name }}
@@ -16,7 +17,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <router-link :to="{ name: 'gamemode' }">
+                    <router-link :to="{ name: 'gamemode' }" dusk="back">
                         Back
                     </router-link>
                 </div>

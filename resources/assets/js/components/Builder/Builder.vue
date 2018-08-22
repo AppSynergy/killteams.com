@@ -42,7 +42,8 @@
                         </div>
 
                         <div class="card-footer">
-                            <router-link :to="'/' + gameMode + '/choosefaction'">
+                            <router-link dusk="back"
+                                :to="'/' + gameMode + '/choosefaction'">
                                 Back
                             </router-link>
                         </div>

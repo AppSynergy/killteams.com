@@ -9,6 +9,7 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <router-link class="btn btn-primary mr-3"
+                                dusk="sandbox-mode"
                                 to="/sandbox/choosefaction">
                                 Sandbox Mode
                             </router-link>
@@ -17,6 +18,7 @@
 
                         <li class="list-group-item">
                             <router-link class="btn btn-primary mr-3"
+                                dusk="tournament-mode"
                                 to="/tournament/choosefaction">
                                 Tournament Mode
                             </router-link>
@@ -34,7 +36,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <router-link :to="{ name: 'intro' }">
+                    <router-link :to="{ name: 'intro' }" dusk="back">
                         Back
                     </router-link>
                 </div>
