@@ -28,9 +28,10 @@
                                 </div>
 
                                 <button class="btn btn-primary btn-sm mr-2 mb-2"
+                                    :dusk="'add ' + mini.name"
                                     v-on:click="addFighter(mini)"
                                     v-for="mini in datasheet.miniatures"
-                                    :disabled="fightersByMiniature[mini.name] >= mini.profile.Max">
+                                    :disabled="isDisabled(mini)">
                                     {{ mini.name }}
                                     <span class="badge badge-light"
                                         v-if="mini.profile.Max > 0">
@@ -59,7 +60,7 @@
                         </span>
 
                         <div class="card-body py-0">
-                            <div class="fighter-list">
+                            <div class="fighter-list" dusk="fighters">
                                 <span v-for="fighter in fighters">
                                     <fighter
                                         :key="fighter.id"
@@ -152,6 +153,12 @@ export default {
                 factionId: this.currentFactionId,
                 miniature: clone
             })
+        },
+        isDisabled(mini) {
+            if (0 == mini.profile.Max) {
+                return false
+            }
+            return this.fightersByMiniature[mini.name] >= mini.profile.Max
         },
         getRandomName() {
             if (!_.isEmpty(this.faction.narrative)) {
