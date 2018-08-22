@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import uniqid from 'uniqid'
 import itemsToText from '../../mixins/itemsToText.js'
 export default {
     mixins: [
