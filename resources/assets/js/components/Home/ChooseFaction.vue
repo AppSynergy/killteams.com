@@ -7,8 +7,11 @@
 
                 <div class="card-body">
                     <span v-for="faction in factions">
-                        <router-link class="btn btn-info mr-3 mb-3"
+                        <router-link class="btn btn-primary mr-3 mb-3"
                             :dusk="faction.name"
+                            :class="(isDisabled(faction) ? 'disabled' : '')"
+                            :event="(isDisabled(faction) ? '' : 'click')"
+                            :disabled="isDisabled(faction)"
                             :to="'/' + gameMode + '/' + faction.id + '/'
                             + faction.faction_keyword + '/builder'">
                             {{ faction.name }}
@@ -41,6 +44,9 @@ export default {
         this.fetchFactions()
     },
     methods: {
+        isDisabled(faction) {
+            return faction.has_datasheets == false
+        },
         fetchFactions() {
             axios.get(API_URL + '/factions').then(response => {
                 this.factions = response.data.data

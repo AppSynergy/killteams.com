@@ -65,6 +65,10 @@ class Faction extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+    public function getHasDatasheetsAttribute()
+    {
+        return ($this->datasheets->count() > 0);
+    }
 
     /*
     |--------------------------------------------------------------------------

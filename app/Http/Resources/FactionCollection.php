@@ -16,7 +16,7 @@ class FactionCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection->map(function ($faction, $key) {
-                return collect($faction)->except('narrative');
+                return collect($faction)->except('narrative', 'datasheets');
             }),
         ];
     }
