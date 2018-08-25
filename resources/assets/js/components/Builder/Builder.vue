@@ -67,6 +67,7 @@
                                         :factions="factions"
                                         :fighter="fighter"
                                         :specialisms="specialisms"
+                                        :game-mode="gameMode"
                                     ></fighter>
                                 </span>
                             </div>

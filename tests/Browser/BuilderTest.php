@@ -98,9 +98,14 @@ class BuilderTest extends DuskTestCase
             $browser->click('@add Plague Marine')
                 ->click('@add Plague Marine Gunner')
                 ->waitForText('Armed with')
-                ->assertElementsCountIs(4, '.vue-builder-fighter')
-                ->click('@back')->click('@back');
+                ->assertElementsCountIs(4, '.vue-builder-fighter');
 
+            // Cannot add a third Gunner
+            $browser->assertDisabled('@add Plague Marine Gunner')
+                ->assertElementsCountIs(4, '.vue-builder-fighter');
+
+            // Exit
+            $browser->click('@back')->click('@back');
         });
     }
 
@@ -116,10 +121,10 @@ class BuilderTest extends DuskTestCase
                 ->waitForText('Armed with')
                 ->assertSeeIn('@points', 15)
                 ->assertSeeIn('@fighters', 'Plague Marine Gunner')
-                ->select('select.custom-select', 53) // Plague Belcher
-                ->pause(5)
-                ->assertSeeIn('@points', 18)
-                ;
+                ->selectNthOption(0, 'select.custom-select') // Plague Spewer
+                ->assertSeeIn('@points', 19)
+                ->selectNthOption(1, 'select.custom-select') // Plague Belcher
+                ->assertSeeIn('@points', 18);
         });
     }
 }

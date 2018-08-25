@@ -49,10 +49,10 @@
         </span>
 
         <fighter-specialism
-            :level="level"
             :specialists="fighter.specialists"
-            :specialisms="specialisms">
-        </fighter-specialism>
+            :specialisms="specialisms"
+            :game-mode="gameMode"
+        ></fighter-specialism>
 
     </div>
 </template>
@@ -70,13 +70,8 @@ export default {
         itemsToText
     ],
     props: [
-        'factions', 'fighter', 'specialisms'
+        'factions', 'fighter', 'gameMode', 'specialisms'
     ],
-    data() {
-        return {
-            level: 1,
-        }
-    },
     computed: {
         faction() {
             return this.factions[this.fighter.factionId]
