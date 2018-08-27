@@ -66,6 +66,7 @@
                                         :key="fighter.id"
                                         :factions="factions"
                                         :fighter="fighter"
+                                        :fighters-wargear="fightersWargear"
                                         :index="index"
                                         :specialisms="specialisms"
                                         :game-mode="gameMode"
@@ -113,6 +114,11 @@ export default {
             set(value) {
                 this.$store.commit('updateFighters', value)
             }
+        },
+        fightersWargear() {
+            return _.flatMap(this.fighters, (fighter) => {
+                return fighter.wargearSelectors
+            })
         },
         fightersByMiniature() {
             return _.countBy(this.fighters, 'miniatureName')

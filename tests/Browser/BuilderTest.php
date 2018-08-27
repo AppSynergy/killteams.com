@@ -140,9 +140,16 @@ class BuilderTest extends DuskTestCase
             $browser->click('@add Tactical Marine Gunner')
                 ->click('@add Tactical Marine Gunner')
                 ->assertElementsCountIs(2, '.vue-builder-fighter')
-                ->selectNthOption(0, '@select-wargear-option')
-                // @TODO
-                ;
+                ->assertSeeIn('.vue-builder-fighter:nth-child(1) .select-wargear-option', 'Flamer')
+                ->selectNthOption(0, '.vue-builder-fighter:nth-child(1) .select-wargear-option')
+                ->assertDisabled('.vue-builder-fighter:nth-child(1) .vue-builder-wargear-selector:nth-child(2) .select-wargear-option')
+                ->assertDisabled('.vue-builder-fighter:nth-child(2) .vue-builder-wargear-selector:nth-child(1) .select-wargear-option')
+                ->selectNthOption(1, '.vue-builder-fighter:nth-child(2) .vue-builder-wargear-selector:nth-child(2) .select-wargear-option')
+                ->assertDisabled('.vue-builder-fighter:nth-child(1) .vue-builder-wargear-selector:nth-child(2) .select-wargear-option')
+                ->assertSeeIn('@points', 16);
+
+            // Exit
+            $browser->click('@back')->click('@back');
         });
     }
 }

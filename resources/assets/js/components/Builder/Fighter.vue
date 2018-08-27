@@ -71,7 +71,7 @@ export default {
         itemsToText
     ],
     props: [
-        'factions', 'fighter', 'index', 'gameMode', 'specialisms'
+        'factions', 'fighter', 'fighters-wargear', 'index', 'gameMode', 'specialisms'
     ],
     computed: {
         faction() {
@@ -89,7 +89,14 @@ export default {
             const replaceable = _.every(wargear_option.replace, (item) => {
                 return _.includes(this.fighter.finalArmament, item)
             })
-            return replaceable
+            const notMineLimited = _(this.fightersWargear).filter((sel) => {
+                const notMine = (undefined == _.find(this.fighter.wargearSelectors, {id: sel.id}))
+                return ((sel.wgo.who != 'ANY') && notMine && (sel.isSelected))
+            }).flatMap((sel) => {
+                return sel.option
+            }).value()
+            console.warn(notMineLimited, wargear_option.options)
+            return replaceable &&  _.isEmpty(_.intersection(wargear_option.options, notMineLimited))
         }
     }
 }

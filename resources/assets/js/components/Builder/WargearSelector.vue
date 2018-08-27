@@ -24,7 +24,7 @@
             </span>
 
             <span v-if="'ONEOF' == wgo.method">
-                <select class="ml-2 custom-select custom-select-sm"
+                <select class="ml-2 custom-select custom-select-sm select-wargear-option"
                     dusk="select-wargear-option"
                     v-model="selection.option"
                     v-on:change="selectWargearDropdown"
