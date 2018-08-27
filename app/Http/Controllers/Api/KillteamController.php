@@ -14,7 +14,7 @@ class KillteamController extends Controller
         // @TODO the current request data is just mini data farted back at you.
         // in future it'll be more structured, and map directly to columns or relations
         // on Fighter model.
-        dd($request->all());
+
         // create a killteam
         $killteam = new Killteam;
         $killteam->name = $request->get('name');
