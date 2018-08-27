@@ -51,6 +51,10 @@ return [
                 'icon' => 'fa-tag',
                 'name' => 'Fighters',
             ],
+            'wargearselector' => [
+                'icon' => 'fa-tag',
+                'name' => 'Wargear Selectors'
+            ],
         ],
     ],
 ];

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Fighter;
 use App\Models\Killteam;
+use App\Models\Wargearselector;
 
 class KillteamController extends Controller
 {
@@ -30,6 +31,16 @@ class KillteamController extends Controller
             $fighter->killteam_id = $killteam->id;
             $fighter->miniature_id = $mini['miniatureId'];
             $fighter->save();
+            $fighter_id = $fighter->id;
+
+            foreach ($mini['wargearSelectors'] as $selector) {
+                $wgs = new Wargearselector;
+                $wgs->isSelected = $selector['isSelected'];
+                $wgs->option = json_encode($selector['option']);
+                $wgs->replace = json_encode($selector['replace']);
+                $wgs->fighter_id = $fighter_id;
+                $wgs->save();
+            }
         }
 
         return [200, "OK"];

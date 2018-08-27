@@ -34,6 +34,10 @@ class Wargearselector extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function fighter()
+    {
+        return $this->belongsTo('App\Models\Fighter');
+    }
 
     /*
     |--------------------------------------------------------------------------

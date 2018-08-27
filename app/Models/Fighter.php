@@ -49,6 +49,11 @@ class Fighter extends Model
         return $this->belongsTo('App\Models\Killteam');
     }
 
+    public function wargearselectors()
+    {
+        return $this->hasMany('App\Models\Wargearselector');
+    }
+
     public function user()
     {
         return $this->killteam->user;
