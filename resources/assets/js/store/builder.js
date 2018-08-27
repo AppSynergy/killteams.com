@@ -47,6 +47,9 @@ export default new Vuex.Store({
             state.factions[faction.id] = _.cloneDeep(faction)
             state.killteam.faction_id = faction.id
         },
+        updateFighters(state, fighters) {
+            state.killteam.fighters = fighters
+        },
         addFighter(state, obj) {
             let fighter = _.cloneDeep(obj.miniature)
             fighter.miniatureId = fighter.id

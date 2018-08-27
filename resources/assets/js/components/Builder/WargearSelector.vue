@@ -6,7 +6,7 @@
             <input type="checkbox" class="form-check-input"
                 v-model="selection.isSelected"
                 v-on:change="selectWargearCheckbox"
-                :disabled="availableOrSelected == false">
+                :disabled="isDisabled">
 
             <span class="text-nowrap">
                 <template v-if="'REPLACE' == wgo.may">
@@ -25,9 +25,10 @@
 
             <span v-if="'ONEOF' == wgo.method">
                 <select class="ml-2 custom-select custom-select-sm"
+                    dusk="select-wargear-option"
                     v-model="selection.option"
                     v-on:change="selectWargearDropdown"
-                    :disabled="availableOrSelected == false">
+                    :disabled="isDisabled">
                     <option v-for="choice in wgo.options" :value="choice">
                         {{ itemOrItemListToText(choice, wargear, ' and ') }}
                     </option>
@@ -55,6 +56,9 @@ export default {
     computed: {
         selection() {
             return this.$store.getters.getWargearSelectors(this.fighterId, this.selectionId)
+        },
+        isDisabled() {
+            return (this.availableOrSelected == false)
         },
         availableOrSelected() {
             return this.available || this.selection.isSelected

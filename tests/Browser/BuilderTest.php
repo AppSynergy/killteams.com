@@ -118,13 +118,31 @@ class BuilderTest extends DuskTestCase
 
             // Can add Plague Marine Gunner
             $browser->click('@add Plague Marine Gunner')
-                ->waitForText('Armed with')
                 ->assertSeeIn('@points', 15)
                 ->assertSeeIn('@fighters', 'Plague Marine Gunner')
-                ->selectNthOption(0, 'select.custom-select') // Plague Spewer
+                ->selectNthOption(0, '@select-wargear-option') // Plague Spewer
                 ->assertSeeIn('@points', 19)
-                ->selectNthOption(1, 'select.custom-select') // Plague Belcher
+                ->selectNthOption(1, '@select-wargear-option') // Plague Belcher
                 ->assertSeeIn('@points', 18);
+
+            // Exit
+            $browser->click('@back')->click('@back');
+        });
+    }
+
+    public function testLimitations()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/builder#/tournament/1/ADEPTUS%20ASTARTES/builder')
+                ->assertFragmentIs('/tournament/1/ADEPTUS%20ASTARTES/builder')
+                ->waitForText('Choose Your Fighters');
+
+            $browser->click('@add Tactical Marine Gunner')
+                ->click('@add Tactical Marine Gunner')
+                ->assertElementsCountIs(2, '.vue-builder-fighter')
+                ->selectNthOption(0, '@select-wargear-option')
+                // @TODO
+                ;
         });
     }
 }

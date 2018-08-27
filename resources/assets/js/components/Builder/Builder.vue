@@ -61,15 +61,16 @@
 
                         <div class="card-body py-0">
                             <div class="fighter-list" dusk="fighters">
-                                <span v-for="fighter in fighters">
-                                    <fighter
+                                <draggable v-model="fighters">
+                                    <fighter v-for="fighter, index in fighters"
                                         :key="fighter.id"
                                         :factions="factions"
                                         :fighter="fighter"
+                                        :index="index"
                                         :specialisms="specialisms"
                                         :game-mode="gameMode"
                                     ></fighter>
-                                </span>
+                                </draggable>
                             </div>
                         </div>
 
@@ -81,10 +82,11 @@
 </template>
 
 <script>
+import Draggable from 'vuedraggable'
 import Fighter from './Fighter.vue'
 export default {
     components: {
-        Fighter
+        Draggable, Fighter
     },
     props: [
         'factionId', 'factionKeyword', 'gameMode'
@@ -104,8 +106,13 @@ export default {
         factions() {
             return this.$store.getters.getFactions
         },
-        fighters() {
-            return this.$store.getters.getFighters
+        fighters: {
+            get() {
+                return this.$store.getters.getFighters
+            },
+            set(value) {
+                this.$store.commit('updateFighters', value)
+            }
         },
         fightersByMiniature() {
             return _.countBy(this.fighters, 'miniatureName')

@@ -1,5 +1,6 @@
 <template>
-    <div class="vue-builder-fighter my-3 pb-3 border-bottom">
+    <div class="vue-builder-fighter my-3 pb-3 border-bottom"
+        :dusk="'fighter-' + index">
 
         <span class="mb-2 d-flex justify-content-between align-items-start">
             <div class="h3">
@@ -70,7 +71,7 @@ export default {
         itemsToText
     ],
     props: [
-        'factions', 'fighter', 'gameMode', 'specialisms'
+        'factions', 'fighter', 'index', 'gameMode', 'specialisms'
     ],
     computed: {
         faction() {
