@@ -95,7 +95,6 @@ export default {
             }).flatMap((sel) => {
                 return sel.option
             }).value()
-            console.warn(notMineLimited, wargear_option.options)
             return replaceable &&  _.isEmpty(_.intersection(wargear_option.options, notMineLimited))
         }
     }

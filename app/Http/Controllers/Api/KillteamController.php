@@ -14,7 +14,7 @@ class KillteamController extends Controller
         // @TODO the current request data is just mini data farted back at you.
         // in future it'll be more structured, and map directly to columns or relations
         // on Fighter model.
-
+        dd($request->all());
         // create a killteam
         $killteam = new Killteam;
         $killteam->name = $request->get('name');
@@ -28,7 +28,7 @@ class KillteamController extends Controller
             $fighter = new Fighter;
             $fighter->name = $mini['name'];
             $fighter->killteam_id = $killteam->id;
-            $fighter->miniature_id = $mini['miniature_id'];
+            $fighter->miniature_id = $mini['miniatureId'];
             $fighter->save();
         }
 

@@ -18,7 +18,7 @@
                             </select>
                         </div>
 
-                        <div class="card-body pt-0"
+                        <div class="card-body pt-3"
                             v-if="faction != undefined">
                             <div class=""
                                 v-for="datasheet in faction.datasheets">
@@ -54,9 +54,17 @@
                 <div class="col-12 col-sm-7 col-lg-8">
                     <div class="card mb-4">
 
-                        <span class="card-header h3 d-flex justify-content-between">
-                            Command Roster
-                            <span class="badge badge-info">{{ totalPoints }}</span>
+                        <span class="card-header d-flex justify-content-between">
+                            <span class="h3 mb-0">
+                                Command Roster
+                                <span class="badge badge-info">{{ totalPoints }}</span>
+                            </span>
+                            <input class="form-control" type="text"
+                                v-model="teamName">
+                            <button class="btn"
+                                v-on:click="saveKillTeam">
+                                Save
+                            </button>
                         </span>
 
                         <div class="card-body py-0">
@@ -98,14 +106,26 @@ export default {
             currentFactionId: false,
             sandboxSelectedFactionId: this.factionId,
             specialisms: [],
+            saved: false,
         }
     },
     computed: {
+        killteam() {
+            return this.$store.getters.getKillteam
+        },
         faction() {
             return this.$store.getters.getFaction(this.currentFactionId)
         },
         factions() {
             return this.$store.getters.getFactions
+        },
+        teamName: {
+            get() {
+                return this.$store.getters.getTeamName
+            },
+            set(value) {
+                this.$store.commit('updateTeamName', value)
+            }
         },
         fighters: {
             get() {
@@ -142,6 +162,10 @@ export default {
         next()
     },
     methods: {
+        saveKillTeam() {
+            axios.post(API_URL + '/killteam', this.killteam)
+                .then(response => (this.saved = true))
+        },
         fetchFaction(id) {
             axios.get(API_URL + '/factions/' + id).then(response => {
                 const faction = response.data.data
