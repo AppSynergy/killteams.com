@@ -45,7 +45,10 @@
                         <div class="card-footer">
                             <router-link dusk="back"
                                 :to="'/' + gameMode + '/choosefaction'">
-                                Back
+                                Back to faction select
+                            </router-link>
+                            <router-link dusk="home" to="/">
+                                Home
                             </router-link>
                         </div>
 

@@ -4,12 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\KillteamCollection as KillteamCollectionResource;
 use App\Models\Fighter;
 use App\Models\Killteam;
 use App\Models\Wargearselector;
 
 class KillteamController extends Controller
 {
+
+    public function index(Request $request)
+    {
+        $killteams = Killteam::with('fighters', 'fighters.wargearselectors')->get();
+        return new KillteamCollectionResource($killteams);
+    }
+
     public function store(Request $request)
     {
         // @TODO the current request data is just mini data farted back at you.
