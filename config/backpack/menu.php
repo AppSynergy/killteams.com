@@ -4,33 +4,33 @@ return [
     'items' => [
         'General' => [
             'user' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-child',
                 'name' => 'Users',
             ]
         ],
         'Definitions' => [
             'faction' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-flag',
                 'name' => 'Factions',
             ],
             'datasheet' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-users',
                 'name' => 'Datasheets',
             ],
             'miniature' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-user',
                 'name' => 'Miniatures',
             ],
             'wargear' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-cog',
                 'name' => 'Wargear',
             ],
             'wargearoption' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-cogs',
                 'name' => 'Wargear Options',
             ],
             'specialism' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-plus',
                 'name' => 'Specialisms',
             ],
             'keyword' => [
@@ -38,25 +38,25 @@ return [
                 'name' => 'Keywords',
             ],
             'ability' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-bomb',
                 'name' => 'Abilities',
             ],
         ],
         'Kill Teams' => [
             'killteam' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-users',
                 'name' => 'Kill Teams',
             ],
             'fighter' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-user',
                 'name' => 'Fighters',
             ],
             'wargearselector' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-sitemap',
                 'name' => 'Wargear Selectors'
             ],
             'specialistselector' => [
-                'icon' => 'fa-tag',
+                'icon' => 'fa-sitemap',
                 'name' => 'Specialist Selectors'
             ]
         ],
