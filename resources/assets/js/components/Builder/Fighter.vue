@@ -49,11 +49,11 @@
             ></wargear-selector>
         </span>
 
-        <fighter-specialism
+        <specialist-selector
             :specialists="fighter.specialists"
             :specialisms="specialisms"
             :game-mode="gameMode"
-        ></fighter-specialism>
+        ></specialist-selector>
 
     </div>
 </template>
@@ -61,11 +61,11 @@
 <script>
 import itemsToText from '../../mixins/itemsToText.js'
 import FighterProfile from './FighterProfile.vue'
-import FighterSpecialism from './FighterSpecialism.vue'
+import SpecialistSelector from './SpecialistSelector.vue'
 import WargearSelector from './WargearSelector.vue'
 export default {
     components: {
-        FighterProfile, FighterSpecialism, WargearSelector
+        FighterProfile, SpecialistSelector, WargearSelector
     },
     mixins: [
         itemsToText

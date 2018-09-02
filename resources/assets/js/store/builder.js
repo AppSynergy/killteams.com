@@ -32,6 +32,11 @@ export default new Vuex.Store({
             const fighter = _.find(state.killteam.fighters, { id: fighterId })
             const selector = _.find(fighter.wargearSelectors, {id: selectorId })
             return selector
+        },
+        getSpecialistSelectors: (state) => (fighterId, selectorId) => {
+            const fighter = _.find(state.killteam.fighters, { id: fighterId })
+            const selector = _.find(fighter.specialistSelectors, {id: selectorId })
+            return selector
         }
     },
     mutations: {
@@ -65,6 +70,7 @@ export default new Vuex.Store({
             fighter.wargearMasks = []
             delete fighter.id
             fighter.id = UUID()
+            fighter.specialistSelectors = []
             fighter.wargearSelectors = []
             _.each(fighter.wargear_options, (wgo) => {
                 fighter.wargearSelectors.push({
@@ -74,6 +80,12 @@ export default new Vuex.Store({
                     option: ('ALLOF' == wgo.method) ? wgo.options : null,
                     wgo: wgo
                 })
+            })
+            fighter.specialistSelectors.push({
+                id: UUID(),
+                specialism: null,
+                level: 1,
+                ability: null
             })
             state.killteam.fighters.push(fighter)
         },
