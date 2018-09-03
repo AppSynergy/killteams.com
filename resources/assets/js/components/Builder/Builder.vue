@@ -95,17 +95,20 @@
 
 <script>
 import Draggable from 'vuedraggable'
+import FactionResource from '../../mixins/factionResource.js'
 import Fighter from './Fighter.vue'
 export default {
     components: {
         Draggable, Fighter
     },
+    mixins: [
+        FactionResource
+    ],
     props: [
         'factionId', 'factionKeyword', 'gameMode'
     ],
     data() {
         return {
-            availableFactions: [],
             currentFactionId: false,
             sandboxSelectedFactionId: this.factionId,
             specialisms: [],
@@ -118,9 +121,6 @@ export default {
         },
         faction() {
             return this.$store.getters.getFaction(this.currentFactionId)
-        },
-        factions() {
-            return this.$store.getters.getFactions
         },
         teamName: {
             get() {
@@ -168,18 +168,6 @@ export default {
         saveKillTeam() {
             axios.post(API_URL + '/killteam', this.killteam)
                 .then(response => (this.saved = true))
-        },
-        fetchFaction(id) {
-            axios.get(API_URL + '/factions/' + id).then(response => {
-                const faction = response.data.data
-                this.currentFactionId = faction.id
-                this.$store.commit('setFaction', faction)
-            })
-        },
-        fetchFactions() {
-            axios.get(API_URL + '/factions').then(response => {
-                this.availableFactions = response.data.data
-            })
         },
         fetchSpecialisms() {
             axios.get(API_URL + '/specialisms').then(response => {

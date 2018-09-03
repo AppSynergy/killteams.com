@@ -23,8 +23,8 @@
                                         name: 'builder',
                                         params: {
                                             gameMode: 'sandbox',
-                                            factionId: 1,
-                                            factionKeyword: 'FOO',
+                                            factionId: killteam.faction_id,
+                                            factionKeyword: 'foo',
                                         }
                                     }">
                                     Load
@@ -40,11 +40,20 @@
 </template>
 
 <script>
+import FactionResource from '../../mixins/factionResource.js'
 export default {
+    mixins: [
+        FactionResource
+    ],
     data() {
         return {
             killteams: [],
         }
+    },
+    computed: {
+        factions() {
+            return this.$store.getters.getFactions
+        },
     },
     mounted() {
         this.getKillteams()
