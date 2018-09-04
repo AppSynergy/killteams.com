@@ -17,18 +17,11 @@
                         <div class="col col-12 col-sm-6">
                             <div class="px-3 py-2" v-for="killteam in killteams">
                                 <span class="h4">{{ killteam.name }}</span>
-                                <router-link class="btn btn-primary"
+                                <a class="btn btn-primary"
                                     dusk="load-kill-team"
-                                    :to="{
-                                        name: 'builder',
-                                        params: {
-                                            gameMode: 'sandbox',
-                                            factionId: killteam.faction_id,
-                                            factionKeyword: killteam.faction.faction_keyword
-                                        }
-                                    }">
+                                    v-on:click="loadKillteam(killteam, 'sandbox')">
                                     Load
-                                </router-link>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -50,6 +43,17 @@ export default {
         this.getKillteams()
     },
     methods: {
+        loadKillteam(killteam, gameMode) {
+            this.$router.push({
+                name: 'builder',
+                params: {
+                    gameMode: gameMode,
+                    factionId: killteam.faction_id,
+                    factionKeyword: killteam.faction.faction_keyword
+                }
+            })
+            this.$store.commit('loadKillteam', killteam)
+        },
         getKillteams() {
             this.killteams = axios.get(API_URL + '/killteams').then(response => {
                 const killteams = response.data.data

@@ -77,6 +77,7 @@ class BuilderTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/builder#/tournament/7/DEATH%20GUARD/builder')
+                ->waitForText('Choose Your Fighters')
                 ->assertFragmentIs('/tournament/7/DEATH%20GUARD/builder')
                 ->assertElementsCountIs(0, '.vue-builder-fighter');
 

@@ -48,6 +48,13 @@ export default new Vuex.Store({
                 fighters: []
             }
         },
+        loadKillteam(state, killteam) {
+            state.killteam.name = killteam.name
+            state.killteam.faction_id = killteam.faction_id
+            state.killteam.fighters = killteam.fighters
+            console.log(killteam, state.killteam)
+            //state.killteam = killteam
+        },
         updateTeamName(state, name) {
             state.killteam.name = name
         },
@@ -88,6 +95,7 @@ export default new Vuex.Store({
                 ability: null
             })
             state.killteam.fighters.push(fighter)
+            console.log("Added fighter.", state.killteam.fighters)
         },
         removeFighter(state, fighter_id) {
             state.killteam.fighters = _.reject(state.killteam.fighters, function(x) {
