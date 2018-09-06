@@ -101,6 +101,17 @@ root:
                                 specialists:
                                     _type: partial
                                     _partial: list_of_texts
+                                psyker:
+                                    _type: array
+                                    _required: false
+                                    _children:
+                                        manifest:
+                                            _type: number
+                                        deny:
+                                            _type: number
+                                        knows:
+                                            _type: partial
+                                            _partial: flexible_lists
 
 
 partials:

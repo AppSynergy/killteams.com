@@ -1,0 +1,86 @@
+faction_keyword: GREY KNIGHTS
+
+description: An ancient order of Space Marines, shrouded in mystery and legend, the Grey Knights are Humanity's greatest defense against the threat of daemonkind.
+
+abilities:
+  - name: And They Shall Know No Fear
+    description: You can re-roll failed Nerve tests for this model.
+  - name: Daemon Hunters
+    description: If this model attacks any DAEMONS in the Fight phase, you can re-roll failed wound rolls for those attacks.
+  - name: Transhuman Physiology
+    description: Ignore the penalty to this model’s hit rolls from one flesh wound it has suffered.
+  - name: Rites of Banishment
+    description: When this model manifest the Psybolt psychic power it has a range of 12". If Psybolt is successfully manifested, and the target is a DAEMON, the target suffers D3 mortal wounds, even if the result of the Psychic test was not 11+.
+
+points:
+  kill_team:
+    Grey Knight: 18
+    Grey Knight Gunner: 19
+    Justicar: 19
+  ranged_weapons:
+    Frag grenades: 0
+    Incinerator: 3
+    Krak grenades: 0
+    Psilencer: 3
+    Psycannon: 2
+    Psyk-out grenades: 0
+    Storm bolter: 0
+  melee_weapons:
+    Nemesis daemon hammer: 2
+    Nemesis falchion: 1
+    Nemesis force halberd: 0
+    Nemesis force sword: 0
+    Nemesis warding staff: 0
+
+datasheets:
+  - name: Grey Knight
+    abilities: [And They Shall Know No Fear, Daemon Hunters, Transhuman Physiology, Rites of Banishment]
+    keywords: [IMPERIUM, ADEPTUS ASTARTES, PSYKER, GREY KNIGHT]
+    minis:
+
+      - name: Grey Knight
+        profile: 6 3 3 4 4 1 1 7 3 0
+        armament: [Nemesis force sword, Storm bolter, Frag grenades, Krak grenades, Psyk-out grenades]
+        specialists: [Combat, Comms, Demolitions, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Nemesis force sword
+            method: ONEOF
+            options: [Nemesis force halberd, Nemesis daemon hammer, Nemesis warding staff, [Nemesis falchion, Nemesis falchion]]
+        psyker: 
+            manifest: 1
+            deny: 1
+            knows: 'Psybolt'
+
+      - name: Grey Knight Gunner
+        profile: 6 3 3 4 4 1 1 7 3 2
+        armament: [Nemesis force sword, Storm bolter, Frag grenades, Krak grenades, Psyk-out grenades]
+        specialists: [Combat, Comms, Demolitions, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: [Nemesis force sword, Storm bolter]
+            method: ONEOF
+            options: [[Nemesis force halberd, Storm bolter], [Nemesis daemon hammer, Storm bolter], [Nemesis warding staff, Storm bolter], [Nemesis falchion, Nemesis falchion, Storm bolter], Incinerator, Psilencer, Psycannon]
+        psyker: 
+            manifest: 1
+            deny: 1
+            knows: 'Psybolt'
+    
+      - name: Justicar
+        profile: 6 3 3 4 4 1 2 8 3 1
+        armament: [Nemesis force sword, Storm bolter, Frag grenades, Krak grenades, Psyk-out grenades]
+        specialists: [Combat, Comms, Demolitions, Veteran, Zealot]
+        wargear_options:
+          - who: ANY
+            may: REPLACE
+            replace: Nemesis force sword
+            method: ONEOF
+            options: [Nemesis force halberd, Nemesis daemon hammer, Nemesis warding staff, [Nemesis falchion, Nemesis falchion]]
+        psyker: 
+            manifest: 1
+            deny: 1
+            knows: 'Psybolt'
+    
+    

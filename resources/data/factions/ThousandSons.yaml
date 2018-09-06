@@ -82,6 +82,10 @@ datasheets:
             method: ALLOF
             options: Warpflame pistol
         specialists: [Leader, Combat, Demolitions, Veteran]
+        psyker: 
+            manifest: 1
+            deny: 1
+            knows: 'Psybolt'
 
   - name: Tzaangor
     abilities: [Aura of Dark Glory, Brayhorn]
