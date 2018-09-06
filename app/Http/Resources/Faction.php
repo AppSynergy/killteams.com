@@ -23,6 +23,7 @@ class Faction extends JsonResource
             ],
             'id' => $this->id,
             'name' => $this->name,
+            'description' => $this->description,
             'faction_keyword' => $this->faction_keyword,
             'has_datasheets' => $this->hasDatasheets,
             'datasheets' => DatasheetResource::collection($this->whenLoaded('datasheets')),

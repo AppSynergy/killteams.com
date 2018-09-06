@@ -6,17 +6,30 @@
                 <span class="card-header h2">Kill Team Builder &middot; Choose a Faction</span>
 
                 <div class="card-body">
-                    <span v-for="faction in factions">
-                        <router-link class="btn btn-primary mr-3 mb-3"
-                            :dusk="faction.name"
-                            :class="(isDisabled(faction) ? 'disabled' : '')"
-                            :event="(isDisabled(faction) ? '' : 'click')"
-                            :disabled="isDisabled(faction)"
-                            :to="'/' + gameMode + '/' + faction.id + '/'
-                            + faction.faction_keyword + '/builder'">
-                            {{ faction.name }}
-                        </router-link>
-                    </span>
+                    <div class="row">
+                        <div class="col col-12 col-lg-6 col-xl-4 mb-3" 
+                            v-for="faction in factions">
+                            <div class="bg-dark text-light p-3 rounded h-100">
+                                <router-link class="btn btn-primary mr-3 mb-3"
+                                    :dusk="faction.name"
+                                    :class="(isDisabled(faction) ? 'disabled' : '')"
+                                    :event="(isDisabled(faction) ? '' : 'click')"
+                                    :disabled="isDisabled(faction)"
+                                    :to="'/' + gameMode + '/' + faction.id + '/'
+                                    + faction.faction_keyword + '/builder'">
+                                    {{ faction.name }}
+                                </router-link>
+                                <p>
+                                    <span v-if="isDisabled(faction)">
+                                        Coming soon.
+                                    </span>
+                                    <span v-else>
+                                        {{ faction.description }}
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-footer">
