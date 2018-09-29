@@ -50,9 +50,12 @@ export default new Vuex.Store({
         },
         loadKillteam(state, killteam) {
             state.killteam.name = killteam.name
-            state.killteam.faction_id = killteam.faction_id
-            state.killteam.fighters = killteam.fighters
-            console.log(killteam, state.killteam)
+            state.killteam.faction_id = parseInt(killteam.faction_id, 10)
+            state.killteam.fighters = _.map(killteam.fighters, (fighter) => {
+                fighter.faction_id = killteam.faction_id
+                return fighter
+            })
+            //console.log(killteam, state.killteam)
             //state.killteam = killteam
         },
         updateTeamName(state, name) {

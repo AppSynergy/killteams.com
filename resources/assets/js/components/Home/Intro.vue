@@ -49,7 +49,7 @@ export default {
                 params: {
                     gameMode: gameMode,
                     factionId: killteam.faction_id,
-                    factionKeyword: killteam.faction.faction_keyword
+                    factionKeyword: killteam.faction_keyword
                 }
             })
             this.$store.commit('loadKillteam', killteam)

@@ -75,7 +75,8 @@ export default {
     ],
     computed: {
         faction() {
-            return this.factions[this.fighter.factionId]
+            console.log("faction", {[this.factions]: this.fighter.faction_id})
+            return this.factions[this.fighter.faction_id]
         },
         hasWargearOptions() {
             return !_.isEmpty(this.fighter.wargear_options)
