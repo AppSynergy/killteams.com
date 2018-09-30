@@ -24,6 +24,7 @@ class Fighter extends JsonResource
             'faction_id' => $this->faction_id,
             'miniature_id' => $this->miniature_id,
             'specialism_id' => $this->specialism_id,
+            'specialistSelector' => $this->specialistSelector,
             //'wargear_options' => $wargear_options,
             //'wargearSelectors' => $this->wargearselectors,
         ];

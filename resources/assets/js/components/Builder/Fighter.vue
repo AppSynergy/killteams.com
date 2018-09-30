@@ -14,8 +14,9 @@
             </fighter-profile>
         </span>
         <specialist-selector
+            :fighterId="fighter.id"
             :game-mode="gameMode"
-            :specialists="fighter.miniature.specialists"
+            :availableSpecialistNames="fighter.miniature.specialists"
             :specialistSelector="fighter.specialistSelector"
         ></specialist-selector>
 

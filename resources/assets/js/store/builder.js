@@ -94,6 +94,10 @@ const killteamModule = {
         },
         addFighter(state, fighter) {
             state.killteam.fighters.push(fighter)
+        },
+        updateSpecialistSelector(state, {fighterId, selector}) {
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            state.killteam.fighters[fighterIndex].specialistSelector = selector
         }
     },
     actions: {
@@ -123,7 +127,8 @@ const killteamModule = {
                 miniatureId: miniature.id,
                 specialistSelector: {
                     id: UUID(),
-                    specialism: null,
+                    selectorId: null, // @TODO pass in
+                    specialismId: null,
                     level: 1,
                     abilities: []
                 }

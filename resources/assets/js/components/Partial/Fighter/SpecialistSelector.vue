@@ -7,10 +7,11 @@
             </span>
 
             <select class="custom-select custom-select-sm"
-                v-model="selectedSpecialistName">
-                <option v-for="specialist in specialistOptions"
-                    :value="specialist">
-                    {{ specialist }}
+                v-model="specialistSelector.specialismId"
+                v-on:change="updateSpecialism">
+                <option v-for="specialist in specialists"
+                    :value="specialist.id">
+                    {{ specialist.name }}
                 </option>
             </select>
 
@@ -20,7 +21,8 @@
                 </span>
 
                 <select class="custom-select custom-select-sm"
-                    v-model="specialistSelector.level">
+                    v-model="specialistSelector.level"
+                    v-on:change="updateSpecialism">
                     <option v-for="level in [1,2,3,4]"
                         :value="level">
                         {{ level }}
@@ -59,21 +61,16 @@ export default {
         SpecialismsResource,
     ],
     props: [
-        'gameMode', 'specialists', 'specialistSelector',
+        'availableSpecialistNames', 'fighterId', 'gameMode', 'specialistSelector',
     ],
-    data() {
-        return {
-            selectedSpecialistName: 'None',
-        }
-    },
     computed: {
-        levels() {
-            return _.range(1, this.level + 1)
+        specialists() {
+            return _.filter(this.specialisms, (specialism) => {
+                return _.includes(this.availableSpecialistNames, specialism.name)
+            })
         },
-        specialistOptions() {
-            let list = _.clone(this.specialists)
-            list.splice(0, 0, 'None')
-            return list
+        levels() {
+            return _.range(1, this.specialistSelector.level + 1)
         },
         availableAbilities() {
             if (!this.selectedSpecialistName || this.selectedSpecialistName == 'None') {
@@ -86,6 +83,14 @@ export default {
                 return _.first(specialism).abilities
             }
             return []
+        }
+    },
+    methods: {
+        updateSpecialism() {
+            this.$store.commit('updateSpecialistSelector', {
+                fighterId: this.fighterId,
+                selector: this.specialistSelector,
+            })
         }
     }
 }
