@@ -13,6 +13,7 @@
                     <div class="card mb-4">
                         <div class="card-body py-0">
                             <save-buttons></save-buttons>
+                            <killteam-form></killteam-form>
                             <div class="fighter-list" dusk="fighters">
                                 <draggable v-model="killteam.fighters">
                                     <fighter v-for="fighter, index in killteam.fighters"
@@ -33,13 +34,14 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import KillteamResource from '../../mixins/killteamResource.js'
 import Fighter from './Fighter.vue'
-import SaveButtons from './Partial/SaveButtons.vue'
-import Sidebar from './Partial/Sidebar.vue'
+import KillteamResource from '../../mixins/killteamResource.js'
+import KillteamForm from '../Partial/KillteamForm.vue'
+import SaveButtons from '../Partial/SaveButtons.vue'
+import Sidebar from '../Partial/Sidebar.vue'
 export default {
     components: {
-        Draggable, Fighter, SaveButtons, Sidebar
+        Draggable, Fighter, KillteamForm, SaveButtons, Sidebar
     },
     mixins: [
         KillteamResource,

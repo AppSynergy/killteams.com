@@ -10,6 +10,18 @@ const factionsModule = {
     getters: {
         getFactions: (state) => {
             return state.factions
+        },
+        getMiniature: (state) => ({factionId, miniatureId}) => {
+            const faction = _.find(state.factions, {
+                id: factionId
+            })
+            const datasheet = _.find(faction.datasheets, {
+                miniatures: [{ id: miniatureId }],
+            })
+            const miniature = _.find(datasheet.miniatures, {
+                id: miniatureId,
+            })
+            return miniature
         }
     },
     mutations: {
@@ -29,6 +41,9 @@ const killteamModule = {
     getters: {
         getKillteam: (state) => {
             return state.killteam
+        },
+        getName: (state) => {
+            return state.killteam.name
         }
     },
     mutations: {
@@ -43,19 +58,25 @@ const killteamModule = {
         }
     },
     actions: {
-        loadKillteam({commit, dispatch}, {name, fighters}) {
+        loadKillteam({commit, dispatch, rootGetters}, {name, fighters}) {
             commit('setName', name)
             _.each(fighters, (fighter) => {
-                dispatch('addFighter', fighter)
+                dispatch('addFighter', {
+                    name: fighter.name,
+                    miniature: rootGetters.getMiniature({
+                        factionId: fighter.faction_id,
+                        miniatureId: fighter.miniature_id,
+                    })
+                })
             })
         },
-        addFighter(context, miniature) {
+        addFighter(context, {name, miniature}) {
             const fighter = {
                 id: UUID(),
-                name: 'Bill',
+                name,
+                miniature,
                 factionId: miniature.faction_id,
                 miniatureId: miniature.id,
-                miniature,
             }
             context.commit('addFighter', fighter)
         }

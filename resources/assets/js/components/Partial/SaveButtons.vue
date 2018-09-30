@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-builder-partial-save-buttons">
+    <div class="vue-partial-save-buttons">
         <button class="btn"
             v-on:click="saveKillTeam">
             Save
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import KillteamResource from '../../../mixins/killteamResource.js'
+import KillteamResource from '../../mixins/killteamResource.js'
 export default {
     mixins: [
         KillteamResource,

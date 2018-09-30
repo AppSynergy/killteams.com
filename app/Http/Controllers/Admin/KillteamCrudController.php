@@ -42,14 +42,6 @@ class KillteamCrudController extends CrudController
             'model' => 'App\Models\User',
         ]);
         $this->crud->addColumn([
-            'label' => 'Faction',
-            'name' => 'faction_id',
-            'type' => 'select',
-            'entity' => 'faction',
-            'attribute' => 'name',
-            'model' => 'App\Models\Faction',
-        ]);
-        $this->crud->addColumn([
             'label' => 'Fighters',
             'name' => 'fighters',
             'type' => 'model_function',
@@ -64,14 +56,6 @@ class KillteamCrudController extends CrudController
             'entity' => 'user',
             'attribute' => 'name',
             'model' => 'App\Models\User',
-        ]);
-        $this->crud->addField([
-            'label' => 'Faction',
-            'name' => 'faction_id',
-            'type' => 'select2',
-            'entity' => 'faction',
-            'attribute' => 'name',
-            'model' => 'App\Models\Faction',
         ]);
         $this->crud->setFromDb();
 

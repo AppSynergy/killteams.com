@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-builder-partial-sidebar">
+    <div class="vue--partial-sidebar">
         <div class="card">
             <span class="card-header h3">Choose Your Fighters</span>
 
@@ -31,6 +31,10 @@
                 </div>
             </div>
 
+            <div class="card-body pt-3">
+                <loader></loader>
+            </div>
+
             <div class="card-footer">
                 <router-link dusk="back"
                     :to="'/' + gameMode + '/choosefaction'">
@@ -46,13 +50,17 @@
 </template>
 
 <script>
-import FactionResource from '../../../mixins/factionResource.js'
+import Loader from './Loader.vue'
+import FactionResource from '../../mixins/factionResource.js'
 export default {
-    props: [
-        'factionId', 'factionKeyword', 'gameMode',
-    ],
+    components: {
+        Loader,
+    },
     mixins: [
         FactionResource
+    ],
+    props: [
+        'factionId', 'factionKeyword', 'gameMode',
     ],
     computed: {
         faction() {
@@ -66,7 +74,10 @@ export default {
     },
     methods: {
         addFighter(miniature) {
-            this.$store.dispatch('addFighter', miniature)
+            this.$store.dispatch('addFighter', {
+                name: 'Frodo',
+                miniature
+            })
         },
         updateFactionId() {
             this.$router.push({
