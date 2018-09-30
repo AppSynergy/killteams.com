@@ -1,7 +1,15 @@
 <template>
     <div class="vue-builder-fighter my-3 pb-3 border-bottom"
         :dusk="'fighter-' + index">
-        {{ fighter }}
+
+        <span class="mb-2 d-flex justify-content-between align-items-start">
+            {{ fighter }}
+            <span class="form-inline">
+                <input type="text" class="form-control"
+                    v-model="fighter.name">
+            </span>
+        </span>
+
     </div>
 </template>
 
@@ -18,7 +26,7 @@ export default {
         itemsToText
     ],
     props: [
-        'factions', 'fighter', 'fighters-wargear', 'index', 'gameMode', 'specialisms'
+        'fighter', 'gameMode', 'index',
     ],
     computed: {
 

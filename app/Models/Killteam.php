@@ -39,11 +39,6 @@ class Killteam extends Model
         return $this->hasMany('App\Models\Fighter');
     }
 
-    public function faction()
-    {
-        return $this->belongsTo('App\Models\Faction');
-    }
-
     public function user()
     {
         return $this->belongsTo('App\Models\User');

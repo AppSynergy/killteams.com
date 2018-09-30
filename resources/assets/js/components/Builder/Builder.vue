@@ -5,29 +5,25 @@
                 <div class="col-12 col-sm-5 col-lg-4">
                     <sidebar
                         :factionId="factionId"
+                        :factionKeyword="factionKeyword"
                         :gameMode="gameMode"
                     ></sidebar>
                 </div>
                 <div class="col-12 col-sm-7 col-lg-8">
                     <div class="card mb-4">
-
                         <div class="card-body py-0">
+                            <save-buttons></save-buttons>
                             <div class="fighter-list" dusk="fighters">
-                                <draggable v-model="fighters">
-                                    <fighter v-for="fighter, index in fighters"
-                                        :key="fighter.id"
-                                        :factions="factions"
+                                <draggable v-model="killteam.fighters">
+                                    <fighter v-for="fighter, index in killteam.fighters"
                                         :fighter="fighter"
-                                        :fighters-wargear="fightersWargear"
-                                        :index="index"
-                                        :specialisms="specialisms"
                                         :game-mode="gameMode"
+                                        :index="index"
+                                        :key="fighter.id"
                                     ></fighter>
-                                    <pre>{{ fighters }}</pre>
                                 </draggable>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -37,15 +33,16 @@
 
 <script>
 import Draggable from 'vuedraggable'
-import FighterResource from '../../mixins/fighterResource.js'
+import KillteamResource from '../../mixins/killteamResource.js'
 import Fighter from './Fighter.vue'
+import SaveButtons from './Partial/SaveButtons.vue'
 import Sidebar from './Partial/Sidebar.vue'
 export default {
     components: {
-        Draggable, Fighter, Sidebar
+        Draggable, Fighter, SaveButtons, Sidebar
     },
     mixins: [
-        FighterResource,
+        KillteamResource,
     ],
     props: [
         'factionId', 'factionKeyword', 'gameMode'

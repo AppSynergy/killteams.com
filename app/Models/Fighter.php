@@ -39,6 +39,11 @@ class Fighter extends Model
         return $this->belongsTo('App\Models\Specialism');
     }
 
+    public function faction()
+    {
+        return $this->belongsTo('App\Models\Faction');
+    }
+
     public function miniature()
     {
         return $this->belongsTo('App\Models\Miniature');

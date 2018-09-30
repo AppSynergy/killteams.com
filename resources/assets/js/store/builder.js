@@ -27,14 +27,32 @@ const killteamModule = {
         }
     },
     getters: {
-        getFighters: (state) => {
-            return state.killteam.fighters
+        getKillteam: (state) => {
+            return state.killteam
         }
     },
     mutations: {
+        setFighters(state, killteam) {
+            state.killteam = killteam
+        },
         setFighters(state, fighters) {
             state.killteam.fighters = fighters
         },
+        addFighter(state, fighter) {
+            state.killteam.fighters.push(fighter)
+        }
+    },
+    actions: {
+        addFighter(context, {factionId, miniature}) {
+            const fighter = {
+                id: UUID(),
+                name: 'Bill',
+                factionId,
+                miniatureId: miniature.id,
+                miniature,
+            }
+            context.commit('addFighter', fighter)
+        }
     }
 }
 

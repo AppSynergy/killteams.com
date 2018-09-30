@@ -26,20 +26,21 @@ class KillteamController extends Controller
         // create a killteam
         $killteam = new Killteam;
         $killteam->name = $request->get('name');
-        $killteam->faction_id = $request->get('faction_id');
-        // @TODO auth
-        $killteam->user_id = 1;
+        $killteam->user_id = 1; // @TODO auth
         $killteam->save();
 
         // create all fighters
-        foreach ($request->get('fighters') as $mini) {
+        foreach ($request->get('fighters') as $fighter) {
             $fighter = new Fighter;
-            $fighter->name = $mini['name'];
+            $fighter->name = $fighter['name'];
             $fighter->killteam_id = $killteam->id;
-            $fighter->miniature_id = $mini['miniatureId'];
+            $fighter->faction_id = $fighter['factionId'];
+            $fighter->miniature_id = $fighter['miniatureId'];
+            $fighter->specialism_id = null; // @TODO specialisms
             $fighter->save();
-            $fighter_id = $fighter->id;
 
+            /*
+            $fighter_id = $fighter->id;
             foreach ($mini['wargearSelectors'] as $selector) {
                 $wgs = new Wargearselector;
                 $wgs->isSelected = $selector['isSelected'];
@@ -57,6 +58,7 @@ class KillteamController extends Controller
                 $ss->ability_id = $selector['ability_id'];
                 $ss->save();
             }
+            */
         }
 
         return [200, "OK"];

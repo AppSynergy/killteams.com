@@ -15,7 +15,8 @@ export default {
     methods: {
         fetchFactions() {
             axios.get(API_URL + '/factions').then(response => {
-                this.factions = response.data.data
+                const factions = response.data.data
+                this.factions = _.filter(factions, (x) => x.id == 1 || x.id == 7)
             })
         }
     }

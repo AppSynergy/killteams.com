@@ -44,14 +44,14 @@ class Faction extends Model
         return $this->hasManyThrough('App\Models\Miniature', 'App\Models\Datasheet');
     }
 
+    public function fighters()
+    {
+        return $this->hasMany('App\Models\Fighter');
+    }
+
     public function wargears()
     {
         return $this->belongsToMany('App\Models\Wargear');
-    }
-
-    public function killteams()
-    {
-        return $this->hasMany('App\Models\Killteam');
     }
 
     /*

@@ -6,7 +6,8 @@
             <div class="card-body"
                 v-if="'sandbox' == gameMode">
                 <select class="custom-select custom-select-sm"
-                    v-model="selectedFactionId">
+                    v-model="selectedFactionId"
+                    v-on:change="updateFactionId">
                     <option v-for="faction in factions"
                         :value="faction.id">{{ faction.name }}
                     </option>
@@ -17,19 +18,16 @@
                 v-if="faction != undefined">
                 <div class=""
                     v-for="datasheet in faction.datasheets">
-
                     <div class="h5 mr-3 font-weight-bold d-block">
                         {{ datasheet.name }}
                     </div>
-
                     <button class="btn btn-primary btn-sm mr-2 mb-2"
-                        :dusk="'add ' + mini.name"
-                        v-on:click="addFighter(mini)"
-                        v-for="mini in datasheet.miniatures"
-                        :disabled="false">
-                        {{ mini.name }}
+                        v-for="miniature in datasheet.miniatures"
+                        v-on:click="addFighter(miniature)"
+                        :disabled="false"
+                        :dusk="'add ' + miniature.name">
+                        {{ miniature.name }}
                     </button>
-
                 </div>
             </div>
 
@@ -51,7 +49,7 @@
 import FactionResource from '../../../mixins/factionResource.js'
 export default {
     props: [
-        'factionId', 'gameMode',
+        'factionId', 'factionKeyword', 'gameMode',
     ],
     mixins: [
         FactionResource
@@ -67,8 +65,22 @@ export default {
         }
     },
     methods: {
-        addFighter() {
-
+        addFighter(miniature) {
+            this.$store.dispatch({
+                type: 'addFighter',
+                factionId: this.selectedFactionId,
+                miniature,
+            })
+        },
+        updateFactionId() {
+            this.$router.push({
+                name: 'builder',
+                params: {
+                    gameMode: this.gameMode,
+                    factionId: this.selectedFactionId,
+                    factionKeyword: this.faction.faction_keyword,
+                }
+            })
         }
     }
 }

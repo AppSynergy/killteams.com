@@ -38,6 +38,7 @@ class DeployFactions extends Command
     {
         if ($this->option('silent')) {
             if ($this->option('refresh')) {
+                $this->info('Migrating and seeding database...');
                 $this->callSilent('migrate:refresh', ['--seed']);
             }
             $this->info('Deploying factions silently...');
@@ -50,6 +51,6 @@ class DeployFactions extends Command
             $this->call('factions:validate');
             $this->call('factions:fulldeployment');
         }
-
+        $this->info('Deployment complete.');
     }
 }
