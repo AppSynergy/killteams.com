@@ -12,12 +12,12 @@
                 :profile="fighter.miniature.profile"
                 :suffixes="fighter.miniature.profile_suffixes">
             </fighter-profile>
-            <specialist-selector
-                :specialists="fighter.miniature.specialists"
-                :specialisms="specialisms"
-                :game-mode="gameMode"
-            ></specialist-selector>
         </span>
+        <specialist-selector
+            :game-mode="gameMode"
+            :specialists="fighter.miniature.specialists"
+            :specialistSelector="fighter.specialistSelector"
+        ></specialist-selector>
 
     </div>
 </template>

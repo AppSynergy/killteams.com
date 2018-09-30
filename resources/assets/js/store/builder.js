@@ -121,6 +121,12 @@ const killteamModule = {
                 fighterId,
                 factionId: miniature.faction_id,
                 miniatureId: miniature.id,
+                specialistSelector: {
+                    id: UUID(),
+                    specialism: null,
+                    level: 1,
+                    abilities: []
+                }
             }
             context.commit('addFighter', fighter)
         }

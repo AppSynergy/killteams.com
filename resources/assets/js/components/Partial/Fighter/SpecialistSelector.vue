@@ -20,7 +20,7 @@
                 </span>
 
                 <select class="custom-select custom-select-sm"
-                    v-model="selectedLevel">
+                    v-model="specialistSelector.level">
                     <option v-for="level in [1,2,3,4]"
                         :value="level">
                         {{ level }}
@@ -59,22 +59,14 @@ export default {
         SpecialismsResource,
     ],
     props: [
-        'gameMode', 'specialists'
+        'gameMode', 'specialists', 'specialistSelector',
     ],
     data() {
         return {
             selectedSpecialistName: 'None',
-            selectedLevel: 1
         }
     },
     computed: {
-        level() {
-            if ('sandbox' == this.gameMode) {
-                return this.selectedLevel
-            } else {
-                return 1
-            }
-        },
         levels() {
             return _.range(1, this.level + 1)
         },
