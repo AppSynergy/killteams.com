@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-builder-fighter-specialism">
+    <div class="vue-partial-fighter-specialist-selector">
         <div class="form-inline">
 
             <span class="mr-2 font-weight-bold">
@@ -53,18 +53,19 @@
 </template>
 
 <script>
+import SpecialismsResource from '../../../mixins/SpecialismsResource.js'
 export default {
+    mixins: [
+        SpecialismsResource,
+    ],
     props: [
-        'gameMode', 'specialisms', 'specialists'
+        'gameMode', 'specialists'
     ],
     data() {
         return {
             selectedSpecialistName: 'None',
             selectedLevel: 1
         }
-    },
-    mounted() {
-
     },
     computed: {
         level() {

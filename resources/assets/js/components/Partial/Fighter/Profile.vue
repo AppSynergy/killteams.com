@@ -1,5 +1,5 @@
 <template>
-    <span class="vue-builder-fighter-profile">
+    <span class="vue-partial-fighter-profile">
         <table class="mb-0 table table-sm table-bordered table-responsive">
             <thead class="thead-dark"><tr>
                 <th class="text-center"

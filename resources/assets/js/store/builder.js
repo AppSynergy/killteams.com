@@ -3,6 +3,22 @@ import Vuex from 'vuex'
 import UUID from 'uuid/v1'
 Vue.use(Vuex)
 
+const specialismsModule = {
+    state: {
+        specialisms: [],
+    },
+    getters: {
+        getSpecialisms: (state) => {
+            return state.specialisms
+        }
+    },
+    mutations: {
+        setSpecialisms(state, specialisms) {
+            state.specialisms = specialisms
+        }
+    }
+}
+
 const factionsModule = {
     state: {
         factions: {},
@@ -113,6 +129,6 @@ const killteamModule = {
 
 export default new Vuex.Store({
     modules: {
-        factionsModule, killteamsModule, killteamModule
+        specialismsModule, factionsModule, killteamsModule, killteamModule
     }
 })

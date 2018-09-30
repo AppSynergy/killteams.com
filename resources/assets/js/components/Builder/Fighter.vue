@@ -3,11 +3,20 @@
         :dusk="'fighter-' + index">
 
         <span class="mb-2 d-flex justify-content-between align-items-start">
-            {{ fighter }}
+            {{ 'fighter' }}
             <span class="form-inline">
                 <input type="text" class="form-control"
                     v-model="fighter.name">
             </span>
+            <fighter-profile
+                :profile="fighter.miniature.profile"
+                :suffixes="fighter.miniature.profile_suffixes">
+            </fighter-profile>
+            <specialist-selector
+                :specialists="fighter.miniature.specialists"
+                :specialisms="specialisms"
+                :game-mode="gameMode"
+            ></specialist-selector>
         </span>
 
     </div>
@@ -15,15 +24,15 @@
 
 <script>
 import itemsToText from '../../mixins/itemsToText.js'
-import FighterProfile from './FighterProfile.vue'
-import SpecialistSelector from './SpecialistSelector.vue'
-import WargearSelector from './WargearSelector.vue'
+import FighterProfile from '../Partial/Fighter/Profile.vue'
+import SpecialistSelector from '../Partial/Fighter/SpecialistSelector.vue'
+import WargearSelector from '../Partial/Fighter/WargearSelector.vue'
 export default {
     components: {
-        FighterProfile, SpecialistSelector, WargearSelector
+        FighterProfile, SpecialistSelector, WargearSelector,
     },
     mixins: [
-        itemsToText
+        itemsToText,
     ],
     props: [
         'fighter', 'gameMode', 'index',

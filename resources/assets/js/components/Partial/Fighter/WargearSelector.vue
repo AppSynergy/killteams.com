@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-builder-wargear-selector">
+    <div class="vue-partial-fighter-wargear-selector">
 
         <div class="form-check form-inline pl-0" v-if="selection">
 
@@ -40,10 +40,10 @@
 </template>
 
 <script>
-import itemsToText from '../../mixins/itemsToText.js'
+import itemsToText from '../../../mixins/itemsToText.js'
 export default {
     mixins: [
-        itemsToText
+        itemsToText,
     ],
     props: [
         'armament', 'available', 'fighterId', 'selectionId', 'wargear', 'wgo'
