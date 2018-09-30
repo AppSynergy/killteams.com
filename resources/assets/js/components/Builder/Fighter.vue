@@ -1,10 +1,7 @@
 <template>
     <div class="vue-builder-fighter my-3 pb-3 border-bottom"
         :dusk="'fighter-' + index">
-
-
         {{ fighter }}
-
     </div>
 </template>
 

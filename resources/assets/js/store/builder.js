@@ -3,35 +3,43 @@ import Vuex from 'vuex'
 import UUID from 'uuid/v1'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const factionsModule = {
     state: {
         factions: {},
-        killteam: {
-            name: 'Kill Team Name',
-            faction_id: null,
-            fighters: [],
-        }
     },
     getters: {
         getFactions: (state) => {
             return state.factions
-        },
-        getFaction: (state) => (factionId) => {
-            return state.factions[factionId]
-        },
-        getFighters: (state) => {
-            return state.killteam.fighters
-        },
-    },
-    actions: {
-
+        }
     },
     mutations: {
         setFactions(state, factions) {
             state.factions = factions
-        },
+        }
+    }
+}
+
+const killteamModule = {
+    state: {
+        killteam: {
+            name: 'Kill Team Name',
+            fighters: [],
+        }
+    },
+    getters: {
+        getFighters: (state) => {
+            return state.killteam.fighters
+        }
+    },
+    mutations: {
         setFighters(state, fighters) {
             state.killteam.fighters = fighters
         },
+    }
+}
+
+export default new Vuex.Store({
+    modules: {
+        factionsModule, killteamModule
     }
 })

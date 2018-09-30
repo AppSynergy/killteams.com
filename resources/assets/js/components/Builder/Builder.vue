@@ -3,12 +3,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-5 col-lg-4">
-                    <div class="card mb-4">
-                        <sidebar
-                            :factionId="factionId"
-                            :gameMode="gameMode"
-                        ></sidebar>
-                    </div>
+                    <sidebar
+                        :factionId="factionId"
+                        :gameMode="gameMode"
+                    ></sidebar>
                 </div>
                 <div class="col-12 col-sm-7 col-lg-8">
                     <div class="card mb-4">
@@ -39,32 +37,18 @@
 
 <script>
 import Draggable from 'vuedraggable'
+import FighterResource from '../../mixins/fighterResource.js'
 import Fighter from './Fighter.vue'
 import Sidebar from './Partial/Sidebar.vue'
 export default {
     components: {
         Draggable, Fighter, Sidebar
     },
+    mixins: [
+        FighterResource,
+    ],
     props: [
         'factionId', 'factionKeyword', 'gameMode'
-    ],
-    data() {
-        return {
-
-        }
-    },
-    computed: {
-        fighters: {
-            get() {
-                return this.$store.getters.getFighters
-            },
-            set(value) {
-                this.$store.commit('setFighters', value)
-            }
-        },
-    },
-    methods: {
-
-    }
+    ]
 }
 </script>

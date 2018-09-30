@@ -1,48 +1,49 @@
 <template>
     <div class="vue-builder-partial-sidebar">
+        <div class="card">
+            <span class="card-header h3">Choose Your Fighters</span>
 
-        <span class="card-header h3">Choose Your Fighters</span>
-
-        <div class="card-body"
-            v-if="'sandbox' == gameMode">
-            <select class="custom-select custom-select-sm"
-                v-model="selectedFactionId">
-                <option v-for="faction in factions"
-                    :value="faction.id">{{ faction.name }}
-                </option>
-            </select>
-        </div>
-
-        <div class="card-body pt-3"
-            v-if="faction != undefined">
-            <div class=""
-                v-for="datasheet in faction.datasheets">
-
-                <div class="h5 mr-3 font-weight-bold d-block">
-                    {{ datasheet.name }}
-                </div>
-
-                <button class="btn btn-primary btn-sm mr-2 mb-2"
-                    :dusk="'add ' + mini.name"
-                    v-on:click="addFighter(mini)"
-                    v-for="mini in datasheet.miniatures"
-                    :disabled="false">
-                    {{ mini.name }}
-                </button>
-
+            <div class="card-body"
+                v-if="'sandbox' == gameMode">
+                <select class="custom-select custom-select-sm"
+                    v-model="selectedFactionId">
+                    <option v-for="faction in factions"
+                        :value="faction.id">{{ faction.name }}
+                    </option>
+                </select>
             </div>
-        </div>
 
-        <div class="card-footer">
-            <router-link dusk="back"
-                :to="'/' + gameMode + '/choosefaction'">
-                Back to faction select
-            </router-link>
-            <router-link dusk="home" to="/">
-                Home
-            </router-link>
-        </div>
+            <div class="card-body pt-3"
+                v-if="faction != undefined">
+                <div class=""
+                    v-for="datasheet in faction.datasheets">
 
+                    <div class="h5 mr-3 font-weight-bold d-block">
+                        {{ datasheet.name }}
+                    </div>
+
+                    <button class="btn btn-primary btn-sm mr-2 mb-2"
+                        :dusk="'add ' + mini.name"
+                        v-on:click="addFighter(mini)"
+                        v-for="mini in datasheet.miniatures"
+                        :disabled="false">
+                        {{ mini.name }}
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <router-link dusk="back"
+                    :to="'/' + gameMode + '/choosefaction'">
+                    Back to faction select
+                </router-link>
+                <router-link dusk="home" to="/">
+                    Home
+                </router-link>
+            </div>
+
+        </div>
     </div>
 </template>
 
@@ -58,7 +59,7 @@ export default {
     computed: {
         faction() {
             return _.find(this.factions, { id: this.selectedFactionId })
-        }
+        },
     },
     data() {
         return {
@@ -66,7 +67,9 @@ export default {
         }
     },
     methods: {
+        addFighter() {
 
+        }
     }
 }
 </script>

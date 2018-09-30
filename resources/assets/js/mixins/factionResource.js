@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         fetchFactions() {
-            axios.get(API_URL + '/factions?').then(response => {
+            axios.get(API_URL + '/factions').then(response => {
                 this.factions = response.data.data
             })
         }
