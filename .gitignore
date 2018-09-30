@@ -15,6 +15,10 @@ yarn-error.log
 !.env.example
 
 
+# Devel
+/resources/assets/js/**/*2.*
+
+
 # Build artifacts
 /public/js/*
 /public/css/*

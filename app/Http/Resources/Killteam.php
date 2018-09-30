@@ -20,6 +20,8 @@ class Killteam extends JsonResource
         $array = [
             'id' => $this->id,
             'name' => $this->name,
+
+            // faction used for initial path only
             'faction_id' => $this->faction_id,
             'faction_keyword' => Faction::where('id', $this->faction_id)->first()->faction_keyword,
             //'faction' => new FactionResource($this->whenLoaded('faction')),
