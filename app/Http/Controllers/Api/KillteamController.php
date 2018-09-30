@@ -16,7 +16,7 @@ class KillteamController extends Controller
     public function index(Request $request)
     {
         $killteams = Killteam::with(
-            'faction', 'fighters', 'fighters.wargearselectors'
+            'fighters' //'fighters.wargearselectors'
         )->get();
         return new KillteamCollectionResource($killteams);
     }
@@ -30,12 +30,12 @@ class KillteamController extends Controller
         $killteam->save();
 
         // create all fighters
-        foreach ($request->get('fighters') as $fighter) {
+        foreach ($request->get('fighters') as $input) {
             $fighter = new Fighter;
-            $fighter->name = $fighter['name'];
+            $fighter->name = $input['name'];
             $fighter->killteam_id = $killteam->id;
-            $fighter->faction_id = $fighter['factionId'];
-            $fighter->miniature_id = $fighter['miniatureId'];
+            $fighter->faction_id = $input['factionId'];
+            $fighter->miniature_id = $input['miniatureId'];
             $fighter->specialism_id = null; // @TODO specialisms
             $fighter->save();
 

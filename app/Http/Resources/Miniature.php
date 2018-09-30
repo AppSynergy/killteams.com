@@ -16,6 +16,7 @@ class Miniature extends JsonResource
     {
         $array = [
             'id' => $this->id,
+            'faction_id' => $this->faction()->id,
             'name' => $this->name,
             'profile' => [],
             'points' => $this->points,

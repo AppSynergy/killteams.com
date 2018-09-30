@@ -27,8 +27,8 @@ export default {
                 name: 'builder',
                 params: {
                     gameMode: gameMode,
-                    factionId: killteam.faction_id,
-                    factionKeyword: killteam.faction_keyword
+                    factionId: '1',
+                    factionKeyword: 'ADEPTUS ASTARTES'
                 }
             })
             this.$store.dispatch('loadKillteam', killteam)

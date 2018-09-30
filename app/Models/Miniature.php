@@ -28,10 +28,7 @@ class Miniature extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function faction()
-    {
-        return $this->datasheet->faction;
-    }
+
 
     public function factionName()
     {
@@ -43,6 +40,11 @@ class Miniature extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function faction()
+    {
+        return $this->datasheet->faction;
+    }
+
     public function fighters()
     {
         return $this->hasMany('App\Models\Fighter');

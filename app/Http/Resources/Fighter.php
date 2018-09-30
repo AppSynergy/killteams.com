@@ -17,13 +17,14 @@ class Fighter extends JsonResource
     public function toArray($request)
     {
         $wargear_options = Wargearoption::find(['miniature_id', $this->miniature_id]);
-    
+
         return [
             'name' => $this->name,
+            'faction_id' => $this->faction_id,
             'miniature_id' => $this->miniature_id,
             'specialism_id' => $this->specialism_id,
-            'wargear_options' => $wargear_options,
-            'wargearSelectors' => $this->wargearselectors,
+            //'wargear_options' => $wargear_options,
+            //'wargearSelectors' => $this->wargearselectors,
         ];
     }
 }

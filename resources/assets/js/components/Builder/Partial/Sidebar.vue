@@ -66,11 +66,7 @@ export default {
     },
     methods: {
         addFighter(miniature) {
-            this.$store.dispatch({
-                type: 'addFighter',
-                factionId: this.selectedFactionId,
-                miniature,
-            })
+            this.$store.dispatch('addFighter', miniature)
         },
         updateFactionId() {
             this.$router.push({

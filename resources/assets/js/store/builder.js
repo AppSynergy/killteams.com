@@ -32,8 +32,8 @@ const killteamModule = {
         }
     },
     mutations: {
-        setFighters(state, killteam) {
-            state.killteam = killteam
+        setName(state, name) {
+            state.killteam.name = name
         },
         setFighters(state, fighters) {
             state.killteam.fighters = fighters
@@ -43,11 +43,17 @@ const killteamModule = {
         }
     },
     actions: {
-        addFighter(context, {factionId, miniature}) {
+        loadKillteam({commit, dispatch}, {name, fighters}) {
+            commit('setName', name)
+            _.each(fighters, (fighter) => {
+                dispatch('addFighter', fighter)
+            })
+        },
+        addFighter(context, miniature) {
             const fighter = {
                 id: UUID(),
                 name: 'Bill',
-                factionId,
+                factionId: miniature.faction_id,
                 miniatureId: miniature.id,
                 miniature,
             }
