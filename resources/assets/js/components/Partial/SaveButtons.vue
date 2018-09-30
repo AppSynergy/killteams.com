@@ -17,10 +17,14 @@ export default {
     ],
     methods: {
         saveKillteam() {
-            this.ajaxSaveKillteam(this.killteam, this.reloadKillteams)
+            this.ajaxSaveKillteam(this.killteam, this.refetchKillteams)
         },
-        reloadKillteams() {
-            this.ajaxFetchKillteams()
+        refetchKillteams() {
+            this.ajaxFetchKillteams(this.reloadKillteams)
+        },
+        reloadKillteams(killteamId) {
+            const killteam = _.find(this.killteams, killteamId)
+            this.$store.dispatch('loadKillteam', killteam)
         }
     }
 }

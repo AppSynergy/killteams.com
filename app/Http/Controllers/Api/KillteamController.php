@@ -65,7 +65,6 @@ class KillteamController extends Controller
             */
         }
 
-        return [200, "OK"];
-        // or whatever
+        return response($killteam->id, 200);
     }
 }
