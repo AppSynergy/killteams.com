@@ -31,9 +31,26 @@ const factionsModule = {
     }
 }
 
+const killteamsModule = {
+    state: {
+        killteams: [],
+    },
+    getters: {
+        getKillteams: (state) => {
+            return state.killteams
+        }
+    },
+    mutations: {
+        setKillteams(state, killteams) {
+            state.killteams = killteams
+        }
+    }
+}
+
 const killteamModule = {
     state: {
         killteam: {
+            id: null,
             name: 'Kill Team Name',
             fighters: [],
         }
@@ -47,34 +64,45 @@ const killteamModule = {
         }
     },
     mutations: {
+        setId(state, id) {
+            state.killteam.id = id
+        },
         setName(state, name) {
             state.killteam.name = name
         },
         setFighters(state, fighters) {
             state.killteam.fighters = fighters
         },
+        clearFighters(state) {
+            state.killteam.fighters = []
+        },
         addFighter(state, fighter) {
             state.killteam.fighters.push(fighter)
         }
     },
     actions: {
-        loadKillteam({commit, dispatch, rootGetters}, {name, fighters}) {
+        loadKillteam({commit, dispatch, rootGetters}, {id, name, fighters}) {
+            commit('clearFighters')
+            commit('setId', id)
             commit('setName', name)
             _.each(fighters, (fighter) => {
                 dispatch('addFighter', {
                     name: fighter.name,
+                    fighterId: fighter.id,
                     miniature: rootGetters.getMiniature({
                         factionId: fighter.faction_id,
                         miniatureId: fighter.miniature_id,
-                    })
+                    }),
+
                 })
             })
         },
-        addFighter(context, {name, miniature}) {
+        addFighter(context, {name, fighterId, miniature}) {
             const fighter = {
                 id: UUID(),
                 name,
                 miniature,
+                fighterId,
                 factionId: miniature.faction_id,
                 miniatureId: miniature.id,
             }
@@ -85,6 +113,6 @@ const killteamModule = {
 
 export default new Vuex.Store({
     modules: {
-        factionsModule, killteamModule
+        factionsModule, killteamsModule, killteamModule
     }
 })

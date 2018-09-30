@@ -10,6 +10,7 @@ export default {
         }
     },
     mounted() {
+        console.log("Mounted a fr")
         this.fetchFactions()
     },
     methods: {

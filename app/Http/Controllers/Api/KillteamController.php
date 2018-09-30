@@ -24,14 +24,18 @@ class KillteamController extends Controller
     public function store(Request $request)
     {
         // create a killteam
-        $killteam = new Killteam;
+        $killteam = Killteam::firstOrNew(['id' => $request->get('id')]);
         $killteam->name = $request->get('name');
         $killteam->user_id = 1; // @TODO auth
         $killteam->save();
 
         // create all fighters
         foreach ($request->get('fighters') as $input) {
-            $fighter = new Fighter;
+            if (array_key_exists('fighterId', $input)) {
+                $fighter = Fighter::firstOrNew(['id' => $input['fighterId']]);
+            } else {
+                $fighter = new Fighter();
+            }
             $fighter->name = $input['name'];
             $fighter->killteam_id = $killteam->id;
             $fighter->faction_id = $input['factionId'];

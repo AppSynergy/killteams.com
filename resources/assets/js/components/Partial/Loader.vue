@@ -12,15 +12,11 @@
 </template>
 
 <script>
+import KillteamsResource from '../../mixins/KillteamsResource.js'
 export default {
-    data() {
-        return {
-            killteams: [],
-        }
-    },
-    mounted() {
-        this.getKillteams()
-    },
+    mixins: [
+        KillteamsResource,
+    ],
     methods: {
         loadKillteam(killteam, gameMode) {
             this.$router.push({
@@ -32,12 +28,6 @@ export default {
                 }
             })
             this.$store.dispatch('loadKillteam', killteam)
-        },
-        getKillteams() {
-            this.killteams = axios.get(API_URL + '/killteams').then(response => {
-                const killteams = response.data.data
-                this.killteams = killteams
-            })
         }
     }
 }

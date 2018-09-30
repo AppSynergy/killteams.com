@@ -19,6 +19,7 @@ class Fighter extends JsonResource
         $wargear_options = Wargearoption::find(['miniature_id', $this->miniature_id]);
 
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'faction_id' => $this->faction_id,
             'miniature_id' => $this->miniature_id,

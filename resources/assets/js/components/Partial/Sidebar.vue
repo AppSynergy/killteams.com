@@ -51,7 +51,7 @@
 
 <script>
 import Loader from './Loader.vue'
-import FactionResource from '../../mixins/factionResource.js'
+import FactionResource from '../../mixins/FactionResource.js'
 export default {
     components: {
         Loader,

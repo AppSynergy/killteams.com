@@ -35,7 +35,7 @@
 <script>
 import Draggable from 'vuedraggable'
 import Fighter from './Fighter.vue'
-import KillteamResource from '../../mixins/killteamResource.js'
+import KillteamResource from '../../mixins/KillteamResource.js'
 import KillteamForm from '../Partial/KillteamForm.vue'
 import SaveButtons from '../Partial/SaveButtons.vue'
 import Sidebar from '../Partial/Sidebar.vue'

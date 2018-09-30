@@ -7,7 +7,7 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col col-12 col-lg-6 col-xl-4 mb-3" 
+                        <div class="col col-12 col-lg-6 col-xl-4 mb-3"
                             v-for="faction in factions">
                             <div class="bg-dark text-light p-3 rounded h-100">
                                 <router-link class="btn btn-primary mr-3 mb-3"
@@ -44,27 +44,18 @@
 </template>
 
 <script>
+import FactionResource from '../../mixins/FactionResource.js'
 export default {
+    mixins: [
+        FactionResource,
+    ],
     props: [
         'gameMode'
     ],
-    data() {
-        return {
-            factions: []
-        }
-    },
-    mounted() {
-        this.fetchFactions()
-    },
     methods: {
         isDisabled(faction) {
             return faction.has_datasheets == false
-        },
-        fetchFactions() {
-            axios.get(API_URL + '/factions').then(response => {
-                this.factions = response.data.data
-            })
-        },
+        }
     }
 }
 </script>

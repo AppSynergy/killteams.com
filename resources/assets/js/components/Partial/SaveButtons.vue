@@ -1,27 +1,26 @@
 <template>
     <div class="vue-partial-save-buttons">
         <button class="btn"
-            v-on:click="saveKillTeam">
+            v-on:click="saveKillteam">
             Save
         </button>
     </div>
 </template>
 
 <script>
-import KillteamResource from '../../mixins/killteamResource.js'
+import KillteamResource from '../../mixins/KillteamResource.js'
+import KillteamsResource from '../../mixins/KillteamsResource.js'
 export default {
     mixins: [
         KillteamResource,
+        KillteamsResource,
     ],
-    data() {
-        return {
-            saved: false,
-        }
-    },
     methods: {
-        saveKillTeam() {
-            axios.post(API_URL + '/killteam', this.killteam)
-                .then(response => (this.saved = true))
+        saveKillteam() {
+            this.ajaxSaveKillteam(this.killteam, this.reloadKillteams)
+        },
+        reloadKillteams() {
+            this.ajaxFetchKillteams()
         }
     }
 }
