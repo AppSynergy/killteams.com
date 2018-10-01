@@ -76,7 +76,14 @@ export default {
         addFighter(miniature) {
             this.$store.dispatch('addFighter', {
                 name: 'Frodo',
-                miniature
+                miniature,
+                specialistSelector: {
+                    id: null,
+                    fighter_id: null,
+                    specialism_id: null,
+                    selector_id: null,
+                    level: 1,
+                }
             })
         },
         updateFactionId() {

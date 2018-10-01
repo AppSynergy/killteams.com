@@ -7,9 +7,9 @@
             </span>
 
             <select class="custom-select custom-select-sm"
-                v-model="specialistSelector.specialismId"
+                v-model="specialistSelector.specialism_id"
                 v-on:change="updateSpecialism">
-                <option v-for="specialist in specialists"
+                <option v-for="specialist in availableSpecialisms"
                     :value="specialist.id">
                     {{ specialist.name }}
                 </option>
@@ -64,23 +64,22 @@ export default {
         'availableSpecialistNames', 'fighterId', 'gameMode', 'specialistSelector',
     ],
     computed: {
-        specialists() {
+        availableSpecialisms() {
             return _.filter(this.specialisms, (specialism) => {
                 return _.includes(this.availableSpecialistNames, specialism.name)
+            })
+        },
+        currentSpecialism() {
+            return _.find(this.availableSpecialisms, (specialism) => {
+                return specialism.id == this.specialistSelector.specialism_id
             })
         },
         levels() {
             return _.range(1, this.specialistSelector.level + 1)
         },
         availableAbilities() {
-            if (!this.selectedSpecialistName || this.selectedSpecialistName == 'None') {
-                return []
-            }
-            const specialism = _.filter(this.specialisms, (specialism) => {
-                return specialism.name == this.selectedSpecialistName
-            })
-            if (specialism) {
-                return _.first(specialism).abilities
+            if (!_.isEmpty(this.currentSpecialism)) {
+                return this.currentSpecialism.abilities
             }
             return []
         }

@@ -16,7 +16,7 @@ class KillteamController extends Controller
     public function index(Request $request)
     {
         $killteams = Killteam::with(
-            'fighters' //'fighters.wargearselectors'
+            'fighters', 'fighters.specialistselector'
         )->get();
         return new KillteamCollectionResource($killteams);
     }
@@ -31,8 +31,8 @@ class KillteamController extends Controller
 
         // create all fighters
         foreach ($request->get('fighters') as $fighterData) {
-            if (array_key_exists('fighterId', $fighterData)) {
-                $fighter = Fighter::firstOrNew(['id' => $fighterData['fighterId']]);
+            if (array_key_exists('fighter_id', $fighterData)) {
+                $fighter = Fighter::firstOrNew(['id' => $fighterData['fighter_id']]);
             } else {
                 $fighter = new Fighter();
             }
@@ -40,6 +40,20 @@ class KillteamController extends Controller
             $fighter->killteam_id = $killteam->id;
             $fighter->faction_id = $fighterData['factionId'];
             $fighter->miniature_id = $fighterData['miniatureId'];
+
+            $selector = $fighterData['specialistSelector'];
+            $fighter->specialism_id = $selector['specialism_id'];
+            $fighter->save();
+
+            if (array_key_exists('selector_id', $selector)) {
+                $ss = Specialistselector::firstOrNew(['id' => $selector['selector_id']]);
+            } else {
+                $ss = new Specialistselector;
+            }
+            $ss->fighter_id = $fighter->id;
+            $ss->level = $selector['level'];
+            $ss->specialism_id = $selector['specialism_id'];
+            $ss->save();
 
 
             /*
@@ -53,22 +67,6 @@ class KillteamController extends Controller
                 $wgs->save();
             }
             */
-
-            $selector = $fighterData['specialistSelector'];
-
-            if (array_key_exists('specialismId', $selector) && $selector['specialismId'] != null) {
-                if (array_key_exists('selectorId', $selector)) {
-                    $ss = Specialistselector::firstOrNew(['id' => $selector['selectorId']]);
-                } else {
-                    $ss = new Specialistselector;
-                }
-                $ss->fighter_id = $fighter->id;
-                $ss->level = $selector['level'];
-                $ss->specialism_id = $selector['specialismId'];
-                $ss->ability_id = 1; // @TODO rm
-                $ss->save();
-                $fighter->specialism_id = $ss->id;
-            }
 
 
             $fighter->save();

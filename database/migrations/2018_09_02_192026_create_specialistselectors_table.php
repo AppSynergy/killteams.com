@@ -16,13 +16,13 @@ class CreateSpecialistselectorsTable extends Migration
         Schema::create('specialistselectors', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('fighter_id');
-            $table->unsignedInteger('specialism_id');
+            $table->unsignedInteger('specialism_id')->nullable();
             $table->unsignedInteger('level');
-            $table->unsignedInteger('ability_id');
+            //$table->unsignedInteger('ability_id');
             $table->timestamps();
             $table->foreign('fighter_id')->references('id')->on('fighters');
             $table->foreign('specialism_id')->references('id')->on('specialisms');
-            $table->foreign('ability_id')->references('id')->on('abilities');
+            //$table->foreign('ability_id')->references('id')->on('abilities');
         });
     }
 

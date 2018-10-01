@@ -44,10 +44,6 @@ class Specialistselector extends Model
         return $this->belongsTo('App\Models\Specialism');
     }
 
-    public function ability()
-    {
-        return $this->belongsTo('App\Models\Ability');
-    }
 
     /*
     |--------------------------------------------------------------------------

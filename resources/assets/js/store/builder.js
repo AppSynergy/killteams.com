@@ -113,25 +113,24 @@ const killteamModule = {
                         factionId: fighter.faction_id,
                         miniatureId: fighter.miniature_id,
                     }),
-
+                    specialistSelector: fighter.specialistSelector,
                 })
             })
         },
-        addFighter(context, {name, fighterId, miniature}) {
+        addFighter(context, {name, fighterId, miniature, specialistSelector}) {
+            if (specialistSelector) {
+                specialistSelector.selector_id = specialistSelector.id
+                specialistSelector.id = UUID()
+                specialistSelector.fighter_id = fighterId
+            }
             const fighter = {
                 id: UUID(),
                 name,
                 miniature,
-                fighterId,
+                fighter_id: fighterId,
                 factionId: miniature.faction_id,
                 miniatureId: miniature.id,
-                specialistSelector: {
-                    id: UUID(),
-                    selectorId: null, // @TODO pass in
-                    specialismId: null,
-                    level: 1,
-                    abilities: []
-                }
+                specialistSelector,
             }
             context.commit('addFighter', fighter)
         }
