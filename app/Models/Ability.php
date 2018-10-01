@@ -39,6 +39,11 @@ class Ability extends Model
         return $this->belongsToMany('App\Models\Datasheet');
     }
 
+    public function specialistselectors()
+    {
+        return $this->belongsToMany('App\Models\Specialistselector');
+    }
+
     public function specialism()
     {
         return $this->belongsTo('App\Models\Specialism');

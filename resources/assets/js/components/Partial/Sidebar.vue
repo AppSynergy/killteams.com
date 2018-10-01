@@ -83,6 +83,7 @@ export default {
                     specialism_id: null,
                     selector_id: null,
                     level: 1,
+                    abilities: [],
                 }
             })
         },

@@ -36,7 +36,8 @@
                 <span class="mr-2">
                     Level {{ level }}:
                 </span>
-                <select class="custom-select custom-select-sm">
+                <select class="custom-select custom-select-sm"
+                    v-model="specialistSelector.abilities[level-1]">
                     <option v-for="ability in availableAbilities"
                         v-if="level == ability.level && level <= 3"
                         :value="ability.id">

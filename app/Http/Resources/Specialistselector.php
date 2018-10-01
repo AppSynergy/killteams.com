@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Ability as AbilityResource;
 
 class Specialistselector extends JsonResource
 {
@@ -19,6 +20,7 @@ class Specialistselector extends JsonResource
             'fighter_id' => $this->fighter_id,
             'specialism_id' => $this->specialism_id,
             'level' => $this->level,
+            'abilities' => AbilityResource::collection($this->abilities),
         ];
     }
 }

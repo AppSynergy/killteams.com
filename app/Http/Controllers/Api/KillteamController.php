@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\KillteamCollection as KillteamCollectionResource;
+use App\Models\Ability;
 use App\Models\Fighter;
 use App\Models\Killteam;
 use App\Models\Wargearselector;
@@ -16,7 +17,7 @@ class KillteamController extends Controller
     public function index(Request $request)
     {
         $killteams = Killteam::with(
-            'fighters', 'fighters.specialistselector'
+            'fighters', 'fighters.specialistselector', 'fighters.specialistselector.abilities'
         )->get();
         return new KillteamCollectionResource($killteams);
     }
@@ -53,6 +54,10 @@ class KillteamController extends Controller
             $ss->fighter_id = $fighter->id;
             $ss->level = $selector['level'];
             $ss->specialism_id = $selector['specialism_id'];
+            foreach ($selector['abilities'] as $ability_id) {
+                $ability = Ability::find($ability_id);
+                $ss->abilities()->save($ability);
+            }
             $ss->save();
 
 

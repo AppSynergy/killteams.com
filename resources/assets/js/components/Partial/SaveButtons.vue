@@ -15,15 +15,21 @@ export default {
         KillteamResource,
         KillteamsResource,
     ],
+    data() {
+        return {
+            latestKillteamId: null,
+        }
+    },
     methods: {
         saveKillteam() {
             this.ajaxSaveKillteam(this.killteam, this.refetchKillteams)
         },
-        refetchKillteams() {
+        refetchKillteams(killteamId) {
+            this.latestKillteamId = killteamId
             this.ajaxFetchKillteams(this.reloadKillteams)
         },
-        reloadKillteams(killteamId) {
-            const killteam = _.find(this.killteams, killteamId)
+        reloadKillteams() {
+            const killteam = _.find(this.killteams, { id: this.latestKillteamId })
             this.$store.dispatch('loadKillteam', killteam)
         }
     }
