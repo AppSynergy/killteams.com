@@ -45,7 +45,6 @@ class KillteamController extends Controller
             $selector = $fighterData['specialistSelector'];
             $fighter->specialism_id = $selector['specialism_id'];
             $fighter->save();
-
             if (array_key_exists('selector_id', $selector)) {
                 $ss = Specialistselector::firstOrNew(['id' => $selector['selector_id']]);
             } else {
@@ -54,11 +53,12 @@ class KillteamController extends Controller
             $ss->fighter_id = $fighter->id;
             $ss->level = $selector['level'];
             $ss->specialism_id = $selector['specialism_id'];
-            foreach ($selector['abilities'] as $ability_id) {
-                $ability = Ability::find($ability_id);
-                $ss->abilities()->save($ability);
-            }
+            $ability_ids = collect($selector['abilities'])->map(function($item, $key) {
+                return $item['id'];
+            });
             $ss->save();
+            $ss->abilities()->sync($ability_ids);
+
 
 
             /*
