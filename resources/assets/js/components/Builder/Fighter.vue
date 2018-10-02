@@ -3,6 +3,9 @@
         :dusk="'fighter-' + index">
 
         <span class="mb-2 d-flex justify-content-between align-items-start">
+            <span class="badge badge-primary handle">
+                HANDLE
+            </span>
             <span class="form-inline">
                 <input type="text" class="form-control"
                     v-model="fighter.name">
@@ -14,11 +17,11 @@
                 v-on:click="removeFighter(fighter.id)">
                 &times;
             </span>
-            <fighter-profile
-                :profile="fighter.miniature.profile"
-                :suffixes="fighter.miniature.profile_suffixes">
-            </fighter-profile>
         </span>
+        <fighter-profile
+            :profile="fighter.miniature.profile"
+            :suffixes="fighter.miniature.profile_suffixes">
+        </fighter-profile>
         <specialist-selector
             :fighterId="fighter.id"
             :game-mode="gameMode"

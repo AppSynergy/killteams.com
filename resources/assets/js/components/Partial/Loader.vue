@@ -2,11 +2,11 @@
     <div class="vue-partial-loader">
         <div class="px-3 py-2" v-for="killteam in killteams">
             <span class="h4">{{ killteam.name }}</span>
-            <a class="btn btn-primary btn-sm mr-2 mb-2"
+            <button class="btn btn-primary btn-sm mr-2 mb-2"
                 dusk="load-kill-team"
                 v-on:click="loadKillteam(killteam, 'sandbox')">
                 Load
-            </a>
+            </button>
         </div>
     </div>
 </template>

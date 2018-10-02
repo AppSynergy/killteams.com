@@ -1,6 +1,6 @@
 <template>
-    <span class="vue-partial-fighter-profile">
-        <table class="mb-0 table table-sm table-bordered table-responsive">
+    <span class="vue-partial-fighter-profile d-block table-responsive my-2">
+        <table class="mb-0 table table-sm table-bordered">
             <thead class="thead-dark"><tr>
                 <th class="text-center"
                     v-for="_, key in profile"

@@ -15,7 +15,8 @@
                             <save-buttons></save-buttons>
                             <killteam-form></killteam-form>
                             <div class="fighter-list" dusk="fighters">
-                                <draggable v-model="killteam.fighters">
+                                <draggable v-model="killteam.fighters"
+                                    :options="{handle:'.handle'}">
                                     <fighter v-for="fighter, index in killteam.fighters"
                                         :fighter="fighter"
                                         :game-mode="gameMode"

@@ -1,8 +1,12 @@
 <template>
     <div class="vue-partial-save-buttons">
-        <button class="btn"
+        <button class="btn btn-primary"
             v-on:click="saveKillteam">
             Save
+        </button>
+        <button class="btn btn-warning"
+            v-on:click="clearFighters">
+            Clear All
         </button>
     </div>
 </template>
@@ -31,6 +35,9 @@ export default {
         reloadKillteams() {
             const killteam = _.find(this.killteams, { id: this.latestKillteamId })
             this.$store.dispatch('loadKillteam', killteam)
+        },
+        clearFighters() {
+            this.$store.commit('clearFighters')
         }
     }
 }
