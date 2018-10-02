@@ -95,6 +95,11 @@ const killteamModule = {
         addFighter(state, fighter) {
             state.killteam.fighters.push(fighter)
         },
+        removeFighter(state, fighterId) {
+            state.killteam.fighters = _.reject(state.killteam.fighters, (fighter) => {
+                return fighter.id == fighterId
+            })
+        },
         updateSpecialistSelector(state, {fighterId, selector}) {
             const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
             state.killteam.fighters[fighterIndex].specialistSelector = selector

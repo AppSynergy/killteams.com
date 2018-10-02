@@ -34,6 +34,10 @@ class FighterCrudController extends CrudController
 
         // ------ CRUD COLUMNS
         $this->crud->addColumn([
+            'label' => 'Id',
+            'name' => 'id',
+        ]);
+        $this->crud->addColumn([
             'label' => 'Killteam',
             'name' => 'killteam_id',
             'type' => 'select',

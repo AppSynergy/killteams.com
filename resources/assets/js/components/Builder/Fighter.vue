@@ -8,6 +8,10 @@
                 <input type="text" class="form-control"
                     v-model="fighter.name">
             </span>
+            <span class="close"
+                v-on:click="removeFighter(fighter.id)">
+                &times;
+            </span>
             <fighter-profile
                 :profile="fighter.miniature.profile"
                 :suffixes="fighter.miniature.profile_suffixes">
@@ -42,7 +46,9 @@ export default {
 
     },
     methods: {
-
+        removeFighter(fighterId) {
+            this.$store.commit('removeFighter', fighterId)
+        }
     }
 }
 </script>

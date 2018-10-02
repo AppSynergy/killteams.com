@@ -28,6 +28,12 @@ class Specialistselector extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
+    public function delete()
+    {
+        //print_r($this->abilities); die;
+        $this->abilities()->sync([]);
+        parent::delete();
+    }
 
     /*
     |--------------------------------------------------------------------------

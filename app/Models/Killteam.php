@@ -30,7 +30,9 @@ class Killteam extends Model
     */
     public function delete()
     {
-        $this->fighters()->delete();
+        if ($this->fighters()->exists()) {
+            $this->fighters()->delete();
+        }
         parent::delete();
     }
 

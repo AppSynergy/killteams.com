@@ -31,6 +31,7 @@ class KillteamController extends Controller
         $killteam->save();
 
         // create all fighters
+        $fighterIds = [];
         foreach ($request->get('fighters') as $fighterData) {
             if (array_key_exists('fighter_id', $fighterData)) {
                 $fighter = Fighter::firstOrNew(['id' => $fighterData['fighter_id']]);
@@ -45,6 +46,7 @@ class KillteamController extends Controller
             $selector = $fighterData['specialistSelector'];
             $fighter->specialism_id = $selector['specialism_id'];
             $fighter->save();
+
             if (array_key_exists('selector_id', $selector)) {
                 $ss = Specialistselector::firstOrNew(['id' => $selector['selector_id']]);
             } else {
@@ -75,7 +77,18 @@ class KillteamController extends Controller
 
 
             $fighter->save();
+            $fighterIds[] = $fighter->id;
         }
+
+        // delete fighters
+        $previousFighterIds = $killteam->fighters->map(function($fighter) {
+            return $fighter['id'];
+        });
+        $removedFighterIds = $previousFighterIds->diff($fighterIds);
+        $removedFighterIds->each(function($id) {
+            Fighter::find($id)->delete();
+        });
+        //print_r([$fighterIds, $previousFighterIds]);
 
         return response($killteam->id, 200);
     }
