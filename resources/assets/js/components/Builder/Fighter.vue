@@ -3,10 +3,12 @@
         :dusk="'fighter-' + index">
 
         <span class="mb-2 d-flex justify-content-between align-items-start">
-            {{ 'fighter' }}
             <span class="form-inline">
                 <input type="text" class="form-control"
                     v-model="fighter.name">
+            </span>
+            <span class="text-sm">
+                {{ fighter.miniature.name }}
             </span>
             <span class="close"
                 v-on:click="removeFighter(fighter.id)">

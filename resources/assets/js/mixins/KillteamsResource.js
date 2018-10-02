@@ -12,11 +12,21 @@ export default {
             set(value) {
                 this.$store.commit('setKillteams', value)
             }
+        },
+        killteamsLoaded: {
+            get() {
+                return this.$store.getters.getKillteamsLoaded
+            },
+            set(value) {
+                this.$store.commit('setKillteamsLoaded', value)
+            }
         }
     },
     mounted() {
-        console.log("mounted a ktsr")
-        this.ajaxFetchKillteams()
+        if (!this.killteamsLoaded) {
+            this.ajaxFetchKillteams()
+            this.killteamsLoaded = true
+        }
     },
     methods: {
         ajaxFetchKillteams(then = false) {

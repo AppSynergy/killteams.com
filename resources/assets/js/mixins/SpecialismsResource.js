@@ -7,11 +7,21 @@ export default {
             set(value) {
                 this.$store.commit('setSpecialisms', value)
             }
+        },
+        specialismsLoaded: {
+            get() {
+                return this.$store.getters.getSpecialismsLoaded
+            },
+            set(value) {
+                this.$store.commit('setSpecialismsLoaded', value)
+            }
         }
     },
     mounted() {
-        console.log("mounted a sr")
-        this.fetchSpecialisms()
+        if (!this.specialismsLoaded) {
+            this.fetchSpecialisms()
+            this.specialismsLoaded = true
+        }
     },
     methods: {
         fetchSpecialisms() {
