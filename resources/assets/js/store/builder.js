@@ -29,10 +29,14 @@ const specialismsModule = {
 const factionsModule = {
     state: {
         factions: {},
+        factionsLoaded: false,
     },
     getters: {
         getFactions: (state) => {
             return state.factions
+        },
+        getFactionsLoaded: (state) => {
+            return state.factionsLoaded
         },
         getMiniature: (state) => ({factionId, miniatureId}) => {
             const faction = _.find(state.factions, {
@@ -50,6 +54,9 @@ const factionsModule = {
     mutations: {
         setFactions(state, factions) {
             state.factions = factions
+        },
+        setFactionsLoaded(state, boolean) {
+            state.factionsLoaded = boolean
         }
     }
 }
@@ -147,8 +154,8 @@ const killteamModule = {
                 name,
                 miniature,
                 fighter_id: fighterId,
-                factionId: miniature.faction_id,
-                miniatureId: miniature.id,
+                faction_id: miniature.faction_id,
+                miniature_id: miniature.id,
                 specialistSelector,
             }
             context.commit('addFighter', fighter)

@@ -40,7 +40,7 @@ class KillteamController extends Controller
             }
             $fighter->name = $fighterData['name'];
             $fighter->killteam_id = $killteam->id;
-            $fighter->faction_id = $fighterData['factionId'];
+            $fighter->faction_id = $fighterData['faction_id'];
             $fighter->miniature_id = $fighterData['miniatureId'];
 
             $selector = $fighterData['specialistSelector'];

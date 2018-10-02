@@ -7,11 +7,21 @@ export default {
             set(value) {
                 this.$store.commit('setFactions', value)
             }
+        },
+        factionsLoaded: {
+            get() {
+                return this.$store.getters.getFactionsLoaded
+            },
+            set(value) {
+                this.$store.commit('setFactionsLoaded', value)
+            }
         }
     },
     mounted() {
-        console.log("Mounted a fr")
-        this.fetchFactions()
+        if (!this.factionsLoaded) {
+            this.fetchFactions()
+            this.factionsLoaded = true
+        }
     },
     methods: {
         fetchFactions() {

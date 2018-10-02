@@ -18,38 +18,39 @@
                 &times;
             </span>
         </span>
+
         <fighter-profile
             :profile="fighter.miniature.profile"
             :suffixes="fighter.miniature.profile_suffixes">
         </fighter-profile>
+
+        <fighter-armament
+            :faction-id="fighter.faction_id"
+            :armament="fighter.miniature.armament"
+        ></fighter-armament>
+
         <specialist-selector
-            :fighterId="fighter.id"
+            :fighter-id="fighter.id"
             :game-mode="gameMode"
-            :availableSpecialistNames="fighter.miniature.specialists"
-            :specialistSelector="fighter.specialistSelector"
+            :available-specialist-names="fighter.miniature.specialists"
+            :specialist-selector="fighter.specialistSelector"
         ></specialist-selector>
 
     </div>
 </template>
 
 <script>
-import itemsToText from '../../mixins/itemsToText.js'
+import FighterArmament from '../Partial/Fighter/Armament.vue'
 import FighterProfile from '../Partial/Fighter/Profile.vue'
 import SpecialistSelector from '../Partial/Fighter/SpecialistSelector.vue'
 import WargearSelector from '../Partial/Fighter/WargearSelector.vue'
 export default {
     components: {
-        FighterProfile, SpecialistSelector, WargearSelector,
+        FighterArmament, FighterProfile, SpecialistSelector, WargearSelector,
     },
-    mixins: [
-        itemsToText,
-    ],
     props: [
         'fighter', 'gameMode', 'index',
     ],
-    computed: {
-
-    },
     methods: {
         removeFighter(fighterId) {
             this.$store.commit('removeFighter', fighterId)

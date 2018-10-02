@@ -12,7 +12,7 @@ class FactionController extends Controller
 {
     public function index()
     {
-        $factions = Faction::all();
+        $factions = Faction::with(['datasheets', 'wargears'])->get();
         return new FactionCollectionResource($factions);
     }
 
