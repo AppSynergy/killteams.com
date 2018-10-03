@@ -39,14 +39,16 @@ class DeployFactions extends Command
         if ($this->option('silent')) {
             if ($this->option('refresh')) {
                 $this->info('Migrating and seeding database...');
-                $this->callSilent('migrate:refresh', ['--seed']);
+                $this->callSilent('migrate:refresh');
+                $this->call('db:seed');
             }
             $this->info('Deploying factions silently...');
             $this->callSilent('factions:validate');
             $this->callSilent('factions:fulldeployment');
         } else {
             if ($this->option('refresh')) {
-                $this->call('migrate:refresh', ['--seed']);
+                $this->call('migrate:refresh');
+                $this->call('db:seed');
             }
             $this->call('factions:validate');
             $this->call('factions:fulldeployment');

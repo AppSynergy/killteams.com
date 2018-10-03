@@ -137,13 +137,20 @@ const killteamModule = {
             commit('setId', id)
             commit('setName', name)
             _.each(fighters, (fighter) => {
+                const miniature = rootGetters.getMiniature({
+                    factionId: fighter.faction_id,
+                    miniatureId: fighter.miniature_id,
+                })
+                // @TODO - rm wgo injection and just use fighter directly?
+                fighter.wargearSelectors = _.map(fighter.wargearSelectors, (selector, index) => {
+                    console.log("se", selector, index, miniature)
+                    selector.wgo = miniature.wargear_options[index]
+                    return selector
+                })
                 dispatch('addFighter', {
                     name: fighter.name,
                     fighterId: fighter.id,
-                    miniature: rootGetters.getMiniature({
-                        factionId: fighter.faction_id,
-                        miniatureId: fighter.miniature_id,
-                    }),
+                    miniature,
                     specialistSelector: fighter.specialistSelector,
                     wargearSelectors: fighter.wargearSelectors,
                 })

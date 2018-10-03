@@ -43,8 +43,9 @@ class KillteamController extends Controller
             $fighter->name = $fighterData['name'];
             $fighter->killteam_id = $killteam->id;
             $fighter->faction_id = $fighterData['faction_id'];
-            $fighter->miniature_id = $fighterData['miniatureId'];
+            $fighter->miniature_id = $fighterData['miniature_id'];
 
+            // Specialist Selectors
             $selector = $fighterData['specialistSelector'];
             $fighter->specialism_id = $selector['specialism_id'];
             $fighter->save();
@@ -63,20 +64,19 @@ class KillteamController extends Controller
             $ss->save();
             $ss->abilities()->sync($ability_ids);
 
-
-
-            /*
-            $fighter_id = $fighter->id;
-            foreach ($mini['wargearSelectors'] as $selector) {
-                $wgs = new Wargearselector;
+            // Wargear Selectors
+            foreach ($fighterData['wargearSelectors'] as $selector) {
+                if (array_key_exists('selector_id', $selector)) {
+                    $wgs = Wargearselector::firstOrNew(['id' => $selector['selector_id']]);
+                } else {
+                    $wgs = new Wargearselector;
+                }
                 $wgs->isSelected = $selector['isSelected'];
                 $wgs->option = json_encode($selector['option']);
                 $wgs->replace = json_encode($selector['replace']);
-                $wgs->fighter_id = $fighter_id;
+                $wgs->fighter_id = $fighter->id;
                 $wgs->save();
             }
-            */
-
 
             $fighter->save();
             $fighterIds[] = $fighter->id;

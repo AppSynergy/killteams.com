@@ -18,8 +18,8 @@ class Wargearselector extends JsonResource
         return [
             'id' => $this->id,
             'isSelected' => $this->isSelected,
-            'replace' => $this->replace,
-            'option' => $this->option,
+            'replace' => json_decode($this->replace),
+            'option' => json_decode($this->option),
         ];
     }
 }
