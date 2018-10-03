@@ -27,6 +27,7 @@
         <fighter-armament
             :faction-id="fighter.faction_id"
             :armament="fighter.miniature.armament"
+            :wargear-selectors="fighter.wargearSelectors"
         ></fighter-armament>
 
         <specialist-selector
