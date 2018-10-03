@@ -124,6 +124,11 @@ const killteamModule = {
         updateSpecialistSelector(state, {fighterId, selector}) {
             const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
             state.killteam.fighters[fighterIndex].specialistSelector = selector
+        },
+        updateWargearSelector(state, {fighterId, selectorId, selector}) {
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            const selectorIndex = _.findIndex(state.killteam.fighters[fighterIndex].wargearSelectors, { id: selectorId })
+            state.killteam.fighters[fighterIndex].wargearSelectors[selectorIndex] = selector
         }
     },
     actions: {
@@ -140,14 +145,22 @@ const killteamModule = {
                         miniatureId: fighter.miniature_id,
                     }),
                     specialistSelector: fighter.specialistSelector,
+                    wargearSelectors: fighter.wargearSelectors,
                 })
             })
         },
-        addFighter(context, {name, fighterId, miniature, specialistSelector}) {
+        addFighter(context, {name, fighterId, miniature, specialistSelector, wargearSelectors}) {
             if (specialistSelector) {
                 specialistSelector.selector_id = specialistSelector.id
                 specialistSelector.id = UUID()
                 specialistSelector.fighter_id = fighterId
+            }
+            if (wargearSelectors) {
+                _.each(wargearSelectors, (selector) => {
+                    selector.selector_id = selector.id
+                    selector.id = UUID()
+                    selector.fighter_id = fighterId
+                })
             }
             const fighter = {
                 id: UUID(),
@@ -157,6 +170,7 @@ const killteamModule = {
                 faction_id: miniature.faction_id,
                 miniature_id: miniature.id,
                 specialistSelector,
+                wargearSelectors,
             }
             context.commit('addFighter', fighter)
         }

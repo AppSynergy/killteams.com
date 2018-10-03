@@ -36,6 +36,17 @@
             :specialist-selector="fighter.specialistSelector"
         ></specialist-selector>
 
+        <span class="my-2 d-block"
+            v-if="hasWargearOptions">
+            <wargear-selector
+                v-for="selector in fighter.wargearSelectors"
+                :fighter="fighter"
+                :game-mode="gameMode"
+                :key="selector.id"
+                :selector="selector"
+            ></wargear-selector>
+        </span>
+
     </div>
 </template>
 
@@ -51,6 +62,11 @@ export default {
     props: [
         'fighter', 'gameMode', 'index',
     ],
+    computed: {
+        hasWargearOptions() {
+            return !_.isEmpty(this.fighter.miniature.wargear_options)
+        }
+    },
     methods: {
         removeFighter(fighterId) {
             this.$store.commit('removeFighter', fighterId)

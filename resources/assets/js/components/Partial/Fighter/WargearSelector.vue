@@ -1,36 +1,36 @@
 <template>
     <div class="vue-partial-fighter-wargear-selector">
 
-        <div class="form-check form-inline pl-0" v-if="selection">
+        <div class="form-check form-inline pl-0" v-if="selector">
 
             <input type="checkbox" class="form-check-input"
-                v-model="selection.isSelected"
-                v-on:change="selectWargearCheckbox"
+                v-model="selector.isSelected"
+                v-on:change="updateWargearCheckbox"
                 :disabled="isDisabled">
 
             <span class="text-nowrap">
-                <template v-if="'REPLACE' == wgo.may">
-                    Replace {{ itemListToText(wgo.replace, wargear, ' and ') }}
+                <template v-if="'REPLACE' == selector.wgo.may">
+                    Replace {{ itemListToText(selector.wgo.replace, faction.wargear, ' and ') }}
                     with&nbsp;
                 </template>
 
-                <template v-if="'TAKE' == wgo.may">
+                <template v-if="'TAKE' == selector.wgo.may">
                     Take&nbsp;
                 </template>
             </span>
 
-            <span v-if="'ALLOF' == wgo.method">
-                {{ itemOrItemListToText(wgo.options, wargear, ' and ') }}
+            <span v-if="'ALLOF' == selector.wgo.method">
+                {{ itemOrItemListToText(selector.wgo.options, faction.wargear, ' and ') }}
             </span>
 
-            <span v-if="'ONEOF' == wgo.method">
+            <span v-if="'ONEOF' == selector.wgo.method">
                 <select class="ml-2 custom-select custom-select-sm select-wargear-option"
                     dusk="select-wargear-option"
-                    v-model="selection.option"
-                    v-on:change="selectWargearDropdown"
+                    v-model="selector.option"
+                    v-on:change="updateWargearDropdown"
                     :disabled="isDisabled">
-                    <option v-for="choice in wgo.options" :value="choice">
-                        {{ itemOrItemListToText(choice, wargear, ' and ') }}
+                    <option v-for="choice in selector.wgo.options" :value="choice">
+                        {{ itemOrItemListToText(choice, faction.wargear, ' and ') }}
                     </option>
                 </select>
             </span>
@@ -41,46 +41,47 @@
 
 <script>
 import itemsToText from '../../../mixins/itemsToText.js'
+import FactionResource from '../../../mixins/FactionResource.js'
 export default {
     mixins: [
-        itemsToText,
+        itemsToText, FactionResource,
     ],
     props: [
-        'armament', 'available', 'fighterId', 'selectionId', 'wargear', 'wgo'
+        'fighter', 'gameMode', 'selector',
     ],
     data() {
         return {
-
+            available: true,
         }
     },
     computed: {
-        selection() {
-            return this.$store.getters.getWargearSelectors(this.fighterId, this.selectionId)
-        },
         isDisabled() {
             return (this.availableOrSelected == false)
         },
         availableOrSelected() {
-            return this.available || this.selection.isSelected
+            return this.available || this.selector.isSelected
+        },
+        faction() {
+            return _.find(this.factions, { id: this.fighter.faction_id })
         }
     },
     methods: {
-        selectWargearCheckbox() {
-            if (this.selection.option) {
-                this.selectWargear()
+        updateWargearCheckbox() {
+            if (this.selector.option) {
+                this.updateWargear()
             }
         },
-        selectWargearDropdown() {
-            if (!this.selection.isSelected) {
-                this.selection.isSelected = true
+        updateWargearDropdown() {
+            if (!this.selector.isSelected) {
+                this.selector.isSelected = true
             }
-            this.selectWargear()
+            this.updateWargear()
         },
-        selectWargear() {
-            this.$store.commit('selectWargear', {
-                selection: this.selection,
-                fighter_id: this.fighterId,
-                faction_id: this.factionId,
+        updateWargear() {
+            this.$store.commit('updateWargearSelector', {
+                fighterId: this.fighter.id,
+                selectorId: this.selector.id,
+                selector: this.selector,
             })
         }
     }

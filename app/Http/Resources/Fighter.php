@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Specialistselector as SSResource;
+use App\Http\Resources\WargearselectorCollection as WGCResource;
 use App\Models\Wargearoption;
 
 
@@ -25,8 +26,7 @@ class Fighter extends JsonResource
             'miniature_id' => $this->miniature_id,
             'specialism_id' => $this->specialism_id,
             'specialistSelector' => new SSResource($this->whenLoaded('specialistselector')),
-            //'wargear_options' => $wargear_options,
-            //'wargearSelectors' => $this->wargearselectors,
+            'wargearSelectors' => new WGCResource($this->whenLoaded('wargearselectors')),
         ];
 
         return $array;

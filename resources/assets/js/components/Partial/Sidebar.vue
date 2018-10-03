@@ -74,6 +74,15 @@ export default {
     },
     methods: {
         addFighter(miniature) {
+            let wargearSelectors = []
+            _.each(miniature.wargear_options, (wgo) => {
+                wargearSelectors.push({
+                    isSelected: false,
+                    replace: wgo.replace,
+                    option: ('ALLOF' == wgo.method) ? wgo.options : null,
+                    wgo: wgo
+                })
+            })
             this.$store.dispatch('addFighter', {
                 name: 'Frodo',
                 miniature,
@@ -84,7 +93,8 @@ export default {
                     selector_id: null,
                     level: 1,
                     abilities: [],
-                }
+                },
+                wargearSelectors,
             })
         },
         updateFactionId() {

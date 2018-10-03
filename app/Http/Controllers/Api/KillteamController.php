@@ -16,9 +16,11 @@ class KillteamController extends Controller
 
     public function index(Request $request)
     {
-        $killteams = Killteam::with(
-            'fighters', 'fighters.specialistselector', 'fighters.specialistselector.abilities'
-        )->get();
+        $killteams = Killteam::with([
+            'fighters', 'fighters.specialistselector',
+            'fighters.specialistselector.abilities',
+            'fighters.wargearselectors'
+        ])->get();
         return new KillteamCollectionResource($killteams);
     }
 
