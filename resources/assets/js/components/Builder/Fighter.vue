@@ -17,6 +17,9 @@
                 v-on:click="removeFighter(fighter.id)">
                 &times;
             </span>
+            <span class="badge badge-info" dusk="points">
+                {{ fighter.points }}
+            </span>
         </span>
 
         <fighter-profile

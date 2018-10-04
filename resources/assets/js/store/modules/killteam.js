@@ -14,6 +14,9 @@ export default {
         },
         getName: (state) => {
             return state.killteam.name
+        },
+        getFighter: (state) => (fighterId) => {
+            return _.find(state.killteam.fighters, { id: fighterId })
         }
     },
     mutations: {
@@ -37,6 +40,10 @@ export default {
                 return fighter.id == fighterId
             })
         },
+        setPointsValue(state, {fighterId, pointsValue}) {
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            state.killteam.fighters[fighterIndex].points = pointsValue
+        },
         updateSpecialistSelector(state, {fighterId, selector}) {
             const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
             state.killteam.fighters[fighterIndex].specialistSelector = selector
@@ -45,9 +52,15 @@ export default {
             const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
             const selectorIndex = _.findIndex(state.killteam.fighters[fighterIndex].wargearSelectors, { id: selectorId })
             state.killteam.fighters[fighterIndex].wargearSelectors[selectorIndex] = selector
-        }
+        },
     },
     actions: {
+        updateWargearSelector({commit, state}, payload) {
+            commit('updateWargearSelector', payload)
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            const pointsValue = 42
+            commit('setPointsValue', { fighterId: payload.fighterId, pointsValue })
+        },
         clearAll({commit}) {
             commit('clearFighters')
             commit('setId', null)
@@ -103,6 +116,7 @@ export default {
                 id: UUID(),
                 name,
                 miniature,
+                points: miniature.points,
                 fighter_id: fighterId,
                 faction_id: miniature.faction_id,
                 miniature_id: miniature.id,

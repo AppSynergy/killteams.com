@@ -68,7 +68,6 @@ export default {
     },
     data() {
         return {
-            bootFactionId: true,
             selectedFactionId: parseInt(this.factionId, 10),
         }
     },

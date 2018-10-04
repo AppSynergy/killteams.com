@@ -80,7 +80,7 @@ export default {
             this.updateWargear()
         },
         updateWargear() {
-            this.$store.commit('updateWargearSelector', {
+            this.$store.dispatch('updateWargearSelector', {
                 fighterId: this.fighter.id,
                 selectorId: this.selector.id,
                 selector: this.selector,
