@@ -51,18 +51,17 @@
 
 <script>
 import Loader from './Loader.vue'
-import FactionResource from '../../mixins/FactionResource.js'
 export default {
     components: {
         Loader,
     },
-    mixins: [
-        FactionResource
-    ],
     props: [
         'factionId', 'factionKeyword', 'gameMode',
     ],
     computed: {
+        factions() {
+            return this.$store.getters.getFactions
+        },
         faction() {
             return _.find(this.factions, { id: this.selectedFactionId })
         },

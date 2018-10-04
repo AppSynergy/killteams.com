@@ -12,14 +12,19 @@
 </template>
 
 <script>
-import FactionResource from '../../mixins/FactionResource.js'
 import KillteamsResource from '../../mixins/KillteamsResource.js'
 export default {
     mixins: [
-        FactionResource, KillteamsResource,
+        KillteamsResource,
     ],
+    computed: {
+        factions() {
+            return this.$store.getters.getFactions
+        }
+    },
     methods: {
         loadKillteam(killteam, gameMode) {
+            // @TODO - should pick Leader's faction, or someting
             this.$router.push({
                 name: 'builder',
                 params: {

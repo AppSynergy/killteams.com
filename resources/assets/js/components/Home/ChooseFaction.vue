@@ -44,14 +44,15 @@
 </template>
 
 <script>
-import FactionResource from '../../mixins/FactionResource.js'
 export default {
-    mixins: [
-        FactionResource,
-    ],
     props: [
         'gameMode'
     ],
+    computed: {
+        factions() {
+            return this.$store.getters.getFactions
+        }
+    },
     methods: {
         isDisabled(faction) {
             return faction.has_datasheets == false

@@ -11,15 +11,17 @@
 
 <script>
 import itemsToText from '../../../mixins/itemsToText.js'
-import FactionResource from '../../../mixins/FactionResource.js'
 export default {
     mixins: [
-        itemsToText, FactionResource,
+        itemsToText
     ],
     props: [
         'armament', 'factionId', 'wargearSelectors'
     ],
     computed: {
+        factions() {
+            return this.$store.getters.getFactions
+        },
         faction() {
             return _.find(this.factions, { id: this.factionId })
         },

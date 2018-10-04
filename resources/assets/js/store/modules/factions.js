@@ -1,14 +1,10 @@
 export default {
     state: {
         factions: [],
-        factionsLoaded: false,
     },
     getters: {
         getFactions: (state) => {
             return state.factions
-        },
-        getFactionsLoaded: (state) => {
-            return state.factionsLoaded
         },
         getFactionFullyLoaded: (state) => ({faction_id}) => {
             const faction = _.find(state.factions, { id: faction_id })

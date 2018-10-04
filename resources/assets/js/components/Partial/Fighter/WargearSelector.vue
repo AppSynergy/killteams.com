@@ -41,10 +41,9 @@
 
 <script>
 import itemsToText from '../../../mixins/itemsToText.js'
-import FactionResource from '../../../mixins/FactionResource.js'
 export default {
     mixins: [
-        itemsToText, FactionResource,
+        itemsToText,
     ],
     props: [
         'fighter', 'gameMode', 'selector',
@@ -60,6 +59,9 @@ export default {
         },
         availableOrSelected() {
             return this.available || this.selector.isSelected
+        },
+        factions() {
+            return this.$store.getters.getFactions
         },
         faction() {
             return _.find(this.factions, { id: this.fighter.faction_id })

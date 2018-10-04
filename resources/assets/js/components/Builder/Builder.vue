@@ -49,6 +49,10 @@ export default {
     ],
     props: [
         'factionId', 'factionKeyword', 'gameMode'
-    ]
+    ],
+    mounted() {
+        const faction_id = parseInt(this.factionId, 10)
+        this.$store.dispatch('fetchFaction', { faction_id })
+    }
 }
 </script>
