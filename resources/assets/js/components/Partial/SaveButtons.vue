@@ -5,7 +5,7 @@
             Save
         </button>
         <button class="btn btn-warning"
-            v-on:click="clearFighters">
+            v-on:click="clearAll">
             Clear All
         </button>
     </div>
@@ -36,8 +36,8 @@ export default {
             const killteam = _.find(this.killteams, { id: this.latestKillteamId })
             this.$store.dispatch('loadKillteam', killteam)
         },
-        clearFighters() {
-            this.$store.commit('clearFighters')
+        clearAll() {
+            this.$store.dispatch('clearAll')
         }
     }
 }

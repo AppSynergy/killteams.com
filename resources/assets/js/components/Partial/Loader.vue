@@ -12,10 +12,11 @@
 </template>
 
 <script>
+import FactionResource from '../../mixins/FactionResource.js'
 import KillteamsResource from '../../mixins/KillteamsResource.js'
 export default {
     mixins: [
-        KillteamsResource,
+        FactionResource, KillteamsResource,
     ],
     methods: {
         loadKillteam(killteam, gameMode) {

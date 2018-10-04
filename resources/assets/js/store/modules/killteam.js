@@ -48,10 +48,26 @@ export default {
         }
     },
     actions: {
-        loadKillteam({commit, dispatch, rootGetters}, {id, name, fighters}) {
+        clearAll({commit}) {
+            commit('clearFighters')
+            commit('setId', null)
+            commit('setName', '')
+        },
+        async loadFactions({dispatch}, {faction_ids}) {
+            return _.map(faction_ids, (faction_id) => {
+                console.log("awaiting each faction_id")
+                return dispatch('fetchFaction', {faction_id}, {root: true})
+            })
+        },
+        async loadKillteam({commit, dispatch, rootGetters}, {id, name, fighters}) {
+            const faction_ids = _.uniq(_.map(fighters, 'faction_id'))
+            await dispatch('loadFactions', {faction_ids})
+            console.log("Done loading factions.")
+            console.log("Loading kill team.")
             commit('clearFighters')
             commit('setId', id)
             commit('setName', name)
+
             _.each(fighters, (fighter) => {
                 const miniature = rootGetters.getMiniature({
                     factionId: fighter.faction_id,
@@ -69,6 +85,9 @@ export default {
                     wargearSelectors: fighter.wargearSelectors,
                 })
             })
+
+
+
         },
         addFighter(context, {name, fighterId, miniature, specialistSelector, wargearSelectors}) {
             if (specialistSelector) {

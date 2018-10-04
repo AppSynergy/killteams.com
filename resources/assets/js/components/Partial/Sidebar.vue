@@ -98,6 +98,7 @@ export default {
             })
         },
         updateFactionId() {
+            this.fetchFaction(this.selectedFactionId)
             this.$router.push({
                 name: 'builder',
                 params: {
