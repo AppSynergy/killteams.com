@@ -22,23 +22,13 @@ export default {
     },
     methods: {
         init() {
-            if (!this.factionsLoaded) {
-                this.fetchFactions()
+            const faction_id = parseInt(this.factionId, 10)
+            if (!this.factionsLoaded && this.bootFactionId && faction_id > 0) {
                 this.factionsLoaded = true
+                this.$store.dispatch('fetchFactions').then(() => {
+                    this.$store.dispatch('fetchFaction', { faction_id })
+                })
             }
-        },
-        fetchFactions() {
-            axios.get(API_URL + '/factions').then(response => {
-                const factions = response.data.data
-                this.factions = factions
-                if (this.factionsLoaded) {
-                    // from Sidebar.vue @TODO
-                    //this.fetchFaction(this.selectedFactionId)
-                }
-            })
-        },
-        setFaction(faction) {
-            this.$store.commit('setFaction', faction)
         }
     }
 }

@@ -69,6 +69,7 @@ export default {
     },
     data() {
         return {
+            bootFactionId: true,
             selectedFactionId: parseInt(this.factionId, 10),
         }
     },
@@ -98,7 +99,7 @@ export default {
             })
         },
         updateFactionId() {
-            this.fetchFaction(this.selectedFactionId)
+            this.$store.dispatch('fetchFaction', { faction_id: this.selectedFactionId })
             this.$router.push({
                 name: 'builder',
                 params: {

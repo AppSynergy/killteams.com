@@ -69,8 +69,8 @@ export default {
                 commit('setName', name)
                 _.each(fighters, (fighter) => {
                     const miniature = rootGetters.getMiniature({
-                        factionId: fighter.faction_id,
-                        miniatureId: fighter.miniature_id,
+                        faction_id: fighter.faction_id,
+                        miniature_id: fighter.miniature_id,
                     })
                     fighter.wargearSelectors = _.map(fighter.wargearSelectors, (selector, index) => {
                         selector.wgo = miniature.wargear_options[index]
@@ -85,9 +85,6 @@ export default {
                     })
                 })
             })
-
-
-
         },
         addFighter(context, {name, fighterId, miniature, specialistSelector, wargearSelectors}) {
             if (specialistSelector) {
