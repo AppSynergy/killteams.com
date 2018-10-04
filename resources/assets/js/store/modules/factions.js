@@ -1,6 +1,6 @@
 export default {
     state: {
-        factions: {},
+        factions: [],
         factionsLoaded: false,
     },
     getters: {
@@ -47,6 +47,7 @@ export default {
             })
         },
         fetchFaction({getters, commit}, {faction_id}) {
+            console.log("fetch", faction_id)
             if (!getters.getFactionFullyLoaded({faction_id})) {
                 return new Promise((resolve, reject) => {
                     axios.get(API_URL + '/factions/' + faction_id).then(response => {

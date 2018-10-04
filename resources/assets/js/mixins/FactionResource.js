@@ -23,10 +23,12 @@ export default {
     methods: {
         init() {
             const faction_id = parseInt(this.factionId, 10)
-            if (!this.factionsLoaded && this.bootFactionId && faction_id > 0) {
+            if (!this.factionsLoaded) {
                 this.factionsLoaded = true
                 this.$store.dispatch('fetchFactions').then(() => {
-                    this.$store.dispatch('fetchFaction', { faction_id })
+                    if (faction_id > 0) {
+                        this.$store.dispatch('fetchFaction', { faction_id })
+                    }
                 })
             }
         }
