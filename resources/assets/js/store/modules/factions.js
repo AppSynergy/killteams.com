@@ -47,15 +47,16 @@ export default {
             })
         },
         fetchFaction({getters, commit}, {faction_id}) {
-            console.log("fetch", faction_id)
-            if (!getters.getFactionFullyLoaded({faction_id})) {
-                return new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
+                if (!getters.getFactionFullyLoaded({faction_id})) {
                     axios.get(API_URL + '/factions/' + faction_id).then(response => {
                         commit('setFaction', response.data.data)
                         resolve(faction_id)
                     })
-                })
-            }
+                } else {
+                    resolve(faction_id)
+                }
+            })
         },
     }
 }
