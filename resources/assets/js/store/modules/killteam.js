@@ -53,36 +53,36 @@ export default {
             commit('setId', null)
             commit('setName', '')
         },
-        async loadFactions({dispatch}, {faction_ids}) {
-            return _.map(faction_ids, (faction_id) => {
-                console.log("awaiting each faction_id")
-                return dispatch('fetchFaction', {faction_id}, {root: true})
-            })
+        loadFactions({dispatch}, {faction_ids}) {
+            const promises = []
+            for (let faction_id of faction_ids) {
+                let promise = dispatch('fetchFaction', {faction_id}, {root: true})
+                promises.push(promise)
+            }
+            return Promise.all(promises)
         },
-        async loadKillteam({commit, dispatch, rootGetters}, {id, name, fighters}) {
+        loadKillteam({commit, dispatch, rootGetters}, {id, name, fighters}) {
             const faction_ids = _.uniq(_.map(fighters, 'faction_id'))
-            await dispatch('loadFactions', {faction_ids})
-            console.log("Done loading factions.")
-            console.log("Loading kill team.")
-            commit('clearFighters')
-            commit('setId', id)
-            commit('setName', name)
-
-            _.each(fighters, (fighter) => {
-                const miniature = rootGetters.getMiniature({
-                    factionId: fighter.faction_id,
-                    miniatureId: fighter.miniature_id,
-                })
-                fighter.wargearSelectors = _.map(fighter.wargearSelectors, (selector, index) => {
-                    selector.wgo = miniature.wargear_options[index]
-                    return selector
-                })
-                dispatch('addFighter', {
-                    name: fighter.name,
-                    fighterId: fighter.id,
-                    miniature,
-                    specialistSelector: fighter.specialistSelector,
-                    wargearSelectors: fighter.wargearSelectors,
+            dispatch('loadFactions', {faction_ids}).then(() => {
+                commit('clearFighters')
+                commit('setId', id)
+                commit('setName', name)
+                _.each(fighters, (fighter) => {
+                    const miniature = rootGetters.getMiniature({
+                        factionId: fighter.faction_id,
+                        miniatureId: fighter.miniature_id,
+                    })
+                    fighter.wargearSelectors = _.map(fighter.wargearSelectors, (selector, index) => {
+                        selector.wgo = miniature.wargear_options[index]
+                        return selector
+                    })
+                    dispatch('addFighter', {
+                        name: fighter.name,
+                        fighterId: fighter.id,
+                        miniature,
+                        specialistSelector: fighter.specialistSelector,
+                        wargearSelectors: fighter.wargearSelectors,
+                    })
                 })
             })
 
