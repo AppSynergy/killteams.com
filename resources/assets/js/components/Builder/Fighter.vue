@@ -17,8 +17,12 @@
                 v-on:click="removeFighter(fighter.id)">
                 &times;
             </span>
-            <span class="badge badge-info" dusk="points">
-                {{ fighter.points }}
+            <span class="badge badge-info">
+                <fighter-points
+                    :faction-id="fighter.faction_id"
+                    :miniature="fighter.miniature"
+                    :wargear-selectors="fighter.wargearSelectors"
+                ></fighter-points>
             </span>
         </span>
 
@@ -56,12 +60,14 @@
 
 <script>
 import FighterArmament from '../Partial/Fighter/Armament.vue'
+import FighterPoints from '../Partial/Fighter/Points.vue'
 import FighterProfile from '../Partial/Fighter/Profile.vue'
 import SpecialistSelector from '../Partial/Fighter/SpecialistSelector.vue'
 import WargearSelector from '../Partial/Fighter/WargearSelector.vue'
 export default {
     components: {
-        FighterArmament, FighterProfile, SpecialistSelector, WargearSelector,
+        FighterArmament, FighterPoints, FighterProfile,
+        SpecialistSelector, WargearSelector,
     },
     props: [
         'fighter', 'gameMode', 'index',

@@ -143,10 +143,10 @@ class BuilderTest extends DuskTestCase
                 ->assertElementsCountIs(2, '.vue-builder-fighter')
                 ->assertSeeIn('.vue-builder-fighter:nth-child(1) .select-wargear-option', 'Flamer')
                 ->selectNthOption(0, '.vue-builder-fighter:nth-child(1) .select-wargear-option')
-                ->assertDisabled('.vue-builder-fighter:nth-child(1) .vue-builder-wargear-selector:nth-child(2) .select-wargear-option')
-                ->assertDisabled('.vue-builder-fighter:nth-child(2) .vue-builder-wargear-selector:nth-child(1) .select-wargear-option')
-                ->selectNthOption(1, '.vue-builder-fighter:nth-child(2) .vue-builder-wargear-selector:nth-child(2) .select-wargear-option')
-                ->assertDisabled('.vue-builder-fighter:nth-child(1) .vue-builder-wargear-selector:nth-child(2) .select-wargear-option')
+                ->assertDisabled('.vue-builder-fighter:nth-child(1) .vue-partial-fighter-wargear-selector:nth-child(2) .select-wargear-option')
+                ->assertDisabled('.vue-builder-fighter:nth-child(2) .vue-partial-fighter-wargear-selector:nth-child(1) .select-wargear-option')
+                ->selectNthOption(1, '.vue-builder-fighter:nth-child(2) .vue-partial-fighter-wargear-selector:nth-child(2) .select-wargear-option')
+                ->assertDisabled('.vue-builder-fighter:nth-child(1) .vue-partial-fighter-wargear-selector:nth-child(2) .select-wargear-option')
                 ->assertSeeIn('@points', 16);
 
             // Exit
