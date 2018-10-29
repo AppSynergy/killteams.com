@@ -6,6 +6,7 @@
                     <sidebar
                         :factionId="factionId"
                         :factionKeyword="factionKeyword"
+                        :fighters="killteam.fighters"
                         :gameMode="gameMode"
                     ></sidebar>
                 </div>

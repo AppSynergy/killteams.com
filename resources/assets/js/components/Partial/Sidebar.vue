@@ -24,7 +24,7 @@
                     <button class="btn btn-primary btn-sm mr-2 mb-2"
                         v-for="miniature in datasheet.miniatures"
                         v-on:click="addFighter(miniature)"
-                        :disabled="false"
+                        :disabled="isMiniatureDisabled(miniature)"
                         :dusk="'add ' + miniature.name">
                         {{ miniature.name }}
                     </button>
@@ -56,7 +56,7 @@ export default {
         Loader,
     },
     props: [
-        'factionId', 'factionKeyword', 'gameMode',
+        'factionId', 'factionKeyword', 'fighters', 'gameMode',
     ],
     computed: {
         factions() {
@@ -72,6 +72,13 @@ export default {
         }
     },
     methods: {
+        isMiniatureDisabled(miniature) {
+            if (0 == miniature.profile.Max) {
+                return false
+            }
+            let count = _.countBy(this.fighters, 'miniature.name')
+            return count[miniature.name] >= miniature.profile.Max
+        },
         addFighter(miniature) {
             let wargearSelectors = []
             _.each(miniature.wargear_options, (wgo) => {
