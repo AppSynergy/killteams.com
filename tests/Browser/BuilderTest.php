@@ -115,7 +115,7 @@ class BuilderTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/builder#/tournament/7/DEATH%20GUARD/builder')
                 ->assertFragmentIs('/tournament/7/DEATH%20GUARD/builder')
-                ->waitForText('Choose Your Fighters');
+                ->waitForText('Poxwalker');
 
             // Can add Plague Marine Gunner
             $browser->click('@add Plague Marine Gunner')
@@ -136,7 +136,7 @@ class BuilderTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/builder#/tournament/1/ADEPTUS%20ASTARTES/builder')
                 ->assertFragmentIs('/tournament/1/ADEPTUS%20ASTARTES/builder')
-                ->waitForText('Choose Your Fighters');
+                ->waitForText('Reiver');
 
             $browser->click('@add Tactical Marine Gunner')
                 ->click('@add Tactical Marine Gunner')
