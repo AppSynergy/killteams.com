@@ -1,6 +1,16 @@
 <template>
     <div class="vue-builder-builder">
         <div class="container">
+
+            <breadcrumb
+                activeText="Select kill team"
+                :parents="[{title: 'Home', route: { name: 'intro' }},
+                    {title: 'Select game mode', route: { name: 'gamemode' }},
+                    {title: 'Select faction', route: { name: 'choosefaction' }}]"
+            >
+                <save-buttons></save-buttons>
+            </breadcrumb>
+
             <div class="row">
                 <div class="col-12 col-sm-5 col-lg-4">
                     <sidebar
@@ -13,13 +23,7 @@
                 <div class="col-12 col-sm-7 col-lg-8">
                     <div class="card mb-4">
                         <div class="card-body py-0 pt-3">
-                            <breadcrumb
-                                activeText="Select kill team"
-                                :parents="[{title: 'Home', route: { name: 'intro' }},
-                                    {title: 'Select game mode', route: { name: 'gamemode' }},
-                                    {title: 'Select faction', route: { name: 'choosefaction' }}]"
-                            ></breadcrumb>
-                            <save-buttons></save-buttons>
+
                             <killteam-form></killteam-form>
                             <div class="fighter-list" dusk="fighters">
                                 <draggable v-model="killteam.fighters"

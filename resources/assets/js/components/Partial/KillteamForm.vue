@@ -10,7 +10,7 @@
             </span>
         </span>
         <input type="hidden" v-model="killteam.id">
-        <input class="form-control my-2"
+        <input class="form-control my-4"
             type="text" v-model="killteamName" placeholder="Name your Kill Team">
     </div>
 </template>

@@ -1,16 +1,18 @@
 <template>
     <div class="vue-home-choose-faction">
         <div class="container">
+
+            <breadcrumb
+                activeText="Select faction"
+                :parents="[{title: 'Home', route: { name: 'intro' }},
+                    {title: 'Select game mode', route: { name: 'gamemode' }}]"
+            ></breadcrumb>
+
             <div class="card">
 
                 <span class="card-header h2 text-center">Select a Faction</span>
 
                 <div class="card-body">
-                    <breadcrumb
-                        activeText="Select faction"
-                        :parents="[{title: 'Home', route: { name: 'intro' }},
-                            {title: 'Select game mode', route: { name: 'gamemode' }}]"
-                    ></breadcrumb>
                     <div class="row">
                         <div class="col col-12 col-lg-6 col-xl-4 mb-3"
                             v-for="faction in factions">

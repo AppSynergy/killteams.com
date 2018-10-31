@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-partial-save-buttons my-3 d-flex justify-content-end">
+    <div class="vue-partial-save-buttons d-flex justify-content-end">
 
         <button class="btn btn-primary ml-3"
             v-on:click="saveKillteam">
@@ -12,6 +12,7 @@
         </button>
 
         <button class="btn btn-danger ml-3"
+            :disabled="!saved"
             data-toggle="modal" data-target="#deleteModal">
             Delete Kill Team
         </button>

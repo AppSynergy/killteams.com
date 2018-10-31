@@ -1,15 +1,17 @@
 <template>
     <div class="vue-home-game-mode">
         <div class="container">
+
+            <breadcrumb
+                activeText="Select game mode"
+                :parents="[{title: 'Home', route: { name: 'intro' }}]"
+            ></breadcrumb>
+
             <div class="card">
 
                 <span class="card-header h3 text-center">Select a Game Mode</span>
 
                 <div class="card-body">
-                    <breadcrumb
-                        activeText="Select game mode"
-                        :parents="[{title: 'Home', route: { name: 'intro' }}]"
-                    ></breadcrumb>
                     <ul class="list-group">
                         <li class="list-group-item">
                             <router-link class="btn btn-primary mr-3"
