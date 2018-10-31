@@ -33,7 +33,7 @@
 
         <fighter-armament
             :faction-id="fighter.faction_id"
-            :armament="fighter.miniature.armament"
+            :armament="fighter.armament"
             :wargear-selectors="fighter.wargearSelectors"
         ></fighter-armament>
 
@@ -48,6 +48,8 @@
             v-if="hasWargearOptions">
             <wargear-selector
                 v-for="selector in fighter.wargearSelectors"
+                :armament="fighter.miniature.armament"
+                :available="isWargearSelectorAvailable(selector.wgo)"
                 :fighter="fighter"
                 :game-mode="gameMode"
                 :key="selector.id"
@@ -75,11 +77,27 @@ export default {
     computed: {
         hasWargearOptions() {
             return !_.isEmpty(this.fighter.miniature.wargear_options)
+        },
+        fightersWargear() {
+            return this.$store.getters.getAllFighterWargearSelectors
         }
     },
     methods: {
         removeFighter(fighterId) {
             this.$store.commit('removeFighter', fighterId)
+        },
+        isWargearSelectorAvailable(wargearOption) {
+            const itemsToReplaceAreAllThere = _.every(wargearOption.replace, (item) => {
+                return _.includes(this.fighter.armament, item)
+            })
+            const limitedItemsAlreadyTaken = _(this.fightersWargear).filter((sel) => {
+                const notMine = (undefined == _.find(this.fighter.wargearSelectors, {id: sel.id}))
+                return ((sel.wgo.who != 'ANY') && notMine && (sel.isSelected))
+            }).flatMap((sel) => {
+                return sel.option
+            }).value()
+            const notAlreadyTaken = _.isEmpty(_.intersection(wargearOption.options, limitedItemsAlreadyTaken))
+            return itemsToReplaceAreAllThere && notAlreadyTaken
         }
     }
 }

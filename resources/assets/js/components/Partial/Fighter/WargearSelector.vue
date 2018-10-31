@@ -46,13 +46,8 @@ export default {
         itemsToText,
     ],
     props: [
-        'fighter', 'gameMode', 'selector',
+        'armament', 'available', 'fighter', 'gameMode', 'selector',
     ],
-    data() {
-        return {
-            available: true,
-        }
-    },
     computed: {
         isDisabled() {
             return (this.availableOrSelected == false)
@@ -84,6 +79,7 @@ export default {
                 fighterId: this.fighter.id,
                 selectorId: this.selector.id,
                 selector: this.selector,
+                miniatureArmament: this.armament,
             })
         }
     }

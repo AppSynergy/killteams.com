@@ -1,5 +1,9 @@
 import UUID from 'uuid/v1'
 
+function ensureArray(value) {
+    return (_.isArray(value)) ? value : [value]
+}
+
 export default {
     state: {
         killteam: {
@@ -17,6 +21,11 @@ export default {
         },
         getFighter: (state) => (fighterId) => {
             return _.find(state.killteam.fighters, { id: fighterId })
+        },
+        getAllFighterWargearSelectors: (state) => {
+            return _.flatMap(state.killteam.fighters, (fighter) => {
+                return fighter.wargearSelectors
+            })
         }
     },
     mutations: {
@@ -49,10 +58,27 @@ export default {
             const selectorIndex = _.findIndex(state.killteam.fighters[fighterIndex].wargearSelectors, { id: selectorId })
             state.killteam.fighters[fighterIndex].wargearSelectors[selectorIndex] = selector
         },
+        updateArmament(state, {fighterId, miniatureArmament}) {
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
+            let armament = _.clone(miniatureArmament)
+            _.each(wargearSelectors, (selector) => {
+                if (selector.isSelected) {
+                    _.each(ensureArray(selector.replace), (item) => {
+                        _.remove(armament, x => x == item)
+                    })
+                    _.each(ensureArray(selector.option), (item) => {
+                        armament.push(item)
+                    })
+                }
+            })
+            state.killteam.fighters[fighterIndex].armament = armament
+        }
     },
     actions: {
         updateWargearSelector({commit, state}, payload) {
             commit('updateWargearSelector', payload)
+            commit('updateArmament', payload)
         },
         clearAll({commit}) {
             commit('clearFighters')
@@ -112,6 +138,7 @@ export default {
                 fighter_id: fighterId,
                 faction_id: miniature.faction_id,
                 miniature_id: miniature.id,
+                armament: miniature.armament,
                 specialistSelector,
                 wargearSelectors,
             }
