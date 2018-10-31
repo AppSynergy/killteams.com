@@ -3,30 +3,33 @@
         <div class="container">
             <div class="card">
 
-                <span class="card-header h2">Kill Team Builder &middot; Choose a Faction</span>
+                <span class="card-header h2 text-center">Select a Faction</span>
 
                 <div class="card-body">
                     <div class="row">
                         <div class="col col-12 col-lg-6 col-xl-4 mb-3"
                             v-for="faction in factions">
-                            <div class="bg-dark text-light p-3 rounded h-100">
-                                <router-link class="btn btn-primary mr-3 mb-3"
-                                    :dusk="faction.name"
-                                    :class="(isDisabled(faction) ? 'disabled' : '')"
-                                    :event="(isDisabled(faction) ? '' : 'click')"
-                                    :disabled="isDisabled(faction)"
-                                    :to="'/' + gameMode + '/' + faction.id + '/'
-                                    + faction.faction_keyword + '/builder'">
-                                    {{ faction.name }}
-                                </router-link>
-                                <p>
+                            <div class="border-primary border-bottom">
+                                <div class="pb-2 d-flex flex-row align-items-center justify-content-between">
+                                    <h4 class="h4 text-center m-0">{{ faction.name }}</h4>
+                                    <router-link class="btn btn-primary"
+                                        :dusk="faction.name"
+                                        :class="(isDisabled(faction) ? 'disabled' : '')"
+                                        :event="(isDisabled(faction) ? '' : 'click')"
+                                        :disabled="isDisabled(faction)"
+                                        :to="'/' + gameMode + '/' + faction.id + '/'
+                                        + faction.faction_keyword + '/builder'">
+                                        Select
+                                    </router-link>
+                                </div>
+                                <div class="text-justify pb-1">
                                     <span v-if="isDisabled(faction)">
-                                        Coming soon.
+                                        <em>Coming soon.</em>
                                     </span>
                                     <span v-else>
                                         {{ faction.description }}
                                     </span>
-                                </p>
+                                </div>
                             </div>
                         </div>
                     </div>
