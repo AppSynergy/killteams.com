@@ -42,6 +42,23 @@ export default {
                 }
             })
             return armament
+        },
+        getFighterPoints: (state, getters, rootState, rootGetters) => ({fighterId, factionId}) => {
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
+            const factionWargear = rootGetters.getFaction({ factionId }).wargear
+            let points = state.killteam.fighters[fighterIndex].miniature.points
+            _.each(wargearSelectors, (selector) => {
+                if (selector.isSelected) {
+                    _.each(ensureArray(selector.option), (item_id) => {
+                        if (item_id) {
+                            let item = _.find(factionWargear, {id: item_id})
+                            points += item.points
+                        }
+                    })
+                }
+            })
+            return points
         }
     },
     mutations: {
@@ -73,32 +90,12 @@ export default {
             const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
             const selectorIndex = _.findIndex(state.killteam.fighters[fighterIndex].wargearSelectors, { id: selectorId })
             state.killteam.fighters[fighterIndex].wargearSelectors[selectorIndex] = selector
-        },
-        updatePointsCost(state, {fighterId, factionWargear}) {
-            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
-            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
-            let points = state.killteam.fighters[fighterIndex].miniature.points
-            _.each(wargearSelectors, (selector) => {
-                if (selector.isSelected) {
-                    _.each(ensureArray(selector.option), (item_id) => {
-                        if (item_id) {
-                            let item = _.find(factionWargear, {id: item_id})
-                            points += item.points
-                        }
-                    })
-                }
-            })
-            state.killteam.fighters[fighterIndex].points = points
         }
     },
     actions: {
         updateWargearSelector({commit, state, rootState}, payload) {
             const faction = _.find(rootState.factions.factions, { id: payload.factionId })
             commit('updateWargearSelector', payload)
-            commit('updatePointsCost', {
-                fighterId: payload.fighterId,
-                factionWargear: faction.wargear,
-            })
         },
         clearKillTeam({commit}) {
             commit('clearFighters')

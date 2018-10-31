@@ -6,6 +6,10 @@ export default {
         getFactions: (state) => {
             return state.factions
         },
+        getFaction: (state) => ({factionId}) => {
+            const faction = _.find(state.factions, { id: factionId })
+            return faction
+        },
         getFactionFullyLoaded: (state) => ({faction_id}) => {
             const faction = _.find(state.factions, { id: faction_id })
             return faction.fullyLoaded

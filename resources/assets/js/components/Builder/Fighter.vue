@@ -19,7 +19,7 @@
             </span>
             <span class="badge badge-info" dusk="points">
                 <h5 class="h5 m-0">
-                    {{ fighter.points }}
+                    {{ getPoints(fighter) }}
                 </h5>
             </span>
         </span>
@@ -82,6 +82,13 @@ export default {
     methods: {
         removeFighter(fighterId) {
             this.$store.commit('removeFighter', fighterId)
+        },
+        getPoints(fighter) {
+            const points = this.$store.getters.getFighterPoints({
+                fighterId: fighter.id,
+                factionId: fighter.faction_id,
+            })
+            return points
         },
         isWargearSelectorAvailable(wargearOption) {
             const itemsToReplaceAreAllThere = _.every(wargearOption.replace, (item) => {
