@@ -16,7 +16,7 @@ export default {
         itemsToText
     ],
     props: [
-        'armament', 'factionId', 'wargearSelectors'
+        'fighterId', 'factionId', 'miniatureArmament',
     ],
     computed: {
         factions() {
@@ -24,6 +24,12 @@ export default {
         },
         faction() {
             return _.find(this.factions, { id: this.factionId })
+        },
+        armament() {
+            return this.$store.getters.getFighterArmament({
+                fighterId: this.fighterId,
+                miniatureArmament: this.miniatureArmament,
+            })
         }
     }
 }

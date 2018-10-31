@@ -26,6 +26,22 @@ export default {
             return _.flatMap(state.killteam.fighters, (fighter) => {
                 return fighter.wargearSelectors
             })
+        },
+        getFighterArmament: (state) => ({fighterId, miniatureArmament}) => {
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
+            let armament = _.clone(miniatureArmament)
+            _.each(wargearSelectors, (selector) => {
+                if (selector.isSelected) {
+                    _.each(ensureArray(selector.replace), (item) => {
+                        _.remove(armament, x => x == item)
+                    })
+                    _.each(ensureArray(selector.option), (item) => {
+                        armament.push(item)
+                    })
+                }
+            })
+            return armament
         }
     },
     mutations: {
@@ -58,22 +74,6 @@ export default {
             const selectorIndex = _.findIndex(state.killteam.fighters[fighterIndex].wargearSelectors, { id: selectorId })
             state.killteam.fighters[fighterIndex].wargearSelectors[selectorIndex] = selector
         },
-        updateArmament(state, {fighterId, miniatureArmament}) {
-            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
-            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
-            let armament = _.clone(miniatureArmament)
-            _.each(wargearSelectors, (selector) => {
-                if (selector.isSelected) {
-                    _.each(ensureArray(selector.replace), (item) => {
-                        _.remove(armament, x => x == item)
-                    })
-                    _.each(ensureArray(selector.option), (item) => {
-                        armament.push(item)
-                    })
-                }
-            })
-            state.killteam.fighters[fighterIndex].armament = armament
-        },
         updatePointsCost(state, {fighterId, factionWargear}) {
             const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
             const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
@@ -95,7 +95,6 @@ export default {
         updateWargearSelector({commit, state, rootState}, payload) {
             const faction = _.find(rootState.factions.factions, { id: payload.factionId })
             commit('updateWargearSelector', payload)
-            commit('updateArmament', payload)
             commit('updatePointsCost', {
                 fighterId: payload.fighterId,
                 factionWargear: faction.wargear,
@@ -140,6 +139,7 @@ export default {
             })
         },
         addFighter({commit, rootGetters}, {fighterId, miniature, specialistSelector, wargearSelectors}) {
+            //console.log("addFighter", fighterId, specialistSelector, specialistSelector.selector_id)
             if (specialistSelector) {
                 specialistSelector.selector_id = specialistSelector.id
                 specialistSelector.id = UUID()

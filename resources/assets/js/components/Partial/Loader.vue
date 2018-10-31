@@ -24,7 +24,6 @@ export default {
     },
     methods: {
         loadKillteam(killteam, gameMode) {
-            // @TODO - should pick Leader's faction, or someting
             this.$router.push({
                 name: 'builder',
                 params: {
