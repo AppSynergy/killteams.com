@@ -23,4 +23,5 @@ Route::get('factions/{id}', 'Api\FactionController@show');
 Route::get('specialisms', 'Api\SpecialismController@index');
 
 Route::post('killteam', 'Api\KillteamController@store');
+Route::delete('killteam', 'Api\KillteamController@delete');
 Route::get('killteams', 'Api\KillteamController@index');

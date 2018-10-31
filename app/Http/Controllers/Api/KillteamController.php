@@ -90,8 +90,13 @@ class KillteamController extends Controller
         $removedFighterIds->each(function($id) {
             Fighter::find($id)->delete();
         });
-        //print_r([$fighterIds, $previousFighterIds]);
 
         return response($killteam->id, 200);
+    }
+
+    public function delete(Request $request)
+    {
+        $killteam = Killteam::where(['id' => $request->get('id')])->firstOrFail();
+        $killteam->delete();
     }
 }

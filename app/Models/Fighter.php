@@ -30,7 +30,12 @@ class Fighter extends Model
     */
     public function delete()
     {
-        $this->specialistselector()->delete();
+        if ($this->wargearselectors()->exists()) {
+            $this->wargearselectors()->delete();
+        }
+        if ($this->specialistselector()->exists()) {
+            $this->specialistselector()->delete();
+        }
         parent::delete();
     }
 

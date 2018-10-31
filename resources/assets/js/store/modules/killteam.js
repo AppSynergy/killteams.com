@@ -80,7 +80,7 @@ export default {
             commit('updateWargearSelector', payload)
             commit('updateArmament', payload)
         },
-        clearAll({commit}) {
+        clearKillTeam({commit}) {
             commit('clearFighters')
             commit('setId', null)
             commit('setName', '')

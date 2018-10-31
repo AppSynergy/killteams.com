@@ -57,7 +57,7 @@ export default {
     },
     beforeRouteLeave (to, from, next) {
         console.log("@TODO: warning, this will delete your kill team!")
-        this.$store.dispatch('clearAll')
+        this.$store.dispatch('clearKillTeam')
         next()
     }
 }

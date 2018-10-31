@@ -30,11 +30,12 @@ export default {
     },
     methods: {
         ajaxFetchKillteams(then = false) {
-            axios.get(API_URL + '/killteams').then(response => {
-                this.killteams = response.data.data
-                if (then) {
-                    then()
-                }
+            axios.get(API_URL + '/killteams')
+                .then(response => {
+                    this.killteams = response.data.data
+                    if (then) {
+                        then()
+                    }
             })
         },
         ajaxSaveKillteam(killteam, then = false) {
@@ -43,6 +44,14 @@ export default {
                     this.saved = true
                     if (then) {
                         then(response.data)
+                    }
+                })
+        },
+        ajaxDeleteKillteam(killteam, then = false) {
+            axios.delete(API_URL + '/killteam', { data: killteam })
+                .then(response => {
+                    if (then) {
+                        then()
                     }
                 })
         }
