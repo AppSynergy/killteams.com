@@ -46,7 +46,6 @@
             v-if="hasWargearOptions">
             <wargear-selector
                 v-for="selector in fighter.wargearSelectors"
-                :armament="fighter.miniature.armament"
                 :available="isWargearSelectorAvailable(selector.wgo)"
                 :fighter="fighter"
                 :game-mode="gameMode"

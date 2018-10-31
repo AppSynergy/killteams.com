@@ -27,9 +27,8 @@ export default {
                 return fighter.wargearSelectors
             })
         },
-        getFighterArmament: (state) => ({fighterId, miniatureArmament}) => {
-            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
-            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
+        getFighterArmament: (state, getters) => ({fighterId, miniatureArmament}) => {
+            const wargearSelectors = getters.getFighter(fighterId).wargearSelectors
             let armament = _.clone(miniatureArmament)
             _.each(wargearSelectors, (selector) => {
                 if (selector.isSelected) {
@@ -44,11 +43,10 @@ export default {
             return armament
         },
         getFighterPoints: (state, getters, rootState, rootGetters) => ({fighterId, factionId}) => {
-            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
-            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
+            const fighter = getters.getFighter(fighterId)
             const factionWargear = rootGetters.getFaction({ factionId }).wargear
-            let points = state.killteam.fighters[fighterIndex].miniature.points
-            _.each(wargearSelectors, (selector) => {
+            let points = fighter.miniature.points
+            _.each(fighter.wargearSelectors, (selector) => {
                 if (selector.isSelected) {
                     _.each(ensureArray(selector.option), (item_id) => {
                         if (item_id) {
@@ -93,33 +91,29 @@ export default {
         }
     },
     actions: {
-        updateWargearSelector({commit, state, rootState}, payload) {
-            const faction = _.find(rootState.factions.factions, { id: payload.factionId })
-            commit('updateWargearSelector', payload)
-        },
         clearKillTeam({commit}) {
             commit('clearFighters')
             commit('setId', null)
             commit('setName', '')
         },
-        loadFactions({dispatch}, {faction_ids}) {
+        loadFactions({dispatch}, {factionIds}) {
             const promises = []
-            for (let faction_id of faction_ids) {
-                let promise = dispatch('fetchFaction', {faction_id}, {root: true})
+            for (let factionId of factionIds) {
+                let promise = dispatch('fetchFaction', {factionId}, {root: true})
                 promises.push(promise)
             }
             return Promise.all(promises)
         },
         loadKillteam({commit, dispatch, rootGetters}, {id, name, fighters}) {
-            const faction_ids = _.uniq(_.map(fighters, 'faction_id'))
-            dispatch('loadFactions', {faction_ids}).then(() => {
+            const factionIds = _.uniq(_.map(fighters, 'faction_id'))
+            dispatch('loadFactions', {factionIds}).then(() => {
                 commit('clearFighters')
                 commit('setId', id)
                 commit('setName', name)
                 _.each(fighters, (fighter) => {
                     const miniature = rootGetters.getMiniature({
-                        faction_id: fighter.faction_id,
-                        miniature_id: fighter.miniature_id,
+                        factionId: fighter.faction_id,
+                        miniatureId: fighter.miniature_id,
                     })
                     fighter.wargearSelectors = _.map(fighter.wargearSelectors, (selector, index) => {
                         selector.wgo = miniature.wargear_options[index]
@@ -156,8 +150,8 @@ export default {
             const fighter = {
                 id: UUID(),
                 name: rootGetters.getFactionNarrativeName({
-                    faction_id: miniature.faction_id,
-                    miniature_name: miniature.name,
+                    factionId: miniature.faction_id,
+                    miniatureName: miniature.name,
                 }),
                 miniature,
                 fighter_id: fighterId,

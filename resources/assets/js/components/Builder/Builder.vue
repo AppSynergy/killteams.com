@@ -64,7 +64,7 @@ export default {
     ],
     mounted() {
         const faction_id = parseInt(this.factionId, 10)
-        this.$store.dispatch('fetchFaction', { faction_id })
+        this.$store.dispatch('fetchFaction', { factionId: faction_id })
     },
     beforeRouteLeave (to, from, next) {
         console.log("@TODO: warning, this will delete your kill team!")

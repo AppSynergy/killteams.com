@@ -10,22 +10,22 @@ export default {
             const faction = _.find(state.factions, { id: factionId })
             return faction
         },
-        getFactionFullyLoaded: (state) => ({faction_id}) => {
-            const faction = _.find(state.factions, { id: faction_id })
+        getFactionFullyLoaded: (state, getters) => ({factionId}) => {
+            const faction = getters.getFaction({factionId})
             return faction.fullyLoaded
         },
-        getMiniature: (state) => ({faction_id, miniature_id}) => {
-            const faction = _.find(state.factions, { id: faction_id })
-            const datasheet = _.find(faction.datasheets, { miniatures: [{ id: miniature_id }]})
-            return _.find(datasheet.miniatures, { id: miniature_id })
+        getMiniature: (state, getters) => ({factionId, miniatureId}) => {
+            const faction = getters.getFaction({factionId})
+            const datasheet = _.find(faction.datasheets, { miniatures: [{ id: miniatureId }]})
+            return _.find(datasheet.miniatures, { id: miniatureId })
         },
-        getFactionNarrativeName: (state) => ({faction_id, miniature_name}) => {
-            const faction = _.find(state.factions, { id: faction_id })
+        getFactionNarrativeName: (state, getters) => ({factionId, miniatureName}) => {
+            const faction = getters.getFaction({factionId})
             if (_.has(faction.narrative, 'names')) {
                 const names = faction.narrative.names
                 return _.sample(names.forename) + ' ' + _.sample(names.surname)
             }
-            return miniature_name
+            return miniatureName
         },
     },
     mutations: {
@@ -54,15 +54,15 @@ export default {
                 })
             })
         },
-        fetchFaction({getters, commit}, {faction_id}) {
+        fetchFaction({getters, commit}, {factionId}) {
             return new Promise((resolve, reject) => {
-                if (!getters.getFactionFullyLoaded({faction_id})) {
-                    axios.get(API_URL + '/factions/' + faction_id).then(response => {
+                if (!getters.getFactionFullyLoaded({factionId})) {
+                    axios.get(API_URL + '/factions/' + factionId).then(response => {
                         commit('setFaction', response.data.data)
-                        resolve(faction_id)
+                        resolve(factionId)
                     })
                 } else {
-                    resolve(faction_id)
+                    resolve(factionId)
                 }
             })
         },

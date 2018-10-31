@@ -46,7 +46,7 @@ export default {
         itemsToText,
     ],
     props: [
-        'armament', 'available', 'fighter', 'gameMode', 'selector',
+        'available', 'fighter', 'gameMode', 'selector',
     ],
     computed: {
         isDisabled() {
@@ -75,12 +75,10 @@ export default {
             this.updateWargear()
         },
         updateWargear() {
-            this.$store.dispatch('updateWargearSelector', {
-                factionId: this.fighter.faction_id,
+            this.$store.commit('updateWargearSelector', {
                 fighterId: this.fighter.id,
                 selectorId: this.selector.id,
                 selector: this.selector,
-                miniatureArmament: this.armament,
             })
         }
     }

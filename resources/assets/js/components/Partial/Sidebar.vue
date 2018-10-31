@@ -106,7 +106,7 @@ export default {
             })
         },
         updateFactionId() {
-            this.$store.dispatch('fetchFaction', { faction_id: this.selectedFactionId })
+            this.$store.dispatch('fetchFaction', { factionId: this.selectedFactionId })
             this.$router.push({
                 name: 'builder',
                 params: {
