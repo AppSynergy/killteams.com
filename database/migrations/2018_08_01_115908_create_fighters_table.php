@@ -21,7 +21,7 @@ class CreateFightersTable extends Migration
             $table->unsignedInteger('miniature_id');
             $table->unsignedInteger('specialism_id')->nullable();
             $table->timestamps();
-            $table->foreign('killteam_id')->references('id')->on('killteams');
+            $table->foreign('killteam_id')->references('id')->on('killteams')->onDelete('cascade');
             $table->foreign('faction_id')->references('id')->on('factions');
             $table->foreign('miniature_id')->references('id')->on('miniatures');
             $table->foreign('specialism_id')->references('id')->on('specialisms');

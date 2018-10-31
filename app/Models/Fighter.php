@@ -28,16 +28,6 @@ class Fighter extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function delete()
-    {
-        if ($this->wargearselectors()->exists()) {
-            $this->wargearselectors()->delete();
-        }
-        if ($this->specialistselector()->exists()) {
-            $this->specialistselector()->delete();
-        }
-        parent::delete();
-    }
 
     /*
     |--------------------------------------------------------------------------

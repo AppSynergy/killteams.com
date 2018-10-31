@@ -20,7 +20,7 @@ class CreateWargearselectorsTable extends Migration
             $table->string('replace')->nullable();
             $table->string('option')->nullable();
             $table->timestamps();
-            $table->foreign('fighter_id')->references('id')->on('fighters');
+            $table->foreign('fighter_id')->references('id')->on('fighters')->onDelete('cascade');
         });
     }
 

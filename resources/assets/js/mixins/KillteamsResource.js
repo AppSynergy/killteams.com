@@ -50,6 +50,7 @@ export default {
         ajaxDeleteKillteam(killteam, then = false) {
             axios.delete(API_URL + '/killteam', { data: killteam })
                 .then(response => {
+                    this.ajaxFetchKillteams(false)
                     if (then) {
                         then()
                     }

@@ -19,7 +19,7 @@ class CreateSpecialistselectorsTable extends Migration
             $table->unsignedInteger('specialism_id')->nullable();
             $table->unsignedInteger('level');
             $table->timestamps();
-            $table->foreign('fighter_id')->references('id')->on('fighters');
+            $table->foreign('fighter_id')->references('id')->on('fighters')->onDelete('cascade');
             $table->foreign('specialism_id')->references('id')->on('specialisms');
         });
     }

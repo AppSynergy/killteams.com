@@ -28,13 +28,6 @@ class Killteam extends Model
     | FUNCTIONS
     |--------------------------------------------------------------------------
     */
-    public function delete()
-    {
-        if ($this->fighters()->exists()) {
-            $this->fighters()->delete();
-        }
-        parent::delete();
-    }
 
     /*
     |--------------------------------------------------------------------------
