@@ -139,15 +139,19 @@ export default {
             })
         },
         addFighter({commit, rootGetters}, {fighterId, miniature, specialistSelector, wargearSelectors}) {
-            //console.log("addFighter", fighterId, specialistSelector, specialistSelector.selector_id)
+
             if (specialistSelector) {
-                specialistSelector.selector_id = specialistSelector.id
+                if (_.isUndefined(specialistSelector.selector_id)) {
+                    specialistSelector.selector_id = specialistSelector.id
+                }
                 specialistSelector.id = UUID()
                 specialistSelector.fighter_id = fighterId
             }
             if (wargearSelectors) {
                 _.each(wargearSelectors, (selector) => {
-                    selector.selector_id = selector.id
+                    if (_.isUndefined(selector.selector_id)) {
+                        selector.selector_id = selector.id
+                    }
                     selector.id = UUID()
                     selector.fighter_id = fighterId
                 })
