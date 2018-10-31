@@ -76,6 +76,7 @@ export default {
         },
         updateWargear() {
             this.$store.dispatch('updateWargearSelector', {
+                factionId: this.fighter.faction_id,
                 fighterId: this.fighter.id,
                 selectorId: this.selector.id,
                 selector: this.selector,

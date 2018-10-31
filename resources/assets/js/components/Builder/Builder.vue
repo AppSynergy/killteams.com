@@ -12,7 +12,13 @@
                 </div>
                 <div class="col-12 col-sm-7 col-lg-8">
                     <div class="card mb-4">
-                        <div class="card-body py-0">
+                        <div class="card-body py-0 pt-3">
+                            <breadcrumb
+                                activeText="Select kill team"
+                                :parents="[{title: 'Home', route: { name: 'intro' }},
+                                    {title: 'Select game mode', route: { name: 'gamemode' }},
+                                    {title: 'Select faction', route: { name: 'choosefaction' }}]"
+                            ></breadcrumb>
                             <save-buttons></save-buttons>
                             <killteam-form></killteam-form>
                             <div class="fighter-list" dusk="fighters">
@@ -35,6 +41,7 @@
 </template>
 
 <script>
+import Breadcrumb from '../Partial/Breadcrumb.vue'
 import Draggable from 'vuedraggable'
 import Fighter from './Fighter.vue'
 import KillteamResource from '../../mixins/KillteamResource.js'
@@ -43,7 +50,7 @@ import SaveButtons from '../Partial/SaveButtons.vue'
 import Sidebar from '../Partial/Sidebar.vue'
 export default {
     components: {
-        Draggable, Fighter, KillteamForm, SaveButtons, Sidebar
+        Breadcrumb, Draggable, Fighter, KillteamForm, SaveButtons, Sidebar
     },
     mixins: [
         KillteamResource,

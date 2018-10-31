@@ -1,10 +1,12 @@
 <template>
     <div class="vue--partial-sidebar">
         <div class="card">
-            <span class="card-header h3">Choose Your Fighters</span>
 
             <div class="card-body"
                 v-if="'sandbox' == gameMode">
+                <div class="h5 mr-3 font-weight-bold d-block">
+                    Faction
+                </div>
                 <select class="custom-select custom-select-sm"
                     v-model="selectedFactionId"
                     v-on:change="updateFactionId">

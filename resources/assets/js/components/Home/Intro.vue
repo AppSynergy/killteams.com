@@ -3,7 +3,7 @@
         <div class="container">
             <div class="card">
 
-                <span class="card-header h3">Kill Team Builder</span>
+                <span class="card-header h3 text-center">Kill Team Builder</span>
 
                 <div class="card-body">
                     <div class="row">

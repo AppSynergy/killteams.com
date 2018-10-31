@@ -1,8 +1,8 @@
 <template>
     <div class="vue-partial-killteam-form">
-        <span class="h3 mb-0">
-            Command Roster
-            <span class="badge badge-info">{{ totalPoints }}</span>
+        <span class="d-flex justify-content-between align-items-center">
+            <h3 class="h3 m-0">Command Roster</h3>
+            <span class="badge badge-info "><h2 class="h2 m-0">{{ totalPoints }}</h2></span>
         </span>
         <input type="hidden" v-model="killteam.id">
         <input class="form-control my-2"

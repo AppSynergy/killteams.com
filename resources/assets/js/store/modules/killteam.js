@@ -8,7 +8,7 @@ export default {
     state: {
         killteam: {
             id: null,
-            name: 'Kill Team Name',
+            name: null,
             fighters: [],
         }
     },
@@ -73,12 +73,33 @@ export default {
                 }
             })
             state.killteam.fighters[fighterIndex].armament = armament
+        },
+        updatePointsCost(state, {fighterId, factionWargear}) {
+            const fighterIndex = _.findIndex(state.killteam.fighters, { id: fighterId })
+            const wargearSelectors = state.killteam.fighters[fighterIndex].wargearSelectors
+            let points = state.killteam.fighters[fighterIndex].miniature.points
+            _.each(wargearSelectors, (selector) => {
+                if (selector.isSelected) {
+                    _.each(ensureArray(selector.option), (item_id) => {
+                        if (item_id) {
+                            let item = _.find(factionWargear, {id: item_id})
+                            points += item.points
+                        }
+                    })
+                }
+            })
+            state.killteam.fighters[fighterIndex].points = points
         }
     },
     actions: {
-        updateWargearSelector({commit, state}, payload) {
+        updateWargearSelector({commit, state, rootState}, payload) {
+            const faction = _.find(rootState.factions.factions, { id: payload.factionId })
             commit('updateWargearSelector', payload)
             commit('updateArmament', payload)
+            commit('updatePointsCost', {
+                fighterId: payload.fighterId,
+                factionWargear: faction.wargear,
+            })
         },
         clearKillTeam({commit}) {
             commit('clearFighters')
@@ -139,6 +160,7 @@ export default {
                 faction_id: miniature.faction_id,
                 miniature_id: miniature.id,
                 armament: miniature.armament,
+                points: miniature.points,
                 specialistSelector,
                 wargearSelectors,
             }

@@ -3,9 +3,13 @@
         <div class="container">
             <div class="card">
 
-                <span class="card-header h3">Kill Team Builder &middot; Choose a Game Mode</span>
+                <span class="card-header h3 text-center">Select a Game Mode</span>
 
                 <div class="card-body">
+                    <breadcrumb
+                        activeText="Select game mode"
+                        :parents="[{title: 'Home', route: { name: 'intro' }}]"
+                    ></breadcrumb>
                     <ul class="list-group">
                         <li class="list-group-item">
                             <router-link class="btn btn-primary mr-3"
@@ -47,7 +51,10 @@
 </template>
 
 <script>
+import Breadcrumb from '../Partial/Breadcrumb.vue'
 export default {
-
+    components: {
+        Breadcrumb,
+    }
 }
 </script>
