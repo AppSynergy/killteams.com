@@ -18,7 +18,9 @@
                 &times;
             </span>
             <span class="badge badge-info" dusk="points">
-                {{ fighter.points }}
+                <h5 class="h5 m-0">
+                    {{ fighter.points }}
+                </h5>
             </span>
         </span>
 

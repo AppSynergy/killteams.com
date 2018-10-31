@@ -14,7 +14,15 @@ export default {
             const faction = _.find(state.factions, { id: faction_id })
             const datasheet = _.find(faction.datasheets, { miniatures: [{ id: miniature_id }]})
             return _.find(datasheet.miniatures, { id: miniature_id })
-        }
+        },
+        getFactionNarrativeName: (state) => ({faction_id, miniature_name}) => {
+            const faction = _.find(state.factions, { id: faction_id })
+            if (_.has(faction.narrative, 'names')) {
+                const names = faction.narrative.names
+                return _.sample(names.forename) + ' ' + _.sample(names.surname)
+            }
+            return miniature_name
+        },
     },
     mutations: {
         setFactions(state, factions) {

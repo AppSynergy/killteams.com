@@ -139,7 +139,7 @@ export default {
                 })
             })
         },
-        addFighter(context, {name, fighterId, miniature, specialistSelector, wargearSelectors}) {
+        addFighter({commit, rootGetters}, {fighterId, miniature, specialistSelector, wargearSelectors}) {
             if (specialistSelector) {
                 specialistSelector.selector_id = specialistSelector.id
                 specialistSelector.id = UUID()
@@ -154,7 +154,10 @@ export default {
             }
             const fighter = {
                 id: UUID(),
-                name,
+                name: rootGetters.getFactionNarrativeName({
+                    faction_id: miniature.faction_id,
+                    miniature_name: miniature.name,
+                }),
                 miniature,
                 fighter_id: fighterId,
                 faction_id: miniature.faction_id,
@@ -164,7 +167,7 @@ export default {
                 specialistSelector,
                 wargearSelectors,
             }
-            context.commit('addFighter', fighter)
+            commit('addFighter', fighter)
         }
     }
 }

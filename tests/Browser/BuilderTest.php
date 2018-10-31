@@ -26,7 +26,7 @@ class BuilderTest extends DuskTestCase
 
             // Can go to next screen
             $browser->click('@new-kill-team')
-                ->waitForText('Choose a Game Mode')
+                ->waitForText('Select a Game Mode')
                 ->assertSee('Sandbox Mode')
                 ->assertSee('Tournament Mode')
                 ->assertPathIs('/builder')
@@ -34,7 +34,7 @@ class BuilderTest extends DuskTestCase
 
             // Can continue..
             $browser->click('@sandbox-mode')
-                ->waitForText('Choose a Faction')
+                ->waitForText('Select a Faction')
                 ->assertPathIs('/builder')
                 ->assertFragmentIs('/sandbox/choosefaction');
 
@@ -45,7 +45,7 @@ class BuilderTest extends DuskTestCase
 
             // Can go back and select another mode
             $browser->click('@back')
-                ->waitForText('Choose a Game Mode')
+                ->waitForText('Select a Game Mode')
                 ->assertSee('Sandbox Mode')
                 ->assertSee('Tournament Mode')
                 ->assertPathIs('/builder')
@@ -53,20 +53,18 @@ class BuilderTest extends DuskTestCase
 
             // Can load a builder
             $browser->click('@tournament-mode')
-                ->waitForText('Choose a Faction')
+                ->waitForText('Select a Faction')
                 ->click('@Adeptus Astartes')
-                ->waitForText('Choose Your Fighters')
-                ->assertSee('Command Roster')
+                ->waitForText('Command Roster')
                 ->assertSee('Scout Sergeant')
                 ->assertSee('Tactical Marine')
                 ->assertFragmentIs('/tournament/1/ADEPTUS%20ASTARTES/builder');
 
             // Can pick a different faction instead
             $browser->click('@back')
-                ->waitForText('Choose a Faction')
+                ->waitForText('Select a Faction')
                 ->click('@Death Guard')
-                ->waitForText('Choose Your Fighters')
-                ->assertSee('Command Roster')
+                ->waitForText('Command Roster')
                 ->assertSee('Plague Champion')
                 ->assertDontSee('Tactical Marine')
                 ->assertFragmentIs('/tournament/7/DEATH%20GUARD/builder');
@@ -77,7 +75,7 @@ class BuilderTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/builder#/tournament/7/DEATH%20GUARD/builder')
-                ->waitForText('Choose Your Fighters')
+                ->waitForText('Command Roster')
                 ->assertFragmentIs('/tournament/7/DEATH%20GUARD/builder')
                 ->assertElementsCountIs(0, '.vue-builder-fighter');
 
