@@ -83,15 +83,21 @@ export default {
             this.$store.commit('removeFighter', fighterId)
         },
         getPoints(fighter) {
-            const points = this.$store.getters.getFighterPoints({
+            return this.$store.getters.getFighterPoints({
                 fighterId: fighter.id,
                 factionId: fighter.faction_id,
             })
-            return points
+        },
+        getArmament(fighter) {
+            return this.$store.getters.getFighterArmament({
+                fighterId: fighter.id,
+                miniatureArmament: fighter.miniature.armament,
+            })
         },
         isWargearSelectorAvailable(wargearOption) {
+            const armament = this.getArmament(this.fighter)
             const itemsToReplaceAreAllThere = _.every(wargearOption.replace, (item) => {
-                return _.includes(this.fighter.armament, item)
+                return _.includes(armament, item)
             })
             const limitedItemsAlreadyTaken = _(this.fightersWargear).filter((sel) => {
                 const notMine = (undefined == _.find(this.fighter.wargearSelectors, {id: sel.id}))
