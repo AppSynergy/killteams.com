@@ -21,6 +21,3 @@ Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCall
 
 Route::get('builder', 'BuilderController@index')
     ->name('builder');
-
-Route::get('/', 'HomeController@index')
-    ->name('home');
