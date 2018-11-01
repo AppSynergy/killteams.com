@@ -23,11 +23,14 @@ Vue.use(Vuex)
 
 Vue.component('app', require('./components/App.vue'))
 
+const el = '#app'
 const router = new VueRouter([])
 import store from './store/builder.js'
 
-const app = new Vue({
-    el: '#app',
-    store,
-    router
-})
+if ($(el).length > 0) {
+    const app = new Vue({
+        el,
+        store,
+        router
+    })
+}
