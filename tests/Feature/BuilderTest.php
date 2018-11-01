@@ -19,6 +19,7 @@ class BuilderTest extends TestCase
         $response = $this->get('/builder');
         $response->assertStatus(302);
         $response->assertLocation('/login');
+        $response->assertDontSee('<div id="app">');
     }
 
     /**
@@ -35,7 +36,7 @@ class BuilderTest extends TestCase
         ]);
         $this->assertAuthenticatedAs($user);
         $response = $this->get('/builder');
-        $response->assertStatus(200);
-        $response->assertLocation('/builder');
+        $response->assertOk();
+        $response->assertSee('<div id="app">');
     }
 }

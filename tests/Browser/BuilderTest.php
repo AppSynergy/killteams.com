@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use App\Models\User;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,6 +18,8 @@ class BuilderTest extends DuskTestCase
     public function testLoadBuilder()
     {
         $this->browse(function (Browser $browser) {
+
+            $browser->loginAs(User::find(1));
 
             // Can see builder
             $browser->visit('/builder')
