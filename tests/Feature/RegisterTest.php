@@ -28,6 +28,7 @@ class RegisterTest extends TestCase
      */
     public function testRegistersAValidUser()
     {
+        $response = $this->get('/register');
         $user = factory(User::class)->make();
         $response = $this->post('register', [
             'name' => $user->name,
@@ -37,6 +38,7 @@ class RegisterTest extends TestCase
         ]);
         $response->assertStatus(302);
         $this->assertAuthenticated();
+        $response->assertLocation('/builder');
     }
 
     /**
@@ -46,6 +48,7 @@ class RegisterTest extends TestCase
      */
     public function testDoesNotRegisterAnInvalidUser()
     {
+        $response = $this->get('/register');
         $user = factory(User::class)->make();
         $response = $this->post('register', [
             'name' => $user->name,
@@ -55,5 +58,6 @@ class RegisterTest extends TestCase
         ]);
         $response->assertSessionHasErrors();
         $this->assertGuest();
+        $response->assertLocation('/register');
     }
 }

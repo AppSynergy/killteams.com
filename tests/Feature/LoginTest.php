@@ -35,6 +35,7 @@ class LoginTest extends TestCase
         ]);
         $response->assertStatus(302);
         $this->assertAuthenticatedAs($user);
+        $response->assertLocation('/builder');
     }
 
     /**
@@ -44,6 +45,7 @@ class LoginTest extends TestCase
      */
     public function testDoesNotLoginAnInvalidUser()
     {
+        $response = $this->get('/login');
         $user = factory(User::class)->create();
         $response = $this->post('/login', [
             'email' => $user->email,
@@ -51,6 +53,7 @@ class LoginTest extends TestCase
         ]);
         $response->assertSessionHasErrors();
         $this->assertGuest();
+        $response->assertLocation('/login');
     }
 
     /**
@@ -60,9 +63,11 @@ class LoginTest extends TestCase
      */
     public function testLogoutAnAuthenticatedUser()
     {
+        $response = $this->get('/login');
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->post('/logout');
         $response->assertStatus(302);
         $this->assertGuest();
+        $response->assertLocation('/login');
     }
 }
